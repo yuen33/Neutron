@@ -2,5 +2,4 @@
 *.sdf
 Debug/
 x64/
-/bin/*
-/bin64/*
+intermediate/

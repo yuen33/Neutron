@@ -1,0 +1,9 @@
+*.suo
+*.sdf
+Debug/
+x64/
+intermediate/
+/bin/*
+!/bin/
+/bin64/*
+!/bin64/
