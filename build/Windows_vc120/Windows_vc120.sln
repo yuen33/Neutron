@@ -9,6 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "driver", "driver\driver.vcx
 	ProjectSection(ProjectDependencies) = postProject
 		{D7D78509-CBE7-4C39-A9CB-3369A06C71BF} = {D7D78509-CBE7-4C39-A9CB-3369A06C71BF}
 		{E3189B11-13F1-49D5-9F30-61D56FEDFFC5} = {E3189B11-13F1-49D5-9F30-61D56FEDFFC5}
+		{137FCDF8-D978-40D2-BAC5-638225D0D15C} = {137FCDF8-D978-40D2-BAC5-638225D0D15C}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeutronSystem", "NeutronSystem\NeutronSystem.vcxproj", "{E3189B11-13F1-49D5-9F30-61D56FEDFFC5}"
@@ -17,6 +18,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeutronSystem", "NeutronSys
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeutronD3D11", "NeutronD3D11\NeutronD3D11.vcxproj", "{137FCDF8-D978-40D2-BAC5-638225D0D15C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D7D78509-CBE7-4C39-A9CB-3369A06C71BF} = {D7D78509-CBE7-4C39-A9CB-3369A06C71BF}
+		{E3189B11-13F1-49D5-9F30-61D56FEDFFC5} = {E3189B11-13F1-49D5-9F30-61D56FEDFFC5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

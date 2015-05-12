@@ -17,7 +17,7 @@ namespace Neutron
 
 	NeutronDevice* NeutronD3D11Plugin::getDevice( int index )
 	{
-		
+		return 0;
 	}
 
 	NeutronD3D11Plugin* createPlugin()
