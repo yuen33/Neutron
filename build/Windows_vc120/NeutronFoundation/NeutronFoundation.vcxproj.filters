@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{09629fd1-6a2d-499e-994c-a97c0604a8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{cc6f11a3-04ec-43f5-b2c3-4e4d56fde3ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrent">
+      <UniqueIdentifier>{d21e5098-1d54-4a3d-9768-449e1ef7dc29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{ae58b6d1-cd3e-467e-a952-0247452608d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{4e006a08-b685-4630-9c98-d04356c668e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6d78d9f4-3dad-4cff-a337-dfbeacee0bf6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Allocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\BestFitAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\HeapAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\HostAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\MemoryList.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\SystemAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\WorstFitAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Thread.h">
+      <Filter>Concurrent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Platform.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Platform_Windows_Desktop.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Memory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Timer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Buffer.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Array.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Stack.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\String.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Type.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Map.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\HashMap.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\AsyncQueue.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\PluginManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Hash.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\NeutronFoundationCommon.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\RCPtr.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\CalculationScalar.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\MathDefine.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix43.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\BestFitAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\HeapAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\SystemAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\WorstFitAllocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Thread.cpp">
+      <Filter>Concurrent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Memory.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Timer.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\PluginManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
