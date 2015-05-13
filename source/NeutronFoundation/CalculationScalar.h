@@ -43,6 +43,36 @@ namespace Neutron
 			return x < 0 ? -x : x;
 		}
 
+		static inline boolean isNAN( float x )
+		{
+			return x != x;
+		}
+
+		static inline boolean isNAN( double x )
+		{
+			return x != x;
+		}
+
+		static inline boolean isINF( float x )
+		{
+			return x < NEUTRON_FLT_MIN || x > NEUTRON_FLT_MAX;
+		}
+
+		static inline boolean isINF( double x )
+		{
+			return x < NEUTRON_DBL_MIN || x > NEUTRON_DBL_MAX;
+		}
+
+		static inline boolean validate( float x )
+		{
+			return !isNAN( x ) && !isINF( x );
+		}
+
+		static inline boolean validate( double x )
+		{
+			return !isNAN( x ) && !isINF( x );
+		}
+
 		static inline boolean compare( float lhs, float rhs )
 		{
 			float v = abs( lhs - rhs );
@@ -100,17 +130,17 @@ namespace Neutron
 			return x * ( 1.5f - ( i.f * x * 0.5f ) );
 		}
 
-		static inline float inverse( float x )
+		static inline float rcp( float x )
 		{
 			return 1.0f / x;
 		}
 
-		static inline float inverse( double x )
+		static inline float rcp( double x )
 		{
 			return 1.0 / x;
 		}
 
-		static inline float inverseFast( float x )
+		static inline float rcpFast( float x )
 		{
 #if defined( NEUTRON_WINDOWS_DESKTOP ) && defined( NEUTRON_BUILD_ARCH_IX86 )
 			__m128 s = _mm_rcp_ss( _mm_set_ss( x ) );
@@ -124,17 +154,17 @@ namespace Neutron
 #endif
 		}
 
-		static inline float inverseSqrt( float x )
+		static inline float rcpSqrt( float x )
 		{
 			return 1.0f / ::sqrtf( x );
 		}
 
-		static inline double inverseSqrt( double x )
+		static inline double rcpSqrt( double x )
 		{
 			return 1.0 / ::sqrt( x );
 		}
 
-		static inline float inverseSqrtFast( float x )
+		static inline float rcpSqrtFast( float x )
 		{
 #if defined( NEUTRON_WINDOWS_DESKTOP ) && defined( NEUTRON_BUILD_ARCH_IX86 )
 			__m128 s = _mm_rsqrt_ss( _mm_set_ss( x ) );
@@ -148,12 +178,12 @@ namespace Neutron
 #endif
 		}
 
-		static inline float inverseSqrtSafe( float x )
+		static inline float rcpSqrtSafe( float x )
 		{
 			return 1.0f / sqrtf( x + NEUTRON_FLT_MIN );
 		}
 
-		static inline double inverseSqrtSafe( double x )
+		static inline double rcpSqrtSafe( double x )
 		{
 			return 1.0 / sqrt( x + NEUTRON_DBL_MIN );
 		}

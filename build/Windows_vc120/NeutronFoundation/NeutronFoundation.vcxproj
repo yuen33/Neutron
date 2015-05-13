@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\AsyncQueue.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\BestFitAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Buffer.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Calculation3D.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\CalculationScalar.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.h" />
