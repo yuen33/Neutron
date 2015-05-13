@@ -45,6 +45,7 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Stack.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\String.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\SystemAllocator.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Thread.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Timer.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Type.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="..\..\..\source\NeutronFoundation\PluginManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\SystemAllocator.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Thread.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Timer.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\WorstFitAllocator.cpp" />
