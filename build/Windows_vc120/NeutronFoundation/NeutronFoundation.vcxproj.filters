@@ -118,6 +118,9 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix43.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronFoundation\BestFitAllocator.cpp">
@@ -151,6 +154,9 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>

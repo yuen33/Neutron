@@ -11,14 +11,14 @@ namespace Neutron
 
 		ReadWriteLock::~ReadWriteLock()
 		{
-			assert(counter == 0);
+			assert( counter == 0 );
 		}
 
 		void ReadWriteLock::lockRead()
 		{
-			ScopedLock lock(counterLock);
+			ScopedLock lock( counterLock );
 			++counter;
-			if (counter > 0)
+			if( counter > 0 )
 			{
 				writeLock.acquire();
 			}
@@ -26,9 +26,9 @@ namespace Neutron
 
 		void ReadWriteLock::unlockRead()
 		{
-			ScopedLock lock(counterLock);
+			ScopedLock lock( counterLock );
 			--counter;
-			if (counter == 0)
+			if( counter == 0 )
 			{
 				writeLock.release();
 			}
@@ -46,8 +46,8 @@ namespace Neutron
 
 		// SimpleThread
 		SimpleThread::SimpleThread()
-			:id(0)
-			, handle(0)
+			:id( 0 )
+			, handle( 0 )
 		{
 		}
 
@@ -55,39 +55,39 @@ namespace Neutron
 		{
 		}
 
-		boolean SimpleThread::init(ThreadFunc func, void* args)
+		boolean SimpleThread::init( ThreadFunc func, void* args )
 		{
-			handle = initThread(func, args, &id);
-			assert(handle);
+			handle = initThread( func, args, &id );
+			assert( handle );
 			return handle != 0;
 		}
 
 		void SimpleThread::release()
 		{
-			if (handle != 0)
+			if( handle != 0 )
 			{
 				wait();
-				closeThread(handle);
+				closeThread( handle );
 				handle = 0;
 			}
 		}
 
 		void SimpleThread::start()
 		{
-			resumeThread(handle);
+			resumeThread( handle );
 		}
 
 		void SimpleThread::suspend()
 		{
-			suspendThread(handle);
+			suspendThread( handle );
 		}
 
-		void SimpleThread::wait(int time)
+		void SimpleThread::wait( int time )
 		{
-			assert(handle);
-			if (getCurrentThreadID() != id)
+			assert( handle );
+			if( getCurrentThreadID() != id )
 			{
-				waitThread(handle, time);
+				waitThread( handle, time );
 			}
 		}
 	}
