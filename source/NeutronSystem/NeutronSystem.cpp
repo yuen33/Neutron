@@ -18,7 +18,7 @@ namespace Neutron
 		{
 			boolean ret = true;
 			ret = ret && Memory::init();
-			ret = ret && taskManager.init( 4, 128 );
+			ret = ret && taskManager.init( 8, 128 );
 			return true;
 		}
 
@@ -30,8 +30,6 @@ namespace Neutron
 
 		void NeutronSystem::update()
 		{
-			taskManager.update();
-
 			if( taskManager.isIdle() )
 			{
 				shutdown();

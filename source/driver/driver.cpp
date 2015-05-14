@@ -15,6 +15,7 @@ using Neutron::Utility::Task;
 class TestTask : public Task
 {
 	String name;
+	int stopCount = 0;
 
 public:
 	TestTask( const char* name )
@@ -39,6 +40,8 @@ public:
 	virtual void onStop()
 	{
 		printf( "%s: OnStop\n", name.getCStr() );
+		++stopCount;
+		assert( stopCount == 1 );
 	}
 
 	virtual void onAbort()
@@ -54,7 +57,8 @@ int main(int argc, char** argv)
 		TestTask task0( "task0" );
 		TestTask task1( "task1" );
 		getSystem().getTaskManager().assign( &task0 );
-		//getSystem().getTaskManager().assign( &task1 );
+		getSystem().getTaskManager().assign( &task1 );
+
 		getSystem().run();
 	}
 	getSystem().release();

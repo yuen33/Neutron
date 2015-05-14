@@ -64,49 +64,71 @@ namespace Neutron
 		uint32 __stdcall TaskRunner::process( void* args )
 		{
 			assert( args );
-			TaskRunner* runner = reinterpret_cast<TaskRunner*>( args );
-			Task* task = runner->getTask();
+			TaskRunner* runner = reinterpret_cast< TaskRunner* >( args );
 
 			while( !runner->owner->getExitFlag() )
 			{
-				if( task == 0 )
+				if( runner->getTask() == 0 )
 				{
 					runner->owner->assignRunnersToTasks( runner );
-					task = runner->getTask();
 				}
-				else
+
+				Task* task = runner->getTask();
+				if( task )
 				{
 					if( !task->getAbortFlag() )
 					{
-						if( task->getState() == Task::Pending )
+						switch( task->getState() )
 						{
-							task->setState( Task::Running );
-							task->onStart();
-							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
-						}
-						else if( task->getState() == Task::Running && task->getUpdateFlag() )
-						{
-							task->onUpdate();
-							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
-						}
-						else if( task->getState() == Task::Ending )
-						{
-							task->onStop();
-							task->setState( Task::Ended );
+							case Task::Pending:
+							{
+								task->setState( Task::Running );
+								task->onStart();
+								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+							}
+							break;
+							case Task::Running:
+							{
+								task->onUpdate();
+								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+							}
+							break;
+							case Task::Ending:
+							{
+								task->onStop();
+								task->setState( Task::Ended );
+							}
+							break;
+							default:
+							{
+								printf( "Invalid Task state = %d\n", task->getState() );
+								//assert( 0 );
+							}
 						}
 					}
-					else
-					{
-						if( task->getState() == Task::Pending )
-						{
-							task->setState( Task::Ended );
-						}
-						else if( task->getState() != Task::Ended )
-						{
-							task->onAbort();
-							task->setState( Task::Ended );
-						}
-					}
+					//else
+					//{
+					//	switch( task->getState() )
+					//	{
+					//		case Task::Pending:
+					//		{
+					//			task->setState( Task::Ended );
+					//		}
+					//		break;
+					//		case Task::Running:
+					//		case Task::Ending:
+					//		{
+					//			task->onAbort();
+					//			task->setState( Task::Ended );
+					//		}
+					//		break;
+					//		default:
+					//		{
+					//			printf( "Task state = %d", task->getState() );
+					//			//assert( 0 );
+					//		}
+					//	}
+					//}
 				}
 
 				runner->owner->releaseRunnerFromTasks( runner );
@@ -122,8 +144,8 @@ namespace Neutron
 		// task manager
 		TaskManager::TaskManager()
 			:pendingTaskEvent( true, false )
-			,exitEvent( false, false )
-			,exitFlag( false )
+			, exitEvent( true, false )
+			, exitFlag( false )
 		{
 		}
 
@@ -151,9 +173,6 @@ namespace Neutron
 
 		void TaskManager::release()
 		{
-			// set flag, prevent new task assignment
-			exitEvent.set();
-
 			//while( idleRunners.getCount() != runners.getCount() )
 			while( !isIdle() )
 			{
@@ -175,18 +194,23 @@ namespace Neutron
 				for( int i = 0; i < pendingCount; ++i )
 				{
 					Task* task = 0;
-					pendingTasks.pop( task );
+					while( !pendingTasks.pop( task ) );
 					if( task )
 					{
-						task->abort();
+						task->onAbort();
+						task->setState( Task::Ended );
 					}
+					/*if( task )
+					{
+						task->abort();
+					}*/
 
 					// if task started, push back to pending queue, let runners run the custom abort()
 					// if not started, drop it
-					if( task->getState() != Task::Pending )
+					/*if( task->getState() != Task::Pending )
 					{
 						pendingTasks.push( task );
-					}
+					}*/
 				}
 
 				// let remain tasks run out
@@ -199,6 +223,8 @@ namespace Neutron
 			{
 				threads.add( runners[i]->getHandle() );
 			}
+
+			exitEvent.set();
 			exitFlag = true;
 			waitThreads( threads.getData(), threads.getCount(), true, NEUTRON_WAIT_TIME_INFINITE );
 
@@ -211,22 +237,12 @@ namespace Neutron
 			runners.clear();
 		}
 
-		void TaskManager::update()
-		{
-
-			/*if( !exitFlag )
-			{
-			assignRunnersToTasks();
-			}*/
-		}
-
 		void TaskManager::waitForTask()
 		{
 			NEUTRON_EVENT events[2];
 			events[0] = pendingTaskEvent.getHandle();
 			events[1] = exitEvent.getHandle();
 			waitEvents( events, 2, false, NEUTRON_WAIT_TIME_INFINITE );
-			//waitEvent( newTaskEvent.getHandle(), NEUTRON_WAIT_TIME_INFINITE );
 		}
 
 		boolean TaskManager::assign( Task* task )
@@ -237,6 +253,7 @@ namespace Neutron
 				{
 					task->setState( Task::Pending );
 					pendingTaskEvent.set();
+					atomIncrement32( &assignedTasks );
 					return true;
 				}
 			}
@@ -246,51 +263,46 @@ namespace Neutron
 
 		void TaskManager::assignRunnersToTasks( TaskRunner* runner )
 		{
-			/*NEUTRON_EVENT events[2];
-			events[0] = getNewTaskEvent().getHandle();
-			events[1] = getExitEvent().getHandle();
-			waitEvents( events, 2, false, NEUTRON_WAIT_TIME_INFINITE );*/ 
-
 			waitForTask();
 
-			//printf( "assignRunnersToTasks\n" );
-
 			// if there is pending tasks and idle runners
-			while( pendingTasks.any() )
+			if( pendingTasks.any() )
 			{
 				Task* task = 0;
-				pendingTasks.pop( task );
-				if( task )
+				if( pendingTasks.pop( task ) && task )
 				{
-					++activeRunners;
+					assert( task->getState() == Task::Pending || task->getState() == Task::Running || task->getState() == Task::Ending );
 					runner->setTask( task );
+					//printf( "[%u] runner %d assigned to task %p state = %d\n", timer.elapsedUS(), runner->getId(), task, task->getState() );
 				}
 			}
 		}
 
 		void TaskManager::releaseRunnerFromTasks( TaskRunner* runner )
 		{
-			//printf( "releaseRunnerFromTasks\n" );
-
 			Task* task = runner->getTask();
 			if( task )
 			{
 				if( task->getState() != Task::Ended )
 				{
-					pendingTasks.push( task );
-					pendingTaskEvent.set();
+					assert( pendingTasks.push( task ) );
 				}
-				else if( pendingTasks.empty() )
+				else
 				{
-					pendingTaskEvent.reset();
+					atomIncrement32( &finishedTasks );
 				}
+			}
 
-				--activeRunners;
+			if( !exitFlag && pendingTasks.any() )
+			{
+				pendingTaskEvent.set();
+			}
+			else
+			{
+				pendingTaskEvent.reset();
 			}
 
 			runner->setTask( 0 );
-			//idleRunners.push( runner );
-			//runner->suspend();
 		}
 	}
 }

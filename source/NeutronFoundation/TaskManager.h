@@ -86,8 +86,9 @@ namespace Neutron
 
 			SimpleEvent				pendingTaskEvent;
 			SimpleEvent				exitEvent;
-			int						activeRunners;
 			boolean					exitFlag;
+			volatile int			assignedTasks;
+			volatile int			finishedTasks;
 
 		public:
 			TaskManager();
@@ -99,13 +100,13 @@ namespace Neutron
 			boolean assign( Task* task );
 			void cancel( Task* task );
 
-			void update();
+			// task runner called
 			void waitForTask();
 			void assignRunnersToTasks( TaskRunner* runner );
 			void releaseRunnerFromTasks( TaskRunner* runner );
 
 			inline boolean getExitFlag() const { return exitFlag; }
-			inline boolean isIdle() const { return activeRunners + pendingTasks.getCount() == 0; }
+			inline boolean isIdle() const { return assignedTasks == finishedTasks; }
 		};
 	}
 }
