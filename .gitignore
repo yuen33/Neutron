@@ -1,5 +1,6 @@
 *.suo
 *.sdf
 Debug/
+Release/
 x64/
 intermediate/

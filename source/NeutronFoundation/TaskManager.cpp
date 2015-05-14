@@ -10,6 +10,7 @@ namespace Neutron
 		Task::Task()
 			:state( Initialized )
 			, updateFlag( false )
+			, abortFlag( false )
 		{
 		}
 
@@ -36,7 +37,7 @@ namespace Neutron
 		// task runner
 		TaskRunner::TaskRunner( TaskManager* owner )
 			:owner( owner )
-			, task( task )
+			, task( 0 )
 		{
 			assert( owner );
 		}
@@ -76,59 +77,33 @@ namespace Neutron
 				Task* task = runner->getTask();
 				if( task )
 				{
-					if( !task->getAbortFlag() )
+					switch( task->getState() )
 					{
-						switch( task->getState() )
+						case Task::Pending:
 						{
-							case Task::Pending:
-							{
-								task->setState( Task::Running );
-								task->onStart();
-								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
-							}
-							break;
-							case Task::Running:
-							{
-								task->onUpdate();
-								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
-							}
-							break;
-							case Task::Ending:
-							{
-								task->onStop();
-								task->setState( Task::Ended );
-							}
-							break;
-							default:
-							{
-								printf( "Invalid Task state = %d\n", task->getState() );
-								//assert( 0 );
-							}
+							task->setState( Task::Running );
+							task->onStart();
+							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+						}
+						break;
+						case Task::Running:
+						{
+							task->onUpdate();
+							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+						}
+						break;
+						case Task::Ending:
+						{
+							task->onStop();
+							task->setState( Task::Ended );
+						}
+						break;
+						default:
+						{
+							printf( "Invalid Task state = %d\n", task->getState() );
+							assert( 0 );
 						}
 					}
-					//else
-					//{
-					//	switch( task->getState() )
-					//	{
-					//		case Task::Pending:
-					//		{
-					//			task->setState( Task::Ended );
-					//		}
-					//		break;
-					//		case Task::Running:
-					//		case Task::Ending:
-					//		{
-					//			task->onAbort();
-					//			task->setState( Task::Ended );
-					//		}
-					//		break;
-					//		default:
-					//		{
-					//			printf( "Task state = %d", task->getState() );
-					//			//assert( 0 );
-					//		}
-					//	}
-					//}
 				}
 
 				runner->owner->releaseRunnerFromTasks( runner );
@@ -146,6 +121,8 @@ namespace Neutron
 			:pendingTaskEvent( true, false )
 			, exitEvent( true, false )
 			, exitFlag( false )
+			, assignedTasks( 0 )
+			, finishedTasks( 0 )
 		{
 		}
 
@@ -173,7 +150,6 @@ namespace Neutron
 
 		void TaskManager::release()
 		{
-			//while( idleRunners.getCount() != runners.getCount() )
 			while( !isIdle() )
 			{
 				// check all runners, set all running tasks abort
@@ -200,21 +176,7 @@ namespace Neutron
 						task->onAbort();
 						task->setState( Task::Ended );
 					}
-					/*if( task )
-					{
-						task->abort();
-					}*/
-
-					// if task started, push back to pending queue, let runners run the custom abort()
-					// if not started, drop it
-					/*if( task->getState() != Task::Pending )
-					{
-						pendingTasks.push( task );
-					}*/
 				}
-
-				// let remain tasks run out
-				//assignRunnersToTasks();
 			}
 
 			// release threads
@@ -247,7 +209,7 @@ namespace Neutron
 
 		boolean TaskManager::assign( Task* task )
 		{
-			if( task != 0 && task->getState() == Task::Initialized )
+			if( task != 0 )
 			{
 				if( pendingTasks.push( task ) )
 				{
@@ -271,7 +233,7 @@ namespace Neutron
 				Task* task = 0;
 				if( pendingTasks.pop( task ) && task )
 				{
-					assert( task->getState() == Task::Pending || task->getState() == Task::Running || task->getState() == Task::Ending );
+					assert( task->getState() != Task::Ended );
 					runner->setTask( task );
 					//printf( "[%u] runner %d assigned to task %p state = %d\n", timer.elapsedUS(), runner->getId(), task, task->getState() );
 				}
@@ -280,11 +242,13 @@ namespace Neutron
 
 		void TaskManager::releaseRunnerFromTasks( TaskRunner* runner )
 		{
+			printf( "task manager status {%d/%d}\n", getFinishedTasksCount(), getAssignedTasksCount() );
 			Task* task = runner->getTask();
 			if( task )
 			{
 				if( task->getState() != Task::Ended )
 				{
+					// pending queue full!
 					assert( pendingTasks.push( task ) );
 				}
 				else

@@ -1,0 +1,32 @@
+﻿Build started 2015/5/15 2:36:48.
+     1>Project "H:\Neutron\build\Windows_vc120\NeutronFoundation\NeutronFoundation.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D NEUTRON_FOUNDATION_BUILD /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D NEUTRONFOUNDATION_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\source\NeutronFoundation\TaskManager.cpp
+         TaskManager.cpp
+       Link:
+         F:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.lib" /MACHINE:X86 /SAFESEH /DLL Release\BestFitAllocator.obj
+         Release\ChunkedAllocator.obj
+         Release\FirstFitAllocator.obj
+         Release\HeapAllocator.obj
+         Release\Memory.obj
+         Release\PluginManager.obj
+         Release\RCPtr.obj
+         Release\SystemAllocator.obj
+         Release\TaskManager.obj
+         Release\Thread.obj
+         Release\Timer.obj
+         Release\WorstFitAllocator.obj
+            Creating library H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.lib and object H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.exp
+         Generating code
+         Finished generating code
+         NeutronFoundation.vcxproj -> H:\Neutron\build\Windows_vc120\../../intermediate/x86/NeutronFoundation.dll
+       PostBuildEvent:
+         xcopy /y "H:\Neutron\intermediate\x86\NeutronFoundation.dll" "H:\Neutron\build\Windows_vc120\../../bin"
+         :VCEnd
+         H:\Neutron\intermediate\x86\NeutronFoundation.dll
+         复制了 1 个文件
+     1>Done Building Project "H:\Neutron\build\Windows_vc120\NeutronFoundation\NeutronFoundation.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.69

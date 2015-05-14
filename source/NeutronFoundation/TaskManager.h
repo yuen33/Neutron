@@ -30,7 +30,6 @@ namespace Neutron
 
 		private:
 			int state;
-			boolean suspendFlag;
 			boolean updateFlag;
 			boolean abortFlag;
 
@@ -53,10 +52,6 @@ namespace Neutron
 
 			// used in update() to exit
 			inline void stop() { updateFlag = false; }
-			// pause task
-			inline void suspend() { suspendFlag = true; }
-			// resume task
-			inline void resume() { suspendFlag = false; }
 			// abort task, called when task manager release
 			inline void abort() { abortFlag = true; }
 		};
@@ -107,6 +102,8 @@ namespace Neutron
 
 			inline boolean getExitFlag() const { return exitFlag; }
 			inline boolean isIdle() const { return assignedTasks == finishedTasks; }
+			inline int getAssignedTasksCount() const { return assignedTasks; }
+			inline int getFinishedTasksCount() const { return finishedTasks; }
 		};
 	}
 }

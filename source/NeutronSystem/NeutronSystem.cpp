@@ -18,7 +18,7 @@ namespace Neutron
 		{
 			boolean ret = true;
 			ret = ret && Memory::init();
-			ret = ret && taskManager.init( 8, 128 );
+			ret = ret && taskManager.init( 1, 12800 );
 			return true;
 		}
 

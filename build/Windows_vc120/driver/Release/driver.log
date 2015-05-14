@@ -1,0 +1,17 @@
+﻿Build started 2015/5/15 2:36:51.
+     1>Project "H:\Neutron\build\Windows_vc120\driver\driver.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         F:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/driver.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:H:\Neutron\intermediate\x86\ NeutronSystem.lib NeutronFoundation.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/driver.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\Neutron\build\Windows_vc120\../../intermediate/x86/driver.lib" /MACHINE:X86 /SAFESEH Release\driver.obj
+         Generating code
+         Finished generating code
+         driver.vcxproj -> H:\Neutron\build\Windows_vc120\../../intermediate/x86/driver.exe
+       PostBuildEvent:
+         xcopy /y "H:\Neutron\intermediate\x86\driver.exe" "H:\Neutron\build\Windows_vc120\../../bin"
+         :VCEnd
+         H:\Neutron\intermediate\x86\driver.exe
+         复制了 1 个文件
+     1>Done Building Project "H:\Neutron\build\Windows_vc120\driver\driver.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.75
