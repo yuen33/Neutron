@@ -6,6 +6,7 @@ namespace Neutron
 	namespace System
 	{
 		NeutronSystem::NeutronSystem()
+			:exitFlag( false )
 		{
 		}
 
@@ -15,19 +16,40 @@ namespace Neutron
 
 		boolean NeutronSystem::init( const char* path )
 		{
-			Memory::init();
+			boolean ret = true;
+			ret = ret && Memory::init();
+			ret = ret && taskManager.init( 4, 128 );
 			return true;
 		}
 
 		void NeutronSystem::release()
 		{
+			taskManager.release();
 			Memory::release();
 		}
 
-		NeutronSystem getSystem()
+		void NeutronSystem::update()
+		{
+			taskManager.update();
+
+			if( taskManager.isIdle() )
+			{
+				shutdown();
+			}
+		}
+
+		void NeutronSystem::run()
+		{
+			while( !exitFlag )
+			{
+				update();
+			}
+		}
+
+		NeutronSystem& getSystem()
 		{
 			static NeutronSystem systemStub;
 			return systemStub;
 		}
-	}
+	};
 }

@@ -42,7 +42,7 @@ namespace Neutron
 
 			void reserve( CountType newCapacity )
 			{
-				data.resize( capacity + 1 );
+				data.resize( newCapacity + 1 );
 				capacity = data.getCapacity();
 			}
 
@@ -60,20 +60,20 @@ namespace Neutron
 				{
 					tempPushIndex = pushIndex;
 					tempPopIndex = popIndex;
-					if( ( tempPushIndex + 1 ) % capacity == tempPopINdex % capacity )
+					if( ( tempPushIndex + 1 ) % capacity == tempPopIndex % capacity )
 					{
 						// full
 						return false;
 					}
-				}while( !atomCAS32( &pushIndex, ( tempPushIndex + 1 ), pushIndex ) );
+				}while( !atomCAS32( (uint32*)&pushIndex, ( tempPushIndex + 1 ), tempPushIndex ) );
 
 				// commit
-				data[pushIndex % capacity] = item;
+				data[tempPushIndex % capacity] = item;
 
 				// set max pop counter
-				while( !atomCAS32( &maxPopIndex, ( tempPushIndex + 1 ), pushIndex ) )
+				while( !atomCAS32( (uint32*)&maxPopIndex, ( tempPushIndex + 1 ), tempPushIndex ) )
 				{
-					NEUTRON_THREAD_YIELD;
+					yield();
 				}
 
 				// update count
@@ -90,7 +90,7 @@ namespace Neutron
 				do
 				{
 					tempPopIndex = popIndex;
-					tempMaxPopInex = maxPopIndex;
+					tempMaxPopIndex = maxPopIndex;
 					if( tempPopIndex % capacity == maxPopIndex % capacity )
 					{
 						// empty or producer has the space but not commit
@@ -101,7 +101,7 @@ namespace Neutron
 					item = data[tempPopIndex % capacity];
 
 					// set pop counter
-					if( atomCAS32( &popIndex, ( tempPopIndex + 1 ), popIndex ) )
+					if( atomCAS32( (uint32*)&popIndex, ( tempPopIndex + 1 ), tempPopIndex ) )
 					{
 						atomDecrement32( &count );
 						return true;

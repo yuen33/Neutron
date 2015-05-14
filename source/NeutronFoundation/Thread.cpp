@@ -47,7 +47,8 @@ namespace Neutron
 		// SimpleThread
 		SimpleThread::SimpleThread()
 			:id( 0 )
-			, handle( 0 )
+			,handle( 0 )
+			,running( false )
 		{
 		}
 
@@ -74,11 +75,13 @@ namespace Neutron
 
 		void SimpleThread::start()
 		{
+			running = true;
 			resumeThread( handle );
 		}
 
 		void SimpleThread::suspend()
 		{
+			running = false;
 			suspendThread( handle );
 		}
 

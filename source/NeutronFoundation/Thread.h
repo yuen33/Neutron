@@ -34,6 +34,7 @@ namespace Neutron
 			void set() { setEvent(event); }
 			void reset() { resetEvent(event); }
 			void wait(uint32 time) { waitEvent(event, time); }
+			inline NEUTRON_EVENT getHandle() const { return event; }
 		};
 
 		class NEUTRON_FOUNDATION_CORE ScopedLock
@@ -74,6 +75,7 @@ namespace Neutron
 		private:
 			NEUTRON_THREAD_ID			id;
 			NEUTRON_THREAD_HANDLE		handle;
+			boolean						running;
 
 			SimpleThread(const SimpleThread& other);
 			SimpleThread& operator=(const SimpleThread& rhs);
@@ -91,6 +93,7 @@ namespace Neutron
 
 			inline NEUTRON_THREAD_ID getId() const { return id; }
 			inline NEUTRON_THREAD_HANDLE getHandle() const { return handle; }
+			inline boolean isRunning() const { return running; }
 		};
 	}
 }

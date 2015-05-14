@@ -2,15 +2,20 @@
 
 #include "NeutronFoundationCommon.h"
 #include "AsyncQueue.h"
+#include "Array.h"
 #include "Thread.h"
 
+using Neutron::Container::Array;
 using Neutron::Container::AsyncQueue;
+using Neutron::Concurrent::SimpleEvent;
 using Neutron::Concurrent::SimpleThread;
 
 namespace Neutron
 {
 	namespace Utility
 	{
+		class TaskManager;
+
 		class NEUTRON_FOUNDATION_CORE Task
 		{
 		public:
@@ -70,19 +75,19 @@ namespace Neutron
 
 			static uint32 __stdcall process( void* args );
 
-			inline boolean setTask( Task* newTask ) { task = newTask; }
+			inline void setTask( Task* newTask ) { task = newTask; }
 			inline Task* getTask() { return task; }
 		};
 
 		class NEUTRON_FOUNDATION_CORE TaskManager
 		{
-			AsyncQueue<TaskRunner*> idleRunners;
-			AsyncQueue<TaskRunner*> activeRunners;
-			AsyncQueue<Task*> pendingTasks;
-			AsyncQueue<Task*> runningTasks;
+			Array<TaskRunner*>		runners;
+			AsyncQueue<Task*>		pendingTasks;
 
-			boolean flushFlag;
-			boolean exitFlag;
+			SimpleEvent				pendingTaskEvent;
+			SimpleEvent				exitEvent;
+			int						activeRunners;
+			boolean					exitFlag;
 
 		public:
 			TaskManager();
@@ -92,11 +97,15 @@ namespace Neutron
 			void release();
 
 			boolean assign( Task* task );
-			void flush();
+			void cancel( Task* task );
 
 			void update();
-			void assignRunnersToTasks();
-			void releaseRunnerFromTasks( TaskRunner* runner );			
+			void waitForTask();
+			void assignRunnersToTasks( TaskRunner* runner );
+			void releaseRunnerFromTasks( TaskRunner* runner );
+
+			inline boolean getExitFlag() const { return exitFlag; }
+			inline boolean isIdle() const { return activeRunners + pendingTasks.getCount() == 0; }
 		};
 	}
 }
