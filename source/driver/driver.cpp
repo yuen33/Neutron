@@ -31,25 +31,29 @@ public:
 
 	virtual void onStart()
 	{
+		setUpdateFlag( true );
 		stopCount = 0;
-		//printf( "task %d: OnStart\n", x );
+		printf( "task %d, runner %d: OnStart\n", x, getRunnerID() );
 	}
 
 	virtual void onUpdate()
 	{
-		//printf( "task %d: OnUpdate\n", x );
+		++stopCount;
+		printf( "task %d, runner %d: onUpdate\n", x, getRunnerID() );
+		if( stopCount > 4 )
+		{
+			stop();
+		}
 	}
 
 	virtual void onStop()
 	{
-		//printf( "task %d: OnStop\n", x );
-		//++stopCount;
-		//assert( stopCount == 1 );
+		printf( "task %d, runner %d: onStop\n", x, getRunnerID() );
 	}
 
 	virtual void onAbort()
 	{
-		//printf( "task %d: OnAbort\n", x );
+		printf( "task %d, runner %d: onAbort\n", x, getRunnerID() );
 	}
 };
 
@@ -57,7 +61,7 @@ int main(int argc, char** argv)
 {
 	getSystem().init();
 	{
-		static const int scale = 10000;
+		static const int scale = 4;
 		TestTask* tasks[scale];
 
 		for( int i = 0; i < scale; ++i )
@@ -65,19 +69,19 @@ int main(int argc, char** argv)
 			tasks[i] = new TestTask( i );
 		}
 
+		//system( "pause" );
+
 		Timer timer;
 		for( int i = 0; i < scale; ++i )
 		{
 			while( !getSystem().getTaskManager().assign( tasks[i] ) );
-			{
-				//printf( "%u assigned", i );
-			}
-			//while( !getSystem().getTaskManager().assign( &task1 ) );
 		}
 
 		getSystem().run();
 		uint64 us = timer.elapsedUS();
 		printf( "%u us elapsed, %f us on average\n", us, (float)us / (float)scale );
+
+		//system( "pause" );
 
 		for( int i = 0; i < scale; ++i )
 		{

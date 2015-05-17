@@ -100,7 +100,7 @@ namespace Neutron
 						break;
 						default:
 						{
-							printf( "Invalid Task state = %d\n", task->getState() );
+							// invalid task state
 							assert( 0 );
 						}
 					}
@@ -235,21 +235,27 @@ namespace Neutron
 				{
 					assert( task->getState() != Task::Ended );
 					runner->setTask( task );
-					//printf( "[%u] runner %d assigned to task %p state = %d\n", timer.elapsedUS(), runner->getId(), task, task->getState() );
+					task->setRunner( runner );
 				}
 			}
 		}
 
 		void TaskManager::releaseRunnerFromTasks( TaskRunner* runner )
 		{
-			printf( "task manager status {%d/%d}\n", getFinishedTasksCount(), getAssignedTasksCount() );
 			Task* task = runner->getTask();
+
 			if( task )
 			{
+				task->setRunner( 0 );
+				runner->setTask( 0 );
+
 				if( task->getState() != Task::Ended )
 				{
 					// pending queue full!
-					assert( pendingTasks.push( task ) );
+					if( !pendingTasks.push( task ) )
+					{
+						assert( 0 );
+					}
 				}
 				else
 				{
@@ -265,8 +271,6 @@ namespace Neutron
 			{
 				pendingTaskEvent.reset();
 			}
-
-			runner->setTask( 0 );
 		}
 	}
 }

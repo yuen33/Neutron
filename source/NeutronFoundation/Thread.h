@@ -91,7 +91,7 @@ namespace Neutron
 			void suspend();
 			void wait(int time = WAIT_TIME_INFINITE);
 
-			inline NEUTRON_THREAD_ID getId() const { return id; }
+			inline NEUTRON_THREAD_ID getID() const { return id; }
 			inline NEUTRON_THREAD_HANDLE getHandle() const { return handle; }
 			inline boolean isRunning() const { return running; }
 		};
