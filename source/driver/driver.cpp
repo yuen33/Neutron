@@ -69,8 +69,6 @@ int main(int argc, char** argv)
 			tasks[i] = new TestTask( i );
 		}
 
-		//system( "pause" );
-
 		Timer timer;
 		for( int i = 0; i < scale; ++i )
 		{
@@ -80,8 +78,6 @@ int main(int argc, char** argv)
 		getSystem().run();
 		uint64 us = timer.elapsedUS();
 		printf( "%u us elapsed, %f us on average\n", us, (float)us / (float)scale );
-
-		//system( "pause" );
 
 		for( int i = 0; i < scale; ++i )
 		{

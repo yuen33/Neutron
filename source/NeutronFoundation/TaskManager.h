@@ -1,5 +1,79 @@
 #pragma once
 
+/*****************************************************************************************************************************
+* Task Manager Usage:
+* 1.	Each runner is simply a thread
+* 2.	RunnerCount shoud greater than actual GPU core count but not recommand greater than 32,
+*			because many small and quick tasks will lock runners when assign task and release task,
+*			recommand to use multiple TaskManagers to handle different kind of tasks
+* 3.	Be sure taskCapacity is greater than the max assigned tasks number in task manager or there will be assert
+* 4.	Be sure onAbort() released all the resources, so this thread can be shutdown gracefully,
+*			onAbort() will be called instead of onStop() when the task is shutdown not by itself
+* 5.	Construct a simple task like this ( onUpdate() will not be called ):
+*			class MyTask : public Task
+*			{
+*				boolean exitFlag;
+*				public:
+*				MyTask() {}
+*				virtual ~MyTask() {}
+*				virtual void onStart()
+*				{
+*					// work start
+*				}
+*				virtual void onStop()
+*				{
+*					// work stop
+*				}
+*			};
+* 6.	Contruct task which will update peroidly like this ( not update by the same thread ):
+*			class MyTask : public Task
+*			{
+*				boolean exitFlag;
+*				public:
+*				MyTask() : exitFlag( false ) { setUpdateFlag( true ); };
+*				virtual ~MyTask() {}
+*				virtual void onStart()
+*				{
+*					// work start
+*				}
+*				virtual void onUpdate()
+*				{
+*					// do update and using exitFlag as an exit trigger
+*					if( exitFlag )
+*					{
+*						stop();		// this will stop task from updating
+*					}
+*				}
+*				virtual void onStop()
+*				{
+*					// work stop
+*				}
+*			};
+* 7.	Construct task whick will hold thread like this ( not released until finished ):
+*			class MyTask : public Task
+*			{
+*				boolean exitFlag;
+*				public:
+*				MyTask() : exitFlag( false ) {};
+*				virtual ~MyTask() {}
+*				virtual void onStart()
+*				{
+*					// work start
+*				}
+*				virtual void onUpdate()
+*				{
+*					while( !exitFlag )
+*					{
+*						// do update and using exitFlag as an exit trigger
+*					}
+*				}
+*				virtual void onStop()
+*				{
+*					// work stop
+*				}
+*			};
+******************************************************************************************************************************/
+
 #include "NeutronFoundationCommon.h"
 #include "AsyncQueue.h"
 #include "Array.h"
