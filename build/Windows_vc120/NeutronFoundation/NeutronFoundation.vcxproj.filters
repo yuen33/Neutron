@@ -112,17 +112,23 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Vector4.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix43.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Calculation3D.h">
       <Filter>Math</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Socket.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Stream.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +166,12 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Socket.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>

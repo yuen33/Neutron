@@ -7,6 +7,7 @@
 #include "NeutronSystem/NeutronSystem.h"
 #include "NeutronFoundation/TaskManager.h"
 #include "NeutronFoundation/Timer.h"
+#include "NeutronFoundation/Stream.h"
 
 using namespace Neutron;
 using Neutron::System::NeutronSystem;
@@ -33,14 +34,13 @@ public:
 	{
 		setUpdateFlag( true );
 		stopCount = 0;
-		printf( "task %d, runner %d: OnStart\n", x, getRunnerID() );
+		//printf( "task %d, runner %d: OnStart\n", x, getRunnerID() );
 	}
 
 	virtual void onUpdate()
 	{
-		++stopCount;
-		printf( "task %d, runner %d: onUpdate\n", x, getRunnerID() );
-		if( stopCount > 4 )
+		//printf( "task %d, runner %d: onUpdate\n", x, getRunnerID() );
+		if( ++stopCount >= 4 )
 		{
 			stop();
 		}
@@ -48,12 +48,12 @@ public:
 
 	virtual void onStop()
 	{
-		printf( "task %d, runner %d: onStop\n", x, getRunnerID() );
+		//printf( "task %d, runner %d: onStop\n", x, getRunnerID() );
 	}
 
 	virtual void onAbort()
 	{
-		printf( "task %d, runner %d: onAbort\n", x, getRunnerID() );
+		//printf( "task %d, runner %d: onAbort\n", x, getRunnerID() );
 	}
 };
 
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 {
 	getSystem().init();
 	{
-		static const int scale = 4;
+		static const int scale = 1024;
 		TestTask* tasks[scale];
 
 		for( int i = 0; i < scale; ++i )

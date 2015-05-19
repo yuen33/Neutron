@@ -6,7 +6,7 @@ namespace Neutron
 {
 	namespace Math
 	{
-		static const float PI = 3.14159265358979323846264338327950288419716939937510;
+		static const float PI = 3.14159265358979323846264338327950288419716939937510f;
 		static const float PI2 = PI * 2.0f;
 		static const float PI05 = PI * 0.5f;
 		static const float Epsilon = 1e-6f;
@@ -30,5 +30,14 @@ namespace Neutron
 			double d;
 			unsigned int ui[2];
 		};
+
+		template<typename T>
+		class Vector2;
+		template<typename T>
+		class Vector3;
+		template<typename T>
+		class Vector4;
+		template<typename T>
+		class Matrix44;
 	}
 }

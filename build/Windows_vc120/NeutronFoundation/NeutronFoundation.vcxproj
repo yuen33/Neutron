@@ -42,7 +42,9 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Platform_Windows_Desktop.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\PluginManager.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\RCPtr.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Socket.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Stack.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Stream.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\String.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\SystemAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h" />
@@ -63,6 +65,8 @@
     <ClCompile Include="..\..\..\source\NeutronFoundation\Memory.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\PluginManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Socket.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\SystemAllocator.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Thread.cpp" />

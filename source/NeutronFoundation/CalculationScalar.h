@@ -81,7 +81,7 @@ namespace Neutron
 
 		static inline boolean compare( double lhs, double rhs )
 		{
-			float v = abs( lhs - rhs );
+			double v = abs( lhs - rhs );
 			return v < Epsilon;
 		}
 
@@ -90,7 +90,7 @@ namespace Neutron
 			return ::ceilf( x );
 		}
 
-		static inline float ceil( double x )
+		static inline double ceil( double x )
 		{
 			return ::ceil( x );
 		}
@@ -135,7 +135,7 @@ namespace Neutron
 			return 1.0f / x;
 		}
 
-		static inline float rcp( double x )
+		static inline double rcp( double x )
 		{
 			return 1.0 / x;
 		}
