@@ -13,14 +13,14 @@ namespace Neutron
 		}
 
 		template<typename T>
-		inline static const int getTypeID()
+		inline static int getTypeID()
 		{
 			static const int id = generateTypeID();
 			return id;
 		}
 
 		template<typename T0, typename T1>
-		inline static const boolean sameType()
+		inline static boolean sameType()
 		{
 			return getTypeID<T0>() == getTypeID<T1>();
 		}

@@ -12,6 +12,21 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronRenderDefine.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronNode.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronFrame.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronContext.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronState.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronStream.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
@@ -25,6 +40,9 @@
   <ItemGroup>
     <Filter Include="Render">
       <UniqueIdentifier>{fad1b830-7c79-4de4-88ea-52459588f6fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NeutronGraph">
+      <UniqueIdentifier>{f4dbf269-1905-4d6d-8667-45cd9853c318}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
