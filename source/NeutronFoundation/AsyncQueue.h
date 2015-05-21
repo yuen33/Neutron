@@ -112,6 +112,11 @@ namespace Neutron
 				assert( 0 );
 				return false;
 			}
+
+			T& peek()
+			{
+				return data[popIndex % capacity];
+			}
 		};
 	}
 }

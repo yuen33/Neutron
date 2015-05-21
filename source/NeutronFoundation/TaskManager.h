@@ -84,10 +84,11 @@ using Neutron::Container::Array;
 using Neutron::Container::AsyncQueue;
 using Neutron::Concurrent::SimpleEvent;
 using Neutron::Concurrent::SimpleThread;
+using Neutron::Utility::Timer;
 
 namespace Neutron
 {
-	namespace Utility
+	namespace Concurrent
 	{
 		class Task;
 		class TaskManager;
@@ -131,10 +132,12 @@ namespace Neutron
 		public:
 			Task();
 			virtual ~Task();
+
+			// called once when task start
 			virtual void onStart();
-			// called when the task get a owner
+			// called when task update
 			virtual void onUpdate();
-			// called onece when the task finished
+			// called once when task finished
 			virtual void onStop();
 			// abort task, make sure the task will abort gracefully
 			virtual void onAbort();
@@ -147,6 +150,8 @@ namespace Neutron
 			inline boolean getUpdateFlag() const { return updateFlag; }
 			inline boolean getAbortFlag() const { return abortFlag; }
 
+			// refresh task for reassignment
+			inline void refresh( boolean isUpdate ) { updateFlag = isUpdate; state = Task::Initialized; abortFlag = false; }
 			// used in update() to exit
 			inline void stop() { updateFlag = false; }
 			// abort task, called when task manager release
@@ -164,7 +169,8 @@ namespace Neutron
 			volatile int			assignedTasks;
 			volatile int			finishedTasks;
 
-			Timer					timer;
+			// profiler timer
+			//Timer					timer;
 
 		public:
 			TaskManager();

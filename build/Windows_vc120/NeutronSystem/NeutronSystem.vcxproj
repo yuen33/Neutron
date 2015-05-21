@@ -176,7 +176,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronContext.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronGraphContext.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronFrame.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronNode.h" />
@@ -184,13 +184,15 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronRenderDefine.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronRenderDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronResource.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronState.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronParameter.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronStream.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronDevice.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronGraphContext.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronNode.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronRenderDevice.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronResource.cpp" />

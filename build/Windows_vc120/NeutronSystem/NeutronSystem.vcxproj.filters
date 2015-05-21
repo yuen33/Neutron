@@ -18,13 +18,13 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronFrame.h">
       <Filter>NeutronGraph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronContext.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronState.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronStream.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronGraphContext.h">
+      <Filter>NeutronGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronParameter.h">
       <Filter>NeutronGraph</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,6 +35,12 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronDevice.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronRenderDevice.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronNode.cpp">
+      <Filter>NeutronGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronGraphContext.cpp">
+      <Filter>NeutronGraph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

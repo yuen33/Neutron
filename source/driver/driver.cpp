@@ -12,7 +12,7 @@
 using namespace Neutron;
 using Neutron::System::NeutronSystem;
 using Neutron::System::getSystem;
-using Neutron::Utility::Task;
+using Neutron::Concurrent::Task;
 using Neutron::Utility::Timer;
 
 class TestTask : public Task

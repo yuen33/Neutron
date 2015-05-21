@@ -4,7 +4,7 @@ using Neutron::Container::Array;
 
 namespace Neutron
 {
-	namespace Utility
+	namespace Concurrent
 	{
 		// task
 		Task::Task()

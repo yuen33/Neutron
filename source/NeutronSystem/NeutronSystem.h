@@ -4,7 +4,7 @@
 #include "NeutronFoundation/PluginManager.h"
 #include "NeutronFoundation/TaskManager.h"
 
-using Neutron::Utility::TaskManager;
+using Neutron::Concurrent::TaskManager;
 using Neutron::Utility::PluginManager;
 
 namespace Neutron
