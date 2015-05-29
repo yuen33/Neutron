@@ -118,9 +118,6 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Calculation3D.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Socket.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -129,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h">
+      <Filter>Concurrent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,14 +165,14 @@
     <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\Socket.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
+      <Filter>Concurrent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

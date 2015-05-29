@@ -1,14 +1,14 @@
 #pragma once
 
-#include "NeutronFoundationCommon.h"
+#include "VRLabCommon.h"
 
-namespace Neutron
+namespace VRLab
 {
 	namespace Utility
 	{
-		class NEUTRON_FOUNDATION_CORE RCObject
+		class VRLAB_CORE RCObject
 		{
-			mutable int counter;
+			volatile int32 counter;
 
 		protected:
 			virtual inline void deleteMethod( RCObject* object )
@@ -17,8 +17,8 @@ namespace Neutron
 			}
 
 		public:
-			RCObject();
-			virtual ~RCObject();
+			RCObject() : counter( 0 ) {}
+			virtual ~RCObject() {}
 
 			inline void addReference()
 			{
@@ -42,10 +42,13 @@ namespace Neutron
 			T* data;
 
 		public:
-			RCPtr( const T* p = 0 )
+			RCPtr( T* p = 0 )
 				:data( p )
 			{
-				p->addReference();
+				if( data )
+				{
+					data->addReference();
+				}
 			}
 
 			RCPtr( const RCPtr& other )
@@ -53,7 +56,7 @@ namespace Neutron
 			{
 				if( data )
 				{
-					data->grab();
+					data->addReference();
 				}
 			}
 
@@ -61,7 +64,7 @@ namespace Neutron
 			{
 				if( data )
 				{
-					data->release();
+					data->removeReference();
 				}
 			}
 
@@ -69,12 +72,12 @@ namespace Neutron
 			{
 				if( p )
 				{
-					p->grab();
+					p->addReference();
 				}
 
 				if( data )
 				{
-					data->release();
+					data->removeReference();
 				}
 
 				data = p;

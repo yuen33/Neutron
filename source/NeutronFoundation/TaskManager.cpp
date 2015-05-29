@@ -1,8 +1,9 @@
 #include "TaskManager.h"
-#include "Array.h"
-using Neutron::Container::Array;
+#include <vector>
 
-namespace Neutron
+using std::vector;
+
+namespace VRLab
 {
 	namespace Concurrent
 	{
@@ -65,7 +66,7 @@ namespace Neutron
 		uint32 __stdcall TaskRunner::process( void* args )
 		{
 			assert( args );
-			TaskRunner* runner = reinterpret_cast< TaskRunner* >( args );
+			TaskRunner* runner = reinterpret_cast<TaskRunner*>( args );
 
 			while( !runner->owner->getExitFlag() )
 			{
@@ -74,35 +75,43 @@ namespace Neutron
 					runner->owner->assignRunnersToTasks( runner );
 				}
 
-				Task* task = runner->getTask();
+				TaskPtr task = runner->getTask();
 				if( task )
 				{
-					switch( task->getState() )
+					if( !task->getAbortFlag() )
 					{
-						case Task::Pending:
+						switch( task->getState() )
 						{
-							task->setState( Task::Running );
-							task->onStart();
-							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+							case Task::Pending:
+							{
+								task->setState( Task::Running );
+								task->onStart();
+								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+							}
+							break;
+							case Task::Running:
+							{
+								task->onUpdate();
+								task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
+							}
+							break;
+							case Task::Ending:
+							{
+								task->onStop();
+								task->setState( Task::Ended );
+							}
+							break;
+							default:
+							{
+								// invalid task state
+								assert( 0 );
+							}
 						}
-						break;
-						case Task::Running:
-						{
-							task->onUpdate();
-							task->setState( task->getUpdateFlag() ? Task::Running : Task::Ending );
-						}
-						break;
-						case Task::Ending:
-						{
-							task->onStop();
-							task->setState( Task::Ended );
-						}
-						break;
-						default:
-						{
-							// invalid task state
-							assert( 0 );
-						}
+					}
+					else
+					{
+						task->onAbort();
+						task->setState( Task::Ended );
 					}
 				}
 
@@ -142,7 +151,7 @@ namespace Neutron
 				TaskRunner* newRunner = new TaskRunner( this );
 				assert( newRunner );
 				newRunner->init();
-				runners.add( newRunner );
+				runners.push_back( newRunner );
 			}
 
 			return true;
@@ -153,11 +162,11 @@ namespace Neutron
 			while( !isIdle() )
 			{
 				// check all runners, set all running tasks abort
-				for( int i = 0; i < runners.getCount(); ++i )
+				for( uint32 i = 0; i < runners.size(); ++i )
 				{
 					if( runners[i]->isRunning() )
 					{
-						Task* task = runners[i]->getTask();
+						TaskPtr task = runners[i]->getTask();
 						if( task && task->getState() != Task::Ended )
 						{
 							task->abort();
@@ -169,28 +178,28 @@ namespace Neutron
 				int pendingCount = pendingTasks.getCount();
 				for( int i = 0; i < pendingCount; ++i )
 				{
-					Task* task = 0;
+					TaskPtr task = 0;
 					while( !pendingTasks.pop( task ) );
 					if( task )
 					{
-						task->onAbort();
-						task->setState( Task::Ended );
+						task->abort();
+						while( !pendingTasks.push( task ) );
 					}
 				}
 			}
 
 			// release threads
-			Array<NEUTRON_THREAD_HANDLE> threads;
-			for( int i = 0; i < runners.getCount(); ++i )
+			vector<VRLAB_THREAD_HANDLE> threads;
+			for( uint32 i = 0; i < runners.size(); ++i )
 			{
-				threads.add( runners[i]->getHandle() );
+				threads.push_back( runners[i]->getHandle() );
 			}
 
 			exitEvent.set();
 			exitFlag = true;
-			waitThreads( threads.getData(), threads.getCount(), true, NEUTRON_WAIT_TIME_INFINITE );
+			waitThreads( &threads[0], threads.size(), true, VRLAB_WAIT_TIME_INFINITE );
 
-			for( int i = 0; i < runners.getCount(); ++i )
+			for( uint32 i = 0; i < runners.size(); ++i )
 			{
 				runners[i]->release();
 				delete runners[i];
@@ -201,13 +210,13 @@ namespace Neutron
 
 		void TaskManager::waitForTask()
 		{
-			NEUTRON_EVENT events[2];
+			VRLAB_EVENT events[2];
 			events[0] = pendingTaskEvent.getHandle();
 			events[1] = exitEvent.getHandle();
-			waitEvents( events, 2, false, NEUTRON_WAIT_TIME_INFINITE );
+			waitEvents( events, 2, false, VRLAB_WAIT_TIME_INFINITE );
 		}
 
-		boolean TaskManager::assign( Task* task )
+		boolean TaskManager::assign( TaskPtr task )
 		{
 			if( task != 0 )
 			{
@@ -230,7 +239,7 @@ namespace Neutron
 			// if there is pending tasks and idle runners
 			if( pendingTasks.any() )
 			{
-				Task* task = 0;
+				TaskPtr task = 0;
 				if( pendingTasks.pop( task ) && task )
 				{
 					assert( task->getState() != Task::Ended );
@@ -242,7 +251,7 @@ namespace Neutron
 
 		void TaskManager::releaseRunnerFromTasks( TaskRunner* runner )
 		{
-			Task* task = runner->getTask();
+			TaskPtr task = runner->getTask();
 
 			if( task )
 			{

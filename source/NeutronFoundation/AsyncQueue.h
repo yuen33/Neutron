@@ -1,15 +1,16 @@
 #pragma once
 
-#include "Array.h"
+#include <vector>
+using std::vector;
 
-namespace Neutron
+namespace VRLab
 {
 	namespace Container
 	{
 		template<typename T, typename CountType = int>
 		class AsyncQueue
 		{
-			Array<T>			data;
+			vector<T>			data;
 			CountType			pushIndex;
 			CountType			popIndex;
 			CountType			maxPopIndex;
@@ -43,7 +44,7 @@ namespace Neutron
 			void reserve( CountType newCapacity )
 			{
 				data.resize( newCapacity + 1 );
-				capacity = data.getCapacity();
+				capacity = data.size();
 			}
 
 			inline CountType getCount() const { return count; }
@@ -113,7 +114,38 @@ namespace Neutron
 				return false;
 			}
 
-			T& peek()
+			inline boolean pop()
+			{
+				CountType tempMaxPopIndex;
+				CountType tempPopIndex;
+
+				do
+				{
+					tempPopIndex = popIndex;
+					tempMaxPopIndex = maxPopIndex;
+					if( tempPopIndex % capacity == maxPopIndex % capacity )
+					{
+						// empty or producer has the space but not commit
+						return false;
+					}
+
+					// fetch
+					//item = data[tempPopIndex % capacity];
+
+					// set pop counter
+					if( atomCAS32( (uint32*)&popIndex, ( tempPopIndex + 1 ), tempPopIndex ) )
+					{
+						atomDecrement32( &count );
+						return true;
+					}
+				}while( true );
+
+				// should NOT reach here!
+				assert( 0 );
+				return false;
+			}
+
+			const T& peek() const
 			{
 				return data[popIndex % capacity];
 			}

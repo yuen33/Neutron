@@ -74,29 +74,33 @@
 *			};
 ******************************************************************************************************************************/
 
-#include "NeutronFoundationCommon.h"
+#include "VRLabCommon.h"
 #include "AsyncQueue.h"
-#include "Array.h"
+#include <vector>
 #include "Thread.h"
 #include "Timer.h"
+#include "RCPtr.h"
 
-using Neutron::Container::Array;
-using Neutron::Container::AsyncQueue;
-using Neutron::Concurrent::SimpleEvent;
-using Neutron::Concurrent::SimpleThread;
-using Neutron::Utility::Timer;
+using std::vector;
+using VRLab::Container::AsyncQueue;
+using VRLab::Concurrent::SimpleEvent;
+using VRLab::Concurrent::SimpleThread;
+using VRLab::Utility::Timer;
+using VRLab::Utility::RCObject;
+using VRLab::Utility::RCPtr;
 
-namespace Neutron
+namespace VRLab
 {
 	namespace Concurrent
 	{
 		class Task;
 		class TaskManager;
-		
-		class NEUTRON_FOUNDATION_CORE TaskRunner : public SimpleThread
+		typedef RCPtr<Task> TaskPtr;
+
+		class VRLAB_CORE TaskRunner : public SimpleThread
 		{
 			TaskManager* owner;
-			Task* task;
+			TaskPtr task;
 
 		public:
 			TaskRunner( TaskManager* owner );
@@ -107,11 +111,11 @@ namespace Neutron
 
 			static uint32 __stdcall process( void* args );
 
-			inline void setTask( Task* newTask ) { task = newTask; }
-			inline Task* getTask() { return task; }
+			inline void setTask( TaskPtr newTask ) { task = newTask; }
+			inline TaskPtr getTask() { return task; }
 		};
 
-		class NEUTRON_FOUNDATION_CORE Task
+		class VRLAB_CORE Task : public RCObject
 		{
 		public:
 			enum : int
@@ -158,10 +162,10 @@ namespace Neutron
 			inline void abort() { abortFlag = true; }
 		};
 
-		class NEUTRON_FOUNDATION_CORE TaskManager
+		class VRLAB_CORE TaskManager
 		{
-			Array<TaskRunner*>		runners;
-			AsyncQueue<Task*>		pendingTasks;
+			vector<TaskRunner*>		runners;
+			AsyncQueue<TaskPtr>		pendingTasks;
 
 			SimpleEvent				pendingTaskEvent;
 			SimpleEvent				exitEvent;
@@ -179,8 +183,8 @@ namespace Neutron
 			boolean init( int runnerCount, int taskCapacity );
 			void release();
 
-			boolean assign( Task* task );
-			void cancel( Task* task );
+			boolean assign( TaskPtr task );
+			void cancel( TaskPtr task );
 
 			// task runner called
 			void waitForTask();

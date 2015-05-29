@@ -11,7 +11,6 @@ namespace Neutron
 		
 		RCObject::~RCObject()
 		{
-			removeReference();
 		}
 	}
 }
