@@ -1,16 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronResource.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDevice.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\VPU.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Pin.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\EngineDefine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Module.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\BiovisionHierarchy.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Image.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronResource.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronDevice.cpp" />
+    <Filter Include="Engine">
+      <UniqueIdentifier>{060887a4-57e2-47c9-bc41-a927db2e9742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{a1e08895-3b48-470a-9e78-b22a43884acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{35f283cb-bc44-4da4-b9e5-1e719593f95d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

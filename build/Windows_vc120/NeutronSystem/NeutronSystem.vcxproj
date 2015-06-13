@@ -176,16 +176,20 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDevice.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronResource.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\BiovisionHierarchy.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\EngineDefine.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Image.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Module.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Pin.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\VPU.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronDevice.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronResource.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

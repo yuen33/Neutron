@@ -104,7 +104,7 @@ namespace Neutron
 							default:
 							{
 								// invalid task state
-								assert( 0 );
+								//assert( 0 );
 							}
 						}
 					}

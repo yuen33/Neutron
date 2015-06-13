@@ -79,7 +79,7 @@ namespace Neutron
 			Size oldOffset = ftell( file );
 			::fseek( file, 0, SEEK_END );
 			Size size = ftell( file );
-			::fseek( file, oldOffset, SEEK_SET );
+			::fseek( file, (long)oldOffset, SEEK_SET );
 			return size;
 		}
 

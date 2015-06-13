@@ -23,7 +23,6 @@ namespace Neutron
 			inline explicit Vector4( const Vector2& other0, const Vector2& other1 ) : x( other0.x ), y( other0.y ), z( other1.x ), w( other1.y ) {}
 			inline explicit Vector4( const Vector3& other, const T vw ) : x( other.x ), y( other.y ), z( other.z ), w( vw ) {}
 			inline explicit Vector4( const T vx, const Vector3& other ) : x( vx ), y( other.x ), z( other.y ), w( other.z ) {}
-			inline explicit Vector4( const Vector4& other, ) : x( other.x ), y( other.y ), z( other.z ), w( other.w ) {}
 			~Vector4() {}
 
 			inline Vector4& operator=( const Vector4& rhs ) { x = rhs.x; y = rhs.y; z = rhs.z; w = rhs.w; }
@@ -37,7 +36,7 @@ namespace Neutron
 			inline Vector3& normalize() { T rlen = rcpSqrtSafe( x * x + y * y + z * z + w * w ); x *= rlen; y *= rlen; z *= rlen; return *this; }
 			inline Vector3 getNormalized() const { T rlen = rcpSqrtSafe( x * x + y * y + z * z + w * w ); return ( *this * rlen ); }
 			inline T length() const { return sqrt( x * x + y * y + z * z + w * w ); }
-			inline T length2() const { return x * x + y * y + z * z + w * w ); }
+			inline T length2() const { return x * x + y * y + z * z + w * w; }
 
 			inline boolean isZero( const T e ) const { return abs( x ) < e && abs( y ) < e && abs( z ) < e && abs( w ) < e; }
 		};
