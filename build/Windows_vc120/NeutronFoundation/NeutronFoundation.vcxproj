@@ -27,16 +27,21 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Calculation3D.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\CalculationScalar.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Connection.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\FileJson.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\HandleManager.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Hash.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\HeapAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\HostAllocator.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\IOInterface.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Map.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\MathDefine.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix43.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Memory.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\MemoryList.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\MessageBus.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\NeutronFoundationCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Platform.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Platform_Windows_Desktop.h" />
@@ -60,11 +65,15 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronFoundation\BestFitAllocator.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Connection.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\FileJson.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\HandleManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\HeapAllocator.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\IOInterface.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Memory.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\MessageBus.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\PluginManager.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Socket.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\SystemAllocator.cpp" />
@@ -147,10 +156,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NEUTRON_FOUNDATION_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONFOUNDATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin" 
@@ -165,10 +176,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NEUTRON_FOUNDATION_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONFOUNDATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"
@@ -185,12 +198,14 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NEUTRON_FOUNDATION_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONFOUNDATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin"</Command>
@@ -206,12 +221,14 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NEUTRON_FOUNDATION_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONFOUNDATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"</Command>

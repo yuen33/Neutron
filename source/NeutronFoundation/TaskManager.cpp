@@ -1,9 +1,9 @@
 #include "TaskManager.h"
-#include <vector>
+#include "Array.h"
 
-using std::vector;
+using Neutron::Container::Array;
 
-namespace VRLab
+namespace Neutron
 {
 	namespace Concurrent
 	{
@@ -151,7 +151,7 @@ namespace VRLab
 				TaskRunner* newRunner = new TaskRunner( this );
 				assert( newRunner );
 				newRunner->init();
-				runners.push_back( newRunner );
+				runners.add( newRunner );
 			}
 
 			return true;
@@ -162,7 +162,7 @@ namespace VRLab
 			while( !isIdle() )
 			{
 				// check all runners, set all running tasks abort
-				for( uint32 i = 0; i < runners.size(); ++i )
+				for( int i = 0; i < runners.getCount(); ++i )
 				{
 					if( runners[i]->isRunning() )
 					{
@@ -189,17 +189,17 @@ namespace VRLab
 			}
 
 			// release threads
-			vector<VRLAB_THREAD_HANDLE> threads;
-			for( uint32 i = 0; i < runners.size(); ++i )
+			Array<NEUTRON_THREAD_HANDLE> threads;
+			for( int i = 0; i < runners.getCount(); ++i )
 			{
-				threads.push_back( runners[i]->getHandle() );
+				threads.add( runners[i]->getHandle() );
 			}
 
 			exitEvent.set();
 			exitFlag = true;
-			waitThreads( &threads[0], threads.size(), true, VRLAB_WAIT_TIME_INFINITE );
+			waitThreads( &threads[0], threads.getCount(), true, NEUTRON_WAIT_TIME_INFINITE );
 
-			for( uint32 i = 0; i < runners.size(); ++i )
+			for( int i = 0; i < runners.getCount(); ++i )
 			{
 				runners[i]->release();
 				delete runners[i];
@@ -210,10 +210,10 @@ namespace VRLab
 
 		void TaskManager::waitForTask()
 		{
-			VRLAB_EVENT events[2];
+			NEUTRON_EVENT events[2];
 			events[0] = pendingTaskEvent.getHandle();
 			events[1] = exitEvent.getHandle();
-			waitEvents( events, 2, false, VRLAB_WAIT_TIME_INFINITE );
+			waitEvents( events, 2, false, NEUTRON_WAIT_TIME_INFINITE );
 		}
 
 		boolean TaskManager::assign( TaskPtr task )

@@ -7,7 +7,6 @@
 #include "NeutronSystem/NeutronSystem.h"
 #include "NeutronFoundation/TaskManager.h"
 #include "NeutronFoundation/Timer.h"
-#include "NeutronFoundation/Stream.h"
 
 using namespace Neutron;
 using Neutron::System::NeutronSystem;

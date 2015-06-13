@@ -1,16 +1,17 @@
 #pragma once
 
-#include <vector>
-using std::vector;
+#include "Array.h"
 
-namespace VRLab
+using Neutron::Container::Array;
+
+namespace Neutron
 {
 	namespace Container
 	{
 		template<typename T, typename CountType = int>
 		class AsyncQueue
 		{
-			vector<T>			data;
+			Array<T>			data;
 			CountType			pushIndex;
 			CountType			popIndex;
 			CountType			maxPopIndex;
@@ -44,7 +45,7 @@ namespace VRLab
 			void reserve( CountType newCapacity )
 			{
 				data.resize( newCapacity + 1 );
-				capacity = data.size();
+				capacity = data.getCount();
 			}
 
 			inline CountType getCount() const { return count; }

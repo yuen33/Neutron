@@ -19,6 +19,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{6d78d9f4-3dad-4cff-a337-dfbeacee0bf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{164bf4e8-8a05-4342-9cc3-20bddd75d527}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Allocator.h">
@@ -118,17 +121,32 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Calculation3D.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronFoundation\Socket.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronFoundation\Stream.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\Matrix44.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h">
       <Filter>Concurrent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Connection.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Socket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\HandleManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\MessageBus.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\Stream.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\FileJson.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\IOInterface.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -162,17 +180,29 @@
     <ClCompile Include="..\..\..\source\NeutronFoundation\PluginManager.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronFoundation\RCPtr.cpp">
-      <Filter>Utilities</Filter>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
+      <Filter>Concurrent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\Connection.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\Socket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\MessageBus.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\HandleManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\FileJson.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\IOInterface.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronFoundation\TaskManager.cpp">
-      <Filter>Concurrent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

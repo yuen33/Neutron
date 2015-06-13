@@ -74,22 +74,22 @@
 *			};
 ******************************************************************************************************************************/
 
-#include "VRLabCommon.h"
+#include "NeutronFoundationCommon.h"
 #include "AsyncQueue.h"
-#include <vector>
+#include "Array.h"
 #include "Thread.h"
 #include "Timer.h"
 #include "RCPtr.h"
 
-using std::vector;
-using VRLab::Container::AsyncQueue;
-using VRLab::Concurrent::SimpleEvent;
-using VRLab::Concurrent::SimpleThread;
-using VRLab::Utility::Timer;
-using VRLab::Utility::RCObject;
-using VRLab::Utility::RCPtr;
+using Neutron::Container::Array;
+using Neutron::Container::AsyncQueue;
+using Neutron::Concurrent::SimpleEvent;
+using Neutron::Concurrent::SimpleThread;
+using Neutron::Utility::Timer;
+using Neutron::Utility::RCObject;
+using Neutron::Utility::RCPtr;
 
-namespace VRLab
+namespace Neutron
 {
 	namespace Concurrent
 	{
@@ -97,7 +97,7 @@ namespace VRLab
 		class TaskManager;
 		typedef RCPtr<Task> TaskPtr;
 
-		class VRLAB_CORE TaskRunner : public SimpleThread
+		class NEUTRON_FOUNDATION_CORE TaskRunner : public SimpleThread
 		{
 			TaskManager* owner;
 			TaskPtr task;
@@ -115,7 +115,7 @@ namespace VRLab
 			inline TaskPtr getTask() { return task; }
 		};
 
-		class VRLAB_CORE Task : public RCObject
+		class NEUTRON_FOUNDATION_CORE Task : public RCObject
 		{
 		public:
 			enum : int
@@ -162,9 +162,9 @@ namespace VRLab
 			inline void abort() { abortFlag = true; }
 		};
 
-		class VRLAB_CORE TaskManager
+		class NEUTRON_FOUNDATION_CORE TaskManager
 		{
-			vector<TaskRunner*>		runners;
+			Array<TaskRunner*>		runners;
 			AsyncQueue<TaskPtr>		pendingTasks;
 
 			SimpleEvent				pendingTaskEvent;

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "VRLabCommon.h"
+#include "NeutronFoundationCommon.h"
 
-namespace VRLab
+namespace Neutron
 {
 	namespace Utility
 	{
-		class VRLAB_CORE RCObject
+		class NEUTRON_FOUNDATION_CORE RCObject
 		{
 			volatile int32 counter;
 

@@ -5,50 +5,12 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronResource.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronRenderDevice.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDevice.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronRenderDefine.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronNode.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronFrame.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronStream.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronGraphContext.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronParameter.h">
-      <Filter>NeutronGraph</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronResource.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronDevice.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronRenderDevice.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronNode.cpp">
-      <Filter>NeutronGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronGraphContext.cpp">
-      <Filter>NeutronGraph</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Render">
-      <UniqueIdentifier>{fad1b830-7c79-4de4-88ea-52459588f6fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="NeutronGraph">
-      <UniqueIdentifier>{f4dbf269-1905-4d6d-8667-45cd9853c318}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
