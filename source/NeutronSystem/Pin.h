@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
-#include "EngineDefine.h"
 
 namespace Neutron
 {

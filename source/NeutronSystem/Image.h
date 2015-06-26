@@ -7,19 +7,42 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		class ImageDescriptor : public ResourceDescriptor
+		class NEUTRON_CORE Image : public Resource
 		{
 		public:
-			ImageDescriptor();
-			ImageDescriptor( const ImageDescriptor& other );
-			virtual ~ImageDescriptor();
+			enum : int
+			{
+				Image_1D,
+				Image_2D,
+				Image_3D,
+				Image_Cube
+			};
 
-			ImageDescriptor& operator=( const ImageDescriptor& rhs );
-			
-		};
+		private:
+			int		type;
+			int		width;
+			int		height;
+			int		depth;
+			int64	format;
+			int		arraySize;
+			int		mips;
+			uint8*	data;
+			Size	size;
 
-		class Image : public ResourceConcrete<ImageDescriptor>
-		{
+		public:
+			Image();
+			virtual ~Image();
+
+			inline bool null() const { return data != 0; }
+			inline int getType() const { return type; }
+			inline int getWidth() const { return width; }
+			inline int getHeight() const { return height; }
+			inline int getDepth() const { return depth; }
+			inline int64 getFormat() const { return format; }
+			inline int getArraySize() const { return arraySize; }
+			inline int getMips() const { return mips; }
+			inline const uint8* getData() { return data; }
+			inline Size getSize() const { return size; }
 		};
 	}
 }

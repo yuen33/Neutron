@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineDefine.h"
+#include "NeutronSystemCommon.h"
 #include "NeutronFoundation/HashMap.h"
 #include "NeutronFoundation/String.h"
 

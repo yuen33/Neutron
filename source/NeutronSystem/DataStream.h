@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
-#include "EngineDefine.h"
 #include "NeutronFoundation/HashMap.h"
 #include "NeutronFoundation/String.h"
 #include "NeutronFoundation/AsyncQueue.h"

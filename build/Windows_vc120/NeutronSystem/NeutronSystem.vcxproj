@@ -93,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,7 +114,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,7 +137,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -161,7 +161,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -179,17 +179,22 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\BiovisionHierarchy.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\EngineDefine.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\FileJPEG.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Image.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Log.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Module.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDefine.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Pin.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\VPU.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\NeutronSystem\FileJPEG.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -98,6 +98,8 @@ namespace Neutron
 			T& operator*( ) const { return *data; }
 			operator T*( ) const { return data; }
 			operator boolean() const { return data != 0; }
+			boolean isNull() const { return data == 0; }
+			static RCPtr<T> null() { return RCPtr<T>( 0 ); }
 		};
 
 		template<typename T>

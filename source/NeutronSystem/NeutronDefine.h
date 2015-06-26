@@ -9,6 +9,7 @@ namespace Neutron
 {
 	namespace Engine
 	{
+		// framework
 		class DataFrame;
 		class DataStream;
 		class Pin;
@@ -20,5 +21,10 @@ namespace Neutron
 		typedef RCPtr<Pin>				PinPtr;
 		typedef RCPtr<Variable>			VariablePtr;
 		typedef RCPtr<VPU>				VPUPtr;
+
+		// resources
+		class Image;
+
+		typedef RCPtr<Image> ImagePtr;
 	}
 }

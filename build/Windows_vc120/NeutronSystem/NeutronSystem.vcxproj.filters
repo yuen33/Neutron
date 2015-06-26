@@ -17,9 +17,6 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\EngineDefine.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
@@ -35,6 +32,16 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\Image.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\FileJPEG.h">
+      <Filter>System\File</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDefine.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Log.h">
+      <Filter>System\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -46,10 +53,22 @@
     <Filter Include="Engine\Resource">
       <UniqueIdentifier>{35f283cb-bc44-4da4-b9e5-1e719593f95d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\File">
+      <UniqueIdentifier>{60f8ad6d-1f2a-4836-a353-863b10ab8d12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Log">
+      <UniqueIdentifier>{394ba655-1e1b-44b0-a6f7-a6518571d4da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\FileJPEG.cpp">
+      <Filter>System\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp">
+      <Filter>System\Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
