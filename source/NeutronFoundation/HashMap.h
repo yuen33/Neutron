@@ -185,8 +185,10 @@ namespace Neutron
 
 				inline Iterator& operator=( const Iterator& rhs ) { owner = rhs.owner; entry = rhs.entry; return *this; }
 				inline bool null() const { return !owner || !entry; }
-				inline const Key& key() { assert( entry ); return entry->key; }
-				inline const Value& value() { assert( entry ); return entry->value; }
+				inline const Key& key() const { assert( entry ); return entry->key; }
+				inline Key& key() { assert( entry ); return entry->key; }
+				inline const Value& value() const { assert( entry ); return entry->value; }
+				inline Value& value() { assert( entry ); return entry->value; }
 				inline bool operator==( const Iterator& rhs ) const { return owner == rhs.owner && entry == rhs.entry; }
 				inline bool operator!=( const Iterator& rhs ) const { return owner != rhs.owner || entry != rhs.entry; }
 				inline Iterator& operator++( )

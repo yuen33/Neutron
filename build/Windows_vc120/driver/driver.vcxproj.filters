@@ -3,4 +3,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\driver\driver.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\driver\TestTaskManager.h" />
+    <ClInclude Include="..\..\..\source\driver\TestTCPServer.h" />
+    <ClInclude Include="..\..\..\source\driver\TestTCPClient.h" />
+    <ClInclude Include="..\..\..\source\driver\TestFileJPG.h" />
+  </ItemGroup>
 </Project>

@@ -333,7 +333,7 @@ namespace Neutron
 				return ( width * getFormatBitsCount( format ) + 7 ) / 8;
 			}
 
-			static Size getMipsCount( int width, int height, int depth )
+			static int getMipsCount( int width, int height, int depth )
 			{
 				int m = 1;
 				while( width || height || depth )
@@ -347,7 +347,7 @@ namespace Neutron
 				return m;
 			}
 
-			static Size getImage1DSize( uint64 format, int width, int mips, int arraySize )
+			static Size getImage1DSize( int width, uint64 format, int mips, int arraySize )
 			{
 				if( arraySize == 0 )
 				{
@@ -369,7 +369,7 @@ namespace Neutron
 				return sizePerMipSeries * arraySize;
 			}
 
-			static Size getImage2DSize( uint64 format, int width, int height, int mips, int arraySize )
+			static Size getImage2DSize( int width, int height, uint64 format, int mips, int arraySize )
 			{
 				if( arraySize == 0 )
 				{
@@ -385,14 +385,14 @@ namespace Neutron
 				for( int i = 0; i < mips; ++i )
 				{
 					int mipWidth = Math::max( width >> i, 1 );
-					int mipHeight = Math::max( height >> 1, 1 );
+					int mipHeight = Math::max( height >> i, 1 );
 					sizePerMipSeries += getPitchSize( format, mipWidth ) * mipHeight;
 				}
 
 				return sizePerMipSeries * arraySize;
 			}
 
-			static Size getImage3DSize( uint64 format, int width, int height, int depth, int mips )
+			static Size getImage3DSize( int width, int height, int depth, uint64 format, int mips )
 			{
 				if( mips == 0 )
 				{
@@ -411,9 +411,9 @@ namespace Neutron
 				return sizePerMipSeries;
 			}
 
-			static Size getImageCubeSize( uint64 format, int width, int height, int mips, int cubeCount )
+			static Size getImageCubeSize( int width, int height, uint64 format, int mips, int numOfCubes )
 			{
-				return getImage2DSize( format, width, height, mips, cubeCount * 6 );
+				return getImage2DSize( width, height, format, mips, numOfCubes * 6 );
 			}
 		}
 	}

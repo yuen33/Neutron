@@ -92,12 +92,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
       <AdditionalDependencies>NeutronSystem_d.lib;NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -113,12 +113,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
       <AdditionalDependencies>NeutronSystem_d.lib;NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -136,14 +136,14 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
       <AdditionalDependencies>NeutronSystem.lib;NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -160,14 +160,14 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../source;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
       <AdditionalDependencies>NeutronSystem.lib;NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -176,6 +176,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\driver\driver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\source\driver\TestFileJPG.h" />
+    <ClInclude Include="..\..\..\source\driver\TestTaskManager.h" />
+    <ClInclude Include="..\..\..\source\driver\TestTCPClient.h" />
+    <ClInclude Include="..\..\..\source\driver\TestTCPServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

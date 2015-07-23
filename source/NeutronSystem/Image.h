@@ -12,6 +12,7 @@ namespace Neutron
 		public:
 			enum : int
 			{
+				Image_Unknown,
 				Image_1D,
 				Image_2D,
 				Image_3D,
@@ -29,7 +30,19 @@ namespace Neutron
 			uint8*	data;
 			Size	size;
 
+			boolean init1D( int width, uint64 format, int mips, int arraySize );
+			boolean init2D( int width, int height, uint64 format, int mips, int arraySize );
+			boolean init3D( int width, int height, int depth, uint64 format, int mips );
+			boolean initCube( int width, int height, uint64 format, int mips, int numOfCubes );
+			void release();
+
 		public:
+			static ImagePtr create();
+			static ImagePtr create1D( int width, uint64 format, int mips, int arraySize );
+			static ImagePtr create2D( int width, int height, uint64 format, int mips, int arraySize );
+			static ImagePtr create3D( int width, int height, int depth, uint64 format, int mips );
+			static ImagePtr createCube( int width, int height, uint64 format, int mips, int numOfCubes );
+
 			Image();
 			virtual ~Image();
 
@@ -41,7 +54,8 @@ namespace Neutron
 			inline int64 getFormat() const { return format; }
 			inline int getArraySize() const { return arraySize; }
 			inline int getMips() const { return mips; }
-			inline const uint8* getData() { return data; }
+			inline const uint8* getData() const { return data; }
+			inline uint8* getData() { return data; }
 			inline Size getSize() const { return size; }
 		};
 	}

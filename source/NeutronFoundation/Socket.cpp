@@ -94,7 +94,7 @@ namespace Neutron
 			connectSockAddr.sin_family = AF_INET;
 			connectSockAddr.sin_addr.s_addr = inet_addr( remoteAddress );
 			connectSockAddr.sin_port = htons( port );
-			int ret = ::sendto( socketData.fd, (char*)buffer, size, 0, (SOCKADDR*)&connectSockAddr, sizeof( connectSockAddr ) );
+			int ret = ::sendto( socketData.fd, (char*)buffer, (int)size, 0, (SOCKADDR*)&connectSockAddr, sizeof( connectSockAddr ) );
 
 			int retError = SOCKET_RETURN_OK;
 			if( ret < 0 )
@@ -147,7 +147,7 @@ namespace Neutron
 
 			sockaddr_in sockAddr;
 			int sockAddrSize = sizeof( sockAddr );
-			int ret = ::recvfrom( socketData.fd, (char*)buffer, size, 0, (sockaddr*)&sockAddr, &sockAddrSize );
+			int ret = ::recvfrom( socketData.fd, (char*)buffer, (int)size, 0, (sockaddr*)&sockAddr, &sockAddrSize );
 
 			int retError = SOCKET_RETURN_OK;
 			if( ret <= 0 )
@@ -369,11 +369,13 @@ namespace Neutron
 				closesocket( remoteSocketData.fd );
 				remoteSocketData.fd = NEUTRON_INVALID_FD;
 			}
+
+			connected = false;
 		}
 
 		int TCPClientSocket::send( uint8* buffer, Size size, Size* sentSize )
 		{
-			int ret = ::send( remoteSocketData.fd, (char*)buffer, size, 0 );
+			int ret = ::send( remoteSocketData.fd, (char*)buffer, (int)size, 0 );
 			int retError = SOCKET_RETURN_OK;
 			if( ret < 0 )
 			{
@@ -392,6 +394,8 @@ namespace Neutron
 				{
 					*sentSize = 0;
 				}
+
+				connected = false;
 			}
 			else
 			{
@@ -422,14 +426,14 @@ namespace Neutron
 				}
 			}
 
-			int ret = ::recv( remoteSocketData.fd, (char*)buffer, size, 0 );
+			int ret = ::recv( remoteSocketData.fd, (char*)buffer, (int)size, 0 );
 
 			int retError = SOCKET_RETURN_OK;
 			if( ret <= 0 )
 			{
 				if( ret == 0 )
 				{
-					retError = SOCKET_RETURN_NOTHING;
+					retError = SOCKET_RETURN_REMOTE_CLOSED;
 				}
 				else
 				{
@@ -449,6 +453,8 @@ namespace Neutron
 				{
 					*receivedSize = 0;
 				}
+
+				connected = false;
 			}
 			else
 			{
@@ -478,7 +484,8 @@ namespace Neutron
 
 		// TCP session socket
 		TCPSessionSocket::TCPSessionSocket()
-			:block( false )
+			: block( false )
+			, connected( false )
 		{
 			socketData.fd = NEUTRON_INVALID_FD;
 		}
@@ -502,7 +509,9 @@ namespace Neutron
 				release();
 			}
 
-			return ret == 0;
+			connected = ( ret == 0 );
+
+			return connected;
 		}
 
 		void TCPSessionSocket::release()
@@ -516,32 +525,34 @@ namespace Neutron
 
 		int TCPSessionSocket::send( uint8* buffer, Size size, Size* sentSize )
 		{
-			int ret = ::send( socketData.fd, (char*)buffer, size, 0 );
+			int ret = ::send( socketData.fd, (char*)buffer, (int)size, 0 );
 			int retError = SOCKET_RETURN_OK;
-			if( ret >= 0 )
-			{
-				retError = SOCKET_RETURN_OK;
-				if( sentSize )
-				{
-					*sentSize = ret;
-				}
-			}
-			else
+			if( ret < 0 )
 			{
 				int wsaError = WSAGetLastError();
 				switch( wsaError )
 				{
-				case WSAEWOULDBLOCK:
+					case WSAEWOULDBLOCK:
 					retError = SOCKET_RETURN_BLOCK; break;
-				case WSAECONNRESET:
+					case WSAECONNRESET:
 					retError = SOCKET_RETURN_LOST_CONNECTION; break;
-				default:
+					default:
 					retError = SOCKET_RETURN_ERROR_UNKNOWN;
 				}
 
 				if( sentSize )
 				{
 					*sentSize = 0;
+				}
+
+				connected = false;
+			}
+			else
+			{
+				retError = SOCKET_RETURN_OK;
+				if( sentSize )
+				{
+					*sentSize = ret;
 				}
 			}
 
@@ -565,7 +576,7 @@ namespace Neutron
 				}
 			}
 			
-			int ret = ::recv( socketData.fd, (char*)buffer, size, 0 );
+			int ret = ::recv( socketData.fd, (char*)buffer, (int)size, 0 );
 			int retError = SOCKET_RETURN_OK;
 			if( ret <= 0 )
 			{
@@ -591,6 +602,8 @@ namespace Neutron
 				{
 					*receivedSize = 0;
 				}
+
+				connected = false;
 			}
 			else
 			{

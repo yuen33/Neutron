@@ -240,11 +240,14 @@ namespace Neutron
 			if( pendingTasks.any() )
 			{
 				TaskPtr task = 0;
-				if( pendingTasks.pop( task ) && task )
+				if( pendingTasks.pop( task ) )
 				{
-					assert( task->getState() != Task::Ended );
-					runner->setTask( task );
-					task->setRunner( runner );
+					if( task )
+					{
+						assert( task->getState() != Task::Ended );
+						runner->setTask( task );
+						task->setRunner( runner );
+					}
 				}
 			}
 		}
@@ -261,10 +264,11 @@ namespace Neutron
 				if( task->getState() != Task::Ended )
 				{
 					// pending queue full!
-					if( !pendingTasks.push( task ) )
+					while( !pendingTasks.push( task ) );
+					/*if( !pendingTasks.push( task ) )
 					{
 						assert( 0 );
-					}
+					}*/
 				}
 				else
 				{

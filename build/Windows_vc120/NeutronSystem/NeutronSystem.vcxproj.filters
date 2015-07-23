@@ -70,5 +70,8 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp">
       <Filter>System\Log</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

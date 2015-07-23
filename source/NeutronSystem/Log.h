@@ -18,11 +18,11 @@ namespace Neutron
 				DebugColor = FOREGROUND_GREEN | FOREGROUND_BLUE
 			};
 #endif
-		}
 
-		NEUTRON_CORE inline void message( const char* sender, const char* fmt, ... );
-		NEUTRON_CORE inline void warning( const char* sender, const char* fmt, ... );
-		NEUTRON_CORE inline void error( const char* sender, const char* fmt, ... );
-		NEUTRON_CORE inline void debug( const char* fmt, ... );
+			NEUTRON_CORE inline void message( const char* sender, const char* fmt, ... );
+			NEUTRON_CORE inline void warning( const char* sender, const char* fmt, ... );
+			NEUTRON_CORE inline void error( const char* sender, const char* fmt, ... );
+			NEUTRON_CORE inline void debug( const char* fmt, ... );
+		}
 	}
 }

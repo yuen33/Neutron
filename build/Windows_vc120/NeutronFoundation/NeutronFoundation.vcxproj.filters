@@ -148,6 +148,12 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\IOInterface.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TCPServer.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TCPClient.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronFoundation\BestFitAllocator.cpp">
@@ -203,6 +209,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\Stream.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TCPServer.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\TCPClient.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

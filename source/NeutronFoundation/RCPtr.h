@@ -34,6 +34,8 @@ namespace Neutron
 					deleteMethod( this );
 				}
 			}
+
+			inline int32 getReferenceCount() { return counter; }
 		};
 
 		template<typename T>
@@ -99,8 +101,11 @@ namespace Neutron
 			operator T*( ) const { return data; }
 			operator boolean() const { return data != 0; }
 			boolean isNull() const { return data == 0; }
-			static RCPtr<T> null() { return RCPtr<T>( 0 ); }
+			static RCPtr<T> null;
 		};
+
+		template<typename T>
+		RCPtr<T> RCPtr<T>::null = RCPtr<T>( 0 );
 
 		template<typename T>
 		boolean operator==( const RCPtr<T>& lhs, RCPtr<T>& rhs )

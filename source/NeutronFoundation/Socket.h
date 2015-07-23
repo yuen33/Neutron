@@ -2,6 +2,7 @@
 
 #include "NeutronFoundationCommon.h"
 #include "Stream.h"
+#include "Hash.h"
 
 using Neutron::Utility::Stream;
 
@@ -49,6 +50,8 @@ namespace Neutron
 			inline uint16 getINetPort() const { return port; }
 			inline void reset() { address = 0; port = 0; }
 			inline boolean valid() const { return address != 0 && port != 0; }
+			inline uint32 getHashValue() const { return Math::Hash::DJB32( reinterpret_cast<const char*>( &address ), sizeof( address ) + sizeof( port ) ); }
+			static uint32 getHashValue( const char* address, int port ) { return NetAddress( address, port ).getHashValue(); }
 		};
 
 		typedef struct
@@ -136,6 +139,7 @@ namespace Neutron
 		{
 			SocketData		socketData;
 			boolean			block;
+			boolean			connected;
 
 		public:
 			TCPSessionSocket();
@@ -150,8 +154,9 @@ namespace Neutron
 			virtual Size read( uint8* buffer, Size size );
 			virtual Size write( uint8* buffer, Size size );
 
-			inline const NetAddress& getNetAddress() { return socketData.netAddress; }
+			inline const NetAddress& getNetAddress() const { return socketData.netAddress; }
 			inline boolean isBlock() const { return block; }
+			inline boolean isConnected() const { return connected; }
 		};
 	}
 }

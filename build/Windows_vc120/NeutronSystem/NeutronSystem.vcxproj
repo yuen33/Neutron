@@ -98,8 +98,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NeutronFoundation_d.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin"
@@ -119,8 +119,8 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NeutronFoundation_d.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"
@@ -144,8 +144,8 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NeutronFoundation.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin"</Command>
@@ -168,8 +168,8 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(TargetDir)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NeutronFoundation.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"</Command>
@@ -194,6 +194,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\FileJPEG.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
   </ItemGroup>

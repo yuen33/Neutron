@@ -44,9 +44,9 @@ namespace Neutron
 				static void termSource( j_decompress_ptr decompress );
 				static uint8 fillInputBuffer( j_decompress_ptr decompress );
 				static void skipInputData( j_decompress_ptr decompress, long numBytes );
-				static void initDestination( j_decompress_ptr compress );
-				static void termDestination( j_decompress_ptr compress );
-				static uint8 emptyOutputBuffer( j_decompress_ptr compress );
+				static void initDestination( j_compress_ptr compress );
+				static void termDestination( j_compress_ptr compress );
+				static uint8 emptyOutputBuffer( j_compress_ptr compress );
 				static void errorExit( j_common_ptr common );
 				static void outputMessage( j_common_ptr common );
 
