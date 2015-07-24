@@ -26,9 +26,6 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\Module.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\BiovisionHierarchy.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\Image.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
@@ -41,6 +38,36 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Device.h">
+      <Filter>System\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h">
+      <Filter>System\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Buffer.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\InputStream.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevice.h">
+      <Filter>System\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Window.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h">
+      <Filter>System\Plugin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +86,12 @@
     <Filter Include="System\Log">
       <UniqueIdentifier>{394ba655-1e1b-44b0-a6f7-a6518571d4da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Device">
+      <UniqueIdentifier>{e837b993-c894-4024-884d-698bddadc8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Plugin">
+      <UniqueIdentifier>{ee7e2374-5005-42c5-8b10-9851d3351a94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp">
@@ -71,6 +104,24 @@
       <Filter>System\Log</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Texture.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Buffer.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Shader.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\InputStream.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Window.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
   </ItemGroup>

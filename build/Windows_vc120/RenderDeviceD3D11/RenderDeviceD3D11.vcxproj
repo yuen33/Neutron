@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E3189B11-13F1-49D5-9F30-61D56FEDFFC5}</ProjectGuid>
+    <ProjectGuid>{C275931E-7074-4023-BE8D-630EEAFBF4AD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NeutronSystem</RootNamespace>
+    <RootNamespace>RenderDeviceD3D11</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -68,22 +68,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
-    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>$(ProjectName)_d</TargetName>
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,7 +84,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NEUTRON_RENDERDEVICE_D3D11_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;RENDERDEVICED3D11_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -99,10 +92,10 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation_d.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NeutronSystem_d.lib;NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin"
+      <Command>xcopy /y "$(TargetDir)$(TargetName).exe" "$(SolutionDir)../../bin"
 xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -112,7 +105,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NEUTRON_RENDERDEVICE_D3D11_BUILD;WIN32;_DEBUG;_WINDOWS;_USRDLL;RENDERDEVICED3D11_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -120,11 +113,11 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation_d.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NeutronSystem_d.lib;NeutronFoundation_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"
-xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
+      <Command>xcopy /y "$(TargetDir)$(TargetName).exe" "$(SolutionDir)../../bin64"
+xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,7 +128,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NEUTRON_RENDERDEVICE_D3D11_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;RENDERDEVICED3D11_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -145,10 +138,10 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NeutronSystem.lib;NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin"</Command>
+      <Command>xcopy /y "$(TargetDir)$(TargetName).exe" "$(SolutionDir)../../bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,7 +152,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NEUTRON_SYSTEM_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;NEUTRONSYSTEM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NEUTRON_RENDERDEVICE_D3D11_BUILD;WIN32;NDEBUG;_WINDOWS;_USRDLL;RENDERDEVICED3D11_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../source;$(SolutionDir)../../externs/include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -169,49 +162,20 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(TargetDir);$(SolutionDir)../../externs/lib/x64;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NeutronFoundation.lib;jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NeutronSystem.lib;NeutronFoundation.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)../../bin64"</Command>
+      <Command>xcopy /y "$(TargetDir)$(TargetName).exe" "$(SolutionDir)../../bin64"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Buffer.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Device.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\FileJPEG.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Image.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\InputStream.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Log.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Module.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDefine.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Pin.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevice.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\VPU.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\Window.h" />
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Common.h" />
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.h" />
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Buffer.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\FileJPEG.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\InputStream.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Shader.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Texture.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\Window.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

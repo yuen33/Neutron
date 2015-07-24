@@ -22,9 +22,30 @@ namespace Neutron
 		typedef RCPtr<Variable>			VariablePtr;
 		typedef RCPtr<VPU>				VPUPtr;
 
-		// resources
-		class Image;
+		// devices
+		class Device;
+		class RenderDevice;
 
-		typedef RCPtr<Image> ImagePtr;
+		typedef RCPtr<RenderDevice>		RenderDevicePtr;
+
+		// resources
+		class Resource;
+		class Image;
+		class InputStream;
+		class Buffer;
+		class Texture;
+		class Sampler;
+		class Shader;
+		class Viewport;
+		class Window;
+
+		typedef RCPtr<Image>			ImagePtr;
+		typedef RCPtr<InputStream>		InputStreamPtr;
+		typedef RCPtr<Buffer>			BufferPtr;
+		typedef RCPtr<Texture>			TexturePtr;
+		typedef RCPtr<Sampler>			SamplerPtr;
+		typedef RCPtr<Shader>			ShaderPtr;
+		typedef RCPtr<Viewport>			ViewportPtr;
+		typedef RCPtr<Window>			WindowPtr;
 	}
 }
