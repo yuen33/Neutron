@@ -1,10 +1,14 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
-#include "NeutronFoundation/PluginManager.h"
 #include "NeutronFoundation/TaskManager.h"
+#include "NeutronFoundation/MessageBus.h"
+#include "NeutronPluginManager.h"
+#include "DeviceManager.h"
+#include "ResourceManager.h"
 
 using Neutron::Concurrent::TaskManager;
+using Neutron::Utility::MessageBus;
 using Neutron::Utility::PluginManager;
 
 namespace Neutron
@@ -13,8 +17,10 @@ namespace Neutron
 	{
 		class NEUTRON_CORE NeutronSystem
 		{
-			TaskManager		taskManager;
-			PluginManager	pluginManager;
+			TaskManager						taskManager;
+			MessageBus<Message::MC_System>	messageBus;
+			NeutronPluginManager			pluginManager;
+			DeviceManager					deviceManager;
 
 			boolean exitFlag;
 
@@ -30,6 +36,8 @@ namespace Neutron
 
 			inline TaskManager& getTaskManager() { return taskManager; }
 			inline PluginManager& getPluginManager() { return pluginManager; }
+			inline DeviceManager& getDeviceManager() { return deviceManager; }
+			inline MessageBus<Message::MC_System>& getMessageBus() { return messageBus; }
 			inline void shutdown() { exitFlag = true; }
 		};
 

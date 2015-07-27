@@ -51,6 +51,7 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\Stack.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Stream.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\String.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\CompileHash.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\SystemAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\TaskManager.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\TCPClient.h" />
@@ -138,6 +139,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,6 +149,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

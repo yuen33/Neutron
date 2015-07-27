@@ -78,20 +78,20 @@ namespace Neutron
 			struct AdapterInfo
 			{
 				wchar					adapterName[128];
-				int						videoMemory;
+				Size					videoMemory;
 				Array<OutputInfo>		outputs;
 
 				AdapterInfo()
 				{
 				}
 
-				AdapterInfo( const wchar* name, int memory )
+				AdapterInfo( const wchar* name, Size memory )
 					: videoMemory( memory )
 				{
 					lstrcpynW( adapterName, name, 128 );
 				}
 
-				AdapterInfo& operator=( AdapterInfo& rhs )
+				AdapterInfo& operator=( const AdapterInfo& rhs )
 				{
 					lstrcpynW( adapterName, rhs.adapterName, 128 );
 					videoMemory = rhs.videoMemory;
@@ -100,21 +100,28 @@ namespace Neutron
 				}
 			};
 
+		private:
 			Array<AdapterInfo>			adapters;
 			wchar						desktopOutputName[32];
 			int							desktopOutputWidth;
 			int							desktopOutputHeight;
+			int							desktopAdapterIndex;
+
+			void getDesktopOutputResolution();
+			void getDesktopAdapterIndex();
 
 		public:
 			RenderDeviceEnumerator();
 			virtual ~RenderDeviceEnumerator();
 
 			boolean enumerate();
+			void printDeviceInfo();
 
 			inline const Array<AdapterInfo>& getAdapterInfo() { return adapters; }
-			inline const wchar* desktopOutpuName() const { return desktopOutputName; }
-			inline int desktopWidth() const { return desktopOutputWidth; }
-			inline int desktopHeight() const { return desktopOutputHeight; }
+			inline const wchar* getDesktopOutpuName() const { return desktopOutputName; }
+			inline int getDesktopWidth() const { return desktopOutputWidth; }
+			inline int getDesktopHeight() const { return desktopOutputHeight; }
+			inline int getDesktopAdapterIndex() const { return desktopAdapterIndex; }
 		};
 	}
 }

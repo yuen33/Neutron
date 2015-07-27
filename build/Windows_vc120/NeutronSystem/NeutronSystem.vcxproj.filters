@@ -69,6 +69,18 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h">
       <Filter>System\Plugin</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\DeviceManager.h">
+      <Filter>System\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\ResourceManager.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPluginManager.h">
+      <Filter>System\Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevicePlugin.h">
+      <Filter>System\Plugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -123,6 +135,33 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\Window.cpp">
       <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp">
+      <Filter>System\Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Device.cpp">
+      <Filter>System\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\RenderDevice.cpp">
+      <Filter>System\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Resource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\DeviceManager.cpp">
+      <Filter>System\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\ResourceManager.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPluginManager.cpp">
+      <Filter>System\Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\SystemDevicePlugin.cpp">
+      <Filter>System\Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\SystemDevice.cpp">
+      <Filter>System\Device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

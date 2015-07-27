@@ -6,16 +6,40 @@
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.h">
       <Filter>Device</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\InputStreamD3D11.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\BufferD3D11.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\SamplerD3D11.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.cpp">
       <Filter>Device</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Device">
       <UniqueIdentifier>{512b82e6-bae9-48b8-aa3a-5c41912b7010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{538f7982-57a7-45ba-a09b-17d6f3f7ce35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

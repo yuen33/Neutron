@@ -1,27 +1,44 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
+#include "NeutronFoundation/String.h"
 
 using Neutron::Engine::Resource;
+using Neutron::Container::String;
 
 namespace Neutron
 {
 	namespace System
 	{
+		// device type
 		enum : int
 		{
-			SystemDevice,
-			RenderDevice
+			DT_Unknown,
+			DT_SystemDevice,
+			DT_RenderDevice
 		};
 
 		class NEUTRON_CORE Device : public RCObject
 		{
+		protected:
+			int deviceType;
+			String name;
+			NeutronPlugin* owner;
+
+			virtual void deleteMethod( RCObject* object );
+
 		public:
-			Device();
+			Device( NeutronPlugin* owner );
 			virtual ~Device();
 
-			virtual Resource* makeResource( int resourceType );
-			virtual void destroyResource( Resource* resource );
+			virtual boolean init();
+			virtual void release();
+
+			void onPluginRelease();
+
+			inline int getType() const { return deviceType; }
+			inline const char* getName() const { return name.getCStr(); }
+			inline NeutronPlugin* getOwner() const { return owner; }
 		};
 	}
 }

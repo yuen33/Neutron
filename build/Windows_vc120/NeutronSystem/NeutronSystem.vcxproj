@@ -70,16 +70,18 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)_d</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)../../intermediate/$(PlatformShortName)/</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -180,12 +182,14 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Device.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\DeviceManager.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\FileJPEG.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Image.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\InputStream.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Log.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Module.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPlugin.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\NeutronPluginManager.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDefine.h" />
@@ -193,9 +197,11 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\ResourceManager.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevice.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevicePlugin.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\VPU.h" />
@@ -203,13 +209,22 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronSystem\Buffer.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Device.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\DeviceManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\FileJPEG.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\InputStream.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Log.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPluginManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\RenderDevice.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Resource.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\ResourceManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Shader.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\SystemDevice.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\SystemDevicePlugin.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Texture.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Window.cpp" />
   </ItemGroup>

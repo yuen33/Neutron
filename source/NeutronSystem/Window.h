@@ -9,7 +9,7 @@ namespace Neutron
 		class Window : public Resource
 		{
 		public:
-			Window();
+			Window( Device* owner );
 			virtual ~Window();
 		};
 	}

@@ -9,7 +9,7 @@ namespace Neutron
 		class Sampler : public Resource
 		{
 		public:
-			Sampler();
+			Sampler( Device* owner );
 			virtual ~Sampler();
 		};
 	}

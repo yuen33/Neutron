@@ -77,16 +77,16 @@ namespace Neutron
 					uint32 index = freeIndexes.back();
 					h = HandleConcrete<T>( index, magics[index] );
 					data[index] = item;
-					freeIndexes.pop_back();
+					freeIndexes.remove();
 				}
 				else
 				{
 					atomIncrement32( (int32*)&magicCounter );
 					atomCAS32( &magicCounter, 1U, 0U );
 
-					h = HandleConcrete<T>( data.size(), magicCounter );
-					data.push_back( item );
-					magics.push_back( h.magic );
+					h = HandleConcrete<T>( data.getCount(), magicCounter );
+					data.add( item );
+					magics.add( h.magic );
 				}
 
 				return h;
@@ -96,7 +96,7 @@ namespace Neutron
 			{
 				if( isValid( handle ) )
 				{
-					freeIndexes.push_back( handle.index );
+					freeIndexes.add( handle.index );
 					data[handle.index] = (T)nullptr;
 				}
 			}
@@ -122,7 +122,7 @@ namespace Neutron
 
 			static inline boolean isValid( const HandleConcrete<T>& handle )
 			{
-				return ( handle.isValid() && handle.index < data.size() && handle.magic == magics[handle.index] );
+				return ( handle.isValid() && (int)handle.index < data.getCount() && handle.magic == magics[handle.index] );
 			}
 
 			static inline void clear()

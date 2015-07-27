@@ -9,7 +9,7 @@ namespace Neutron
 		class Buffer : public Resource
 		{
 		public:
-			Buffer();
+			Buffer( Device* owner );
 			virtual ~Buffer();
 		};
 	}

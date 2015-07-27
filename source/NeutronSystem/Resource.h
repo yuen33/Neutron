@@ -8,21 +8,30 @@ namespace Neutron
 	{
 		enum : int
 		{
-			Image,
-			InputStream,
-			Buffer,
-			Texture,
-			Sampler,
-			Shader,
-			Viewport,
-			Window
+			RT_Unknown,
+			RT_Image,
+			RT_InputStream,
+			RT_Buffer,
+			RT_Texture,
+			RT_Sampler,
+			RT_Shader,
+			RT_Viewport,
+			RT_Window
 		};
+		
+		using Neutron::System::Device;
 
 		class NEUTRON_CORE Resource : public RCObject
 		{
+		protected:
+			int resourceType;
+			Device* owner;
+
 		public:
-			Resource() {};
-			virtual ~Resource() {};
+			Resource( Device* device );
+			virtual ~Resource();
+
+			inline int getType() const { return resourceType; }
 		};
 	}
 }

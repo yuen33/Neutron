@@ -12,9 +12,21 @@ namespace Neutron
 		public:
 			RenderDeviceD3D11Plugin();
 			virtual ~RenderDeviceD3D11Plugin();
+			
+			virtual boolean init();
+			virtual void release();
 
-			virtual Device* makeDevice( int deviceType );
+			virtual Device* createDevice( const char* name );
 			virtual void destroyDevice( Device* device );
+
+			virtual const char* getVendorName();
+			virtual Version getVersion();
 		};
 	}
+}
+
+extern "C"
+{
+	NEUTRON_RENDERDEVICE_D3D11_CORE Plugin* createPlugin();
+	NEUTRON_RENDERDEVICE_D3D11_CORE void destroyPlugin( Plugin* plugin );
 }

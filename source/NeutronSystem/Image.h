@@ -43,7 +43,7 @@ namespace Neutron
 			static ImagePtr create3D( int width, int height, int depth, uint64 format, int mips );
 			static ImagePtr createCube( int width, int height, uint64 format, int mips, int numOfCubes );
 
-			Image();
+			Image( Device* owner );
 			virtual ~Image();
 
 			inline bool null() const { return data != 0; }

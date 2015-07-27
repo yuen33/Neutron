@@ -19,10 +19,10 @@ namespace Neutron
 				assert( sender && fmt );
 				setStdConsoleColor( MessageColor );
 				printf( "[%s] ", sender );
+				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
-				setStdConsoleColor( DefaultColor );
 			}
 
 			void warning( const char* sender, const char* fmt, ... )
@@ -30,10 +30,10 @@ namespace Neutron
 				assert( sender && fmt );
 				setStdConsoleColor( WarningColor );
 				printf( "[%s] ", sender );
+				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
-				setStdConsoleColor( DefaultColor );
 			}
 
 			void error( const char* sender, const char* fmt, ... )
@@ -41,10 +41,10 @@ namespace Neutron
 				assert( sender && fmt );
 				setStdConsoleColor( ErrorColor );
 				printf( "[%s] ", sender );
+				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
-				setStdConsoleColor( DefaultColor );
 			}
 
 #ifdef NEUTRON_DEBUG

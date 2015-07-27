@@ -9,7 +9,7 @@ namespace Neutron
 		class Texture : public Resource
 		{
 		public:
-			Texture();
+			Texture( Device* owner );
 			virtual ~Texture();
 		};
 	}

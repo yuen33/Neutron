@@ -5,8 +5,10 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		Image::Image()
+		Image::Image( Device* owner )
+			: Resource( owner )
 		{
+			resourceType = RT_Image;
 			release();
 		}
 
@@ -175,7 +177,7 @@ namespace Neutron
 
 		ImagePtr Image::create()
 		{
-			return ImagePtr( new Image );
+			return ImagePtr( new Image( 0 ) );
 		}
 
 		ImagePtr Image::create1D( int width, uint64 format, int mips, int arraySize )

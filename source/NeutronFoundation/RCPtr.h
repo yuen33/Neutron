@@ -44,8 +44,13 @@ namespace Neutron
 			T* data;
 
 		public:
-			RCPtr( T* p = 0 )
-				:data( p )
+			RCPtr()
+				: data( 0 )
+			{
+			}
+
+			RCPtr( T* p )
+				: data( p )
 			{
 				if( data )
 				{
@@ -141,6 +146,27 @@ namespace Neutron
 		boolean operator!=( const RCPtr<T>& lhs, const T* rhs )
 		{
 			return lhs.data != rhs;
+		}
+
+		template<typename T, typename U>
+		RCPtr<T> dynamicCast( const RCPtr<U> p )
+		{
+			T* r = dynamic_cast<T*>( p.get() );
+			return r != 0 ? RCPtr<T>( r ) : RCPtr<T>();
+		}
+
+		template<typename T, typename U>
+		RCPtr<T> staticCast( const RCPtr<U> p )
+		{
+			T* r = static_cast<T*>( p.get() );
+			return r != 0 ? RCPtr<T>( r ) : RCPtr<T>();
+		}
+
+		template<typename T, typename U>
+		RCPtr<T> reinterpretCast( const RCPtr<U> p )
+		{
+			T* r = reinterpret_cast<T*>( p.get() );
+			return RCPtr<T>( r );
 		}
 	}
 }

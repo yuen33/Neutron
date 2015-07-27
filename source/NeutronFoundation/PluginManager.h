@@ -35,9 +35,16 @@ namespace Neutron
 			HashMap<uint32, PluginInfo*> plugins;
 
 		public:
+			PluginManager();
+			virtual ~PluginManager();
+
+			boolean init( const char* pluginFolder );
+			void release();
+
 			boolean loadPlugin( const char* path );
 			void unloadPlugin( const char* path );
 			virtual void onPluginLoaded( const char* path, Plugin* plugin );
+			virtual void onPluginUnload( const char* path, Plugin* plugin );
 
 			boolean loadedPlugin( const char* path );
 			Plugin* findPlugin( const char* path );

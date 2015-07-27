@@ -9,7 +9,7 @@ namespace Neutron
 		class Shader : public Resource
 		{
 		public:
-			Shader();
+			Shader( Device* owner );
 			virtual ~Shader();
 		};
 	}
