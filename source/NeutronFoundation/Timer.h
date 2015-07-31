@@ -27,9 +27,9 @@ namespace Neutron
 
 			inline void reset() { start = now(); }
 			static inline uint64 timeUS() { return getTimeUS( now() ); }
-			static inline uint32 timeMS() { return static_cast< uint32 >( timeUS() / 1000ULL ); }
+			static inline uint32 timeMS() { return static_cast<uint32>( timeUS() / 1000ULL ); }
 			inline uint64 elapsedUS() { return getTimeUS( now() - start ); }
-			inline uint32 elapsedMS() { return static_cast< uint32 >( elapsedUS() / 1000ULL ); }
+			inline uint32 elapsedMS() { return static_cast<uint32>( elapsedUS() / 1000ULL ); }
 		};
 #endif
 	}

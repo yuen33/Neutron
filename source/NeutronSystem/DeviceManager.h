@@ -3,12 +3,10 @@
 #include "NeutronSystemCommon.h"
 #include "NeutronFoundation/String.h"
 #include "NeutronFoundation/HashMap.h"
-#include "NeutronFoundation/MessageBus.h"
 #include "Device.h"
 
 using Neutron::Container::String;
 using Neutron::Container::HashMap;
-using Neutron::Utility::SubscriberHandle;
 
 namespace Neutron
 {
@@ -36,12 +34,10 @@ namespace Neutron
 			};
 
 		private:
-			HashMap<uint32, DeviceInfo> deviceInfo;
-			Array<Device*>				devices;
+			HashMap<uint32, DeviceInfo>			deviceInfo;
+			HashMap<int, Array<Device*> >		devices;
+			DevicePtr							systemDevice;
 
-			SubscriberHandle<Message::MessagePluginRelease> subscriberPluginRelease;
-			static inline void handlePluginRelease( Message::MessagePluginRelease message );
-			void onPluginRelease( NeutronPlugin* plugin );
 		public:
 			DeviceManager();
 			virtual ~DeviceManager();
@@ -53,6 +49,7 @@ namespace Neutron
 			void unregisterDevice( const char* name );
 
 			DevicePtr createDevice( const char* deviceTypeName );
+			inline DevicePtr getSystemDevice() const { return systemDevice; }
 		};
 	}
 }

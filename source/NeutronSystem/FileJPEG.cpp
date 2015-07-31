@@ -1,6 +1,7 @@
 #include "FileJPEG.h"
 #include "PixelFormat.h"
 #include "Log.h"
+#include "NeutronEngine.h"
 
 using Neutron::Utility::IOStdFile;
 
@@ -53,11 +54,13 @@ namespace Neutron
 
 				if( decompress.output_components == 1 )
 				{
-					image = Image::create2D( decompress.image_width, decompress.image_height, Engine::Render::PF_R8UN, 1, 1 );
+					image = Engine::getEngine().getResourceManager().createImage2D( decompress.image_width, decompress.image_height, Engine::Render::PF_R8UN, 1, 1 );
+					//image = Image::create2D( decompress.image_width, decompress.image_height, Engine::Render::PF_R8UN, 1, 1 );
 				}
 				else if( decompress.output_components == 3 )
 				{
-					image = Image::create2D( decompress.image_width, decompress.image_height, Engine::Render::PF_RGB8UN, 1, 1 );
+					image = Engine::getEngine().getResourceManager().createImage2D( decompress.image_width, decompress.image_height, Engine::Render::PF_RGB8UN, 1, 1 );
+					//image = Image::create2D( decompress.image_width, decompress.image_height, Engine::Render::PF_RGB8UN, 1, 1 );
 				}
 				
 				if( image.isNull() )
@@ -85,7 +88,7 @@ namespace Neutron
 
 			void FileJPEG::save( ImagePtr image, const char* path, float quality )
 			{
-				if( image->getType() != Image::Image_2D )
+				if( image->getResourceType() != Image::IT_2D )
 				{
 					return;
 				}

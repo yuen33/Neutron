@@ -4,14 +4,17 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		Sampler::Sampler( Device* owner )
+		namespace Render
+		{
+			Sampler::Sampler( Device* owner )
 			: Resource( owner )
-		{
-			resourceType = RT_Sampler;
-		}
+			{
+				resourceType = RT_Sampler;
+			}
 
-		Sampler::~Sampler()
-		{
+			Sampler::~Sampler()
+			{
+			}
 		}
 	}
 }

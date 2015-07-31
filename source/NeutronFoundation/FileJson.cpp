@@ -7,7 +7,7 @@ using Neutron::Utility::IOStdFile;
 
 namespace Neutron
 {
-	namespace File
+	namespace Utility
 	{
 		FileJson::FileJson()
 		{

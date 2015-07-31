@@ -108,7 +108,7 @@ namespace Neutron
 			int							desktopAdapterIndex;
 
 			void getDesktopOutputResolution();
-			void getDesktopAdapterIndex();
+			void findDesktopAdapterIndex();
 
 		public:
 			RenderDeviceEnumerator();

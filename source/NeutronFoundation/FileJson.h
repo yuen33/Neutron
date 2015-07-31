@@ -12,7 +12,7 @@ using namespace rapidjson;
 
 namespace Neutron
 {
-	namespace File
+	namespace Utility
 	{
 		class NEUTRON_FOUNDATION_CORE FileJson
 		{
@@ -81,8 +81,8 @@ namespace Neutron
 			static void write( Value& v, const Array<String>& value, Document& jdoc );
 		};
 
-#define JSON_FOREACH_IN_OBJECT( it, jobject ) for( Neutron::File::FileJson::MemberIterator( it ) = ( jobject ).MemberBegin(); ( it ) != ( jobject ).MemberEnd(); ++it )
-#define JSON_FOREACH_CONST_IN_OBJECT( it, jobject ) for( Neutron::File::FileJson::ConstMemberIterator( it ) = ( jobject ).MemberBegin(); ( it ) != ( jobject ).MemberEnd(); ++it )
-#define JSON_FOREACH_IN_ARRAY( i, jarray ) for( Neutron::File::FileJson::SizeType ( i ) = 0; i < ( jarray ).Size(); ++i )
+#define JSON_FOREACH_IN_OBJECT( it, jobject ) for( Neutron::Utility::FileJson::MemberIterator( it ) = ( jobject ).MemberBegin(); ( it ) != ( jobject ).MemberEnd(); ++it )
+#define JSON_FOREACH_CONST_IN_OBJECT( it, jobject ) for( Neutron::Utility::FileJson::ConstMemberIterator( it ) = ( jobject ).MemberBegin(); ( it ) != ( jobject ).MemberEnd(); ++it )
+#define JSON_FOREACH_IN_ARRAY( i, jarray ) for( Neutron::Utility::FileJson::SizeType ( i ) = 0; i < ( jarray ).Size(); ++i )
 	}
 }

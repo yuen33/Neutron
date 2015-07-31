@@ -3,6 +3,7 @@
 #include "NeutronSystem.h"
 #include "NeutronPlugin.h"
 #include "Log.h"
+#include "SystemDevice.h"
 
 namespace Neutron
 {
@@ -17,15 +18,22 @@ namespace Neutron
 		}
 
 		boolean DeviceManager::init()
-		{			
-			subscriberPluginRelease = getSystem().getMessageBus().subscribe<Message::MessagePluginRelease>( &DeviceManager::handlePluginRelease );
+		{	
+			// create system device
+			systemDevice = SystemDevicePtr( new SystemDevice( 0 ) );
+			if( !systemDevice->init() )
+			{
+				return false;
+			}
 
 			return true;
 		}
 
 		void DeviceManager::release()
 		{
-			getSystem().getMessageBus().unsubscribe( subscriberPluginRelease );
+			// release system device
+			systemDevice->release();
+			systemDevice = 0;
 		}
 
 		void DeviceManager::registerDevice( const char* name, int deviceType, NeutronPlugin* plugin )
@@ -45,44 +53,35 @@ namespace Neutron
 
 		DevicePtr DeviceManager::createDevice( const char* name )
 		{
-			HashMap<uint32, DeviceInfo>::Iterator it = deviceInfo.find( Math::Hash::DJB32( name ) );
-			if( it != deviceInfo.end() )
+			HashMap<uint32, DeviceInfo>::Iterator itDeviceInfo = deviceInfo.find( Math::Hash::DJB32( name ) );
+			if( itDeviceInfo != deviceInfo.end() )
 			{
 				Device* device = 0;
-				if( it.value().plugin != 0 )
+				if( itDeviceInfo.value().plugin != 0 )
 				{
-					device = it.value().plugin->createDevice( name );
+					device = itDeviceInfo.value().plugin->createDevice( name );
 				}
 				
 				assert( device );
 				if( device )
 				{
-					devices.add( device );
+					HashMap<int, Array<Device*> >::Iterator itDevice = devices.find( itDeviceInfo.value().deviceType );
+					if( itDevice != devices.end() )
+					{
+						itDevice.value().add( device );
+					}
+					else
+					{
+						Array<Device*> newDeviceArray;
+						newDeviceArray.add( device );
+						devices.add( itDeviceInfo.value().deviceType, newDeviceArray );
+					}
 				}
 
 				return DevicePtr( device );
 			}
 
 			return DevicePtr::null;
-		}
-
-		void DeviceManager::onPluginRelease( NeutronPlugin* plugin ) 
-		{
-			if( plugin )
-			{
-				for( int i = 0; i < devices.getCount(); ++i )
-				{
-					if( devices[i]->getOwner() == plugin )
-					{
-						devices[i]->onPluginRelease();
-					}
-				}
-			}
-		}
-
-		void DeviceManager::handlePluginRelease( Message::MessagePluginRelease message )
-		{
-			getSystem().getDeviceManager().onPluginRelease( message.plugin );
 		}
 	}
 }

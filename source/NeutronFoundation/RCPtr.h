@@ -59,7 +59,7 @@ namespace Neutron
 			}
 
 			RCPtr( const RCPtr& other )
-				:data( other.data )
+				: data( other.data )
 			{
 				if( data )
 				{
@@ -110,7 +110,7 @@ namespace Neutron
 		};
 
 		template<typename T>
-		RCPtr<T> RCPtr<T>::null = RCPtr<T>( 0 );
+		RCPtr<T> RCPtr<T>::null = RCPtr<T>();
 
 		template<typename T>
 		boolean operator==( const RCPtr<T>& lhs, RCPtr<T>& rhs )

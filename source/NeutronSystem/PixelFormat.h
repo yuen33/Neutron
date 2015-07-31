@@ -75,7 +75,7 @@ namespace Neutron
 			enum : uint64
 			{
 				// unknown
-				PF_UNKNOWN = 0,
+				PF_Unknown = 0,
 
 				// alpha format
 				// A8
@@ -108,12 +108,12 @@ namespace Neutron
 				PF_RGBA8SN = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 8, 8, 8, 8, PCT_SNORM, PCT_SNORM, PCT_SNORM, PCT_SNORM>::value,
 				PF_RGBA8U = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 8, 8, 8, 8, PCT_UINT, PCT_UINT, PCT_UINT, PCT_UINT>::value,
 				PF_RGBA8S = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 8, 8, 8, 8, PCT_SINT, PCT_SINT, PCT_SINT, PCT_SINT>::value,
-				PF_RGBA8F = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 8, 8, 8, 8, PCT_FLOAT, PCT_FLOAT, PCT_FLOAT, PCT_FLOAT>::value,
+				PF_RGBA8SRGB = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 8, 8, 8, 8, PCT_UNORM_SRGB, PCT_UNORM_SRGB, PCT_UNORM_SRGB, PCT_UNORM_SRGB>::value,
 
 				// R16
 				PF_R16UN = MakePixelFormat1<PC_R, 16, PCT_UNORM>::value,
 				PF_R16SN = MakePixelFormat1<PC_R, 16, PCT_SNORM>::value,
-				PF_R16U = MakePixelFormat1<PC_R, 16, PCT_UNORM>::value,
+				PF_R16U = MakePixelFormat1<PC_R, 16, PCT_UINT>::value,
 				PF_R16S = MakePixelFormat1<PC_R, 16, PCT_SINT>::value,
 				PF_R16F = MakePixelFormat1<PC_R, 16, PCT_FLOAT>::value,
 
@@ -175,11 +175,11 @@ namespace Neutron
 
 				// BGRA8
 				PF_BGRA8UN = MakePixelFormat4<PC_B, PC_G, PC_R, PC_A, 8, 8, 8, 8, PCT_UNORM, PCT_UNORM, PCT_UNORM, PCT_UNORM>::value,
-				PF_BGRA8SN = MakePixelFormat4<PC_B, PC_G, PC_R, PC_A, 8, 8, 8, 8, PCT_SNORM, PCT_SNORM, PCT_SNORM, PCT_SNORM>::value,
+				PF_BGRA8SRGB = MakePixelFormat4<PC_B, PC_G, PC_R, PC_A, 8, 8, 8, 8, PCT_UNORM_SRGB, PCT_UNORM_SRGB, PCT_UNORM_SRGB, PCT_UNORM_SRGB>::value,
 
 				// RGB10A2
-				PF_BGR10A2UN = MakePixelFormat4<PC_B, PC_G, PC_R, PC_A, 10, 10, 10, 2, PCT_UNORM, PCT_UNORM, PCT_UNORM, PCT_UNORM>::value,
-				PF_BGR10A2SN = MakePixelFormat4<PC_B, PC_G, PC_R, PC_A, 10, 10, 10, 2, PCT_SNORM, PCT_SNORM, PCT_SNORM, PCT_SNORM>::value,
+				PF_RGB10A2UN = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 10, 10, 10, 2, PCT_UNORM, PCT_UNORM, PCT_UNORM, PCT_UNORM>::value,
+				PF_RGB10A2U = MakePixelFormat4<PC_R, PC_G, PC_B, PC_A, 10, 10, 10, 2, PCT_UINT, PCT_UINT, PCT_UINT, PCT_UINT>::value,
 
 				// RG11B10F
 				PF_RG11B10F = MakePixelFormat3<PC_R, PC_G, PC_B, 11, 11, 10, PCT_FLOAT, PCT_FLOAT, PCT_FLOAT>::value,
@@ -193,15 +193,15 @@ namespace Neutron
 				// compress format
 				// BC1
 				PF_BC1UN = MakePixelFormat1<PC_BC, 1, PCT_UNORM>::value,
-				PF_BC1UNSRGB = MakePixelFormat1<PC_BC, 1, PCT_UNORM_SRGB>::value,
+				PF_BC1SRGB = MakePixelFormat1<PC_BC, 1, PCT_UNORM_SRGB>::value,
 
 				// BC2
 				PF_BC2UN = MakePixelFormat1<PC_BC, 2, PCT_UNORM>::value,
-				PF_BC2UNSRGB = MakePixelFormat1<PC_BC, 2, PCT_UNORM_SRGB>::value,
+				PF_BC2SRGB = MakePixelFormat1<PC_BC, 2, PCT_UNORM_SRGB>::value,
 				
 				// BC3
 				PF_BC3UN = MakePixelFormat1<PC_BC, 3, PCT_UNORM>::value,
-				PF_BC3UNSRGB = MakePixelFormat1<PC_BC, 3, PCT_UNORM_SRGB>::value,
+				PF_BC3SRGB = MakePixelFormat1<PC_BC, 3, PCT_UNORM_SRGB>::value,
 
 				// BC4
 				PF_BC4UN = MakePixelFormat1<PC_BC, 4, PCT_UNORM>::value,
@@ -217,7 +217,7 @@ namespace Neutron
 
 				// BC7
 				PF_BC7UN = MakePixelFormat1<PC_BC, 7, PCT_UNORM>::value,
-				PF_BC7UNSRGB = MakePixelFormat1<PC_BC, 7, PCT_UNORM_SRGB>::value,
+				PF_BC7SRGB = MakePixelFormat1<PC_BC, 7, PCT_UNORM_SRGB>::value,
 
 				// depth stencil format
 				// D16

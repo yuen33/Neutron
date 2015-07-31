@@ -29,39 +29,51 @@ namespace Neutron
 
 	namespace Engine
 	{
-		// framework
-		class DataFrame;
-		class DataStream;
+		// common
+		class Variable;
+		class Parameter;
+		typedef RCPtr<Variable>			VariablePtr;
+
+		// pipeline
 		class Pin;
 		class Variable;
-		class VPU;
-
-		typedef RCPtr<DataFrame>		DataFramePtr;
-		typedef RCPtr<DataStream>		DataStreamPtr;
+		class ProcessingUnit;
+		class ProcessingModule;
+		class DataFrame;
+		class DataStream;
 		typedef RCPtr<Pin>				PinPtr;
 		typedef RCPtr<Variable>			VariablePtr;
-		typedef RCPtr<VPU>				VPUPtr;
+		typedef RCPtr<ProcessingUnit>	ProcessingUnitPtr;
+		typedef RCPtr<ProcessingModule>	ProcessingModulePtr;
+		typedef RCPtr<DataFrame>		DataFramePtr;
+		typedef RCPtr<DataStream>		DataStreamPtr;
 
 		// resources
 		class Resource;
 		class Image;
-		class InputStream;
-		class Buffer;
-		class Texture;
-		class Sampler;
-		class Shader;
 		class Viewport;
 		class Window;
-
 		typedef RCPtr<Resource>			ResourcePtr;
 		typedef RCPtr<Image>			ImagePtr;
-		typedef RCPtr<InputStream>		InputStreamPtr;
-		typedef RCPtr<Buffer>			BufferPtr;
-		typedef RCPtr<Texture>			TexturePtr;
-		typedef RCPtr<Sampler>			SamplerPtr;
-		typedef RCPtr<Shader>			ShaderPtr;
 		typedef RCPtr<Viewport>			ViewportPtr;
 		typedef RCPtr<Window>			WindowPtr;
+
+		namespace Render
+		{
+			class InputStream;
+			class Buffer;
+			class Texture;
+			class Sampler;
+			class Shader;
+			class Renderable;
+
+			typedef RCPtr<InputStream>		InputStreamPtr;
+			typedef RCPtr<Buffer>			BufferPtr;
+			typedef RCPtr<Texture>			TexturePtr;
+			typedef RCPtr<Sampler>			SamplerPtr;
+			typedef RCPtr<Shader>			ShaderPtr;
+			typedef RCPtr<Renderable>		RenderablePtr;
+		}
 	}
 
 	namespace Message

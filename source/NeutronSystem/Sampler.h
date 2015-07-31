@@ -6,11 +6,14 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		class Sampler : public Resource
+		namespace Render
 		{
-		public:
-			Sampler( Device* owner );
-			virtual ~Sampler();
-		};
+			class NEUTRON_CORE Sampler : public Resource
+			{
+			public:
+				Sampler( Device* owner );
+				virtual ~Sampler();
+			};
+		}
 	}
 }

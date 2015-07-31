@@ -180,6 +180,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64/plugins"</Co
   <ItemGroup>
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\BufferD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\InputStreamD3D11.h" />
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\MapperD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Common.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.h" />
@@ -189,9 +190,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64/plugins"</Co
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\BufferD3D11.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\MapperD3D11.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

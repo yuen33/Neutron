@@ -6,11 +6,14 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		class InputStream : public Resource
+		namespace Render
 		{
-		public:
-			InputStream( Device* owner );
-			virtual ~InputStream();
-		};
+			class NEUTRON_CORE InputStream : public Resource
+			{
+			public:
+				InputStream( Device* owner );
+				virtual ~InputStream();
+			};
+		}
 	}
 }

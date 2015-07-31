@@ -24,6 +24,9 @@
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\MapperD3D11.h">
+      <Filter>Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
@@ -32,6 +35,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.cpp">
       <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\MapperD3D11.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\BufferD3D11.cpp">
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

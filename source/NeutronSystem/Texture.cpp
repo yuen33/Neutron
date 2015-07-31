@@ -4,14 +4,23 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		Texture::Texture( Device* owner )
-			: Resource( owner )
+		namespace Render
 		{
-			resourceType = RT_Texture;
-		}
+			Texture::Texture( Device* owner )
+				: Resource( owner )
+				, textureType( TT_Unknown )
+			{
+				resourceType = RT_Texture;
+			}
 
-		Texture::~Texture()
-		{
+			Texture::~Texture()
+			{
+			}
+
+			TexturePtr Texture::createTexture( Device* owner )
+			{
+				return TexturePtr( new Texture( owner ) );
+			}
 		}
 	}
 }

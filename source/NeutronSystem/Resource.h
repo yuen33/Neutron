@@ -16,7 +16,7 @@ namespace Neutron
 			RT_Sampler,
 			RT_Shader,
 			RT_Viewport,
-			RT_Window
+			RT_Renderable
 		};
 		
 		using Neutron::System::Device;
@@ -31,7 +31,7 @@ namespace Neutron
 			Resource( Device* device );
 			virtual ~Resource();
 
-			inline int getType() const { return resourceType; }
+			inline int getResourceType() const { return resourceType; }
 		};
 	}
 }

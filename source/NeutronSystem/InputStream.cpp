@@ -4,14 +4,17 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		InputStream::InputStream( Device* owner )
-			: Resource( owner )
+		namespace Render
 		{
-			resourceType = RT_InputStream;
-		}
+			InputStream::InputStream( Device* owner )
+				: Resource( owner )
+			{
+				resourceType = RT_InputStream;
+			}
 
-		InputStream::~InputStream()
-		{
+			InputStream::~InputStream()
+			{
+			}
 		}
 	}
 }

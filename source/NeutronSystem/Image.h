@@ -12,15 +12,15 @@ namespace Neutron
 		public:
 			enum : int
 			{
-				Image_Unknown,
-				Image_1D,
-				Image_2D,
-				Image_3D,
-				Image_Cube
+				IT_Unknown,
+				IT_1D,
+				IT_2D,
+				IT_3D,
+				IT_Cube
 			};
 
 		private:
-			int		type;
+			int		imageType;
 			int		width;
 			int		height;
 			int		depth;
@@ -30,24 +30,20 @@ namespace Neutron
 			uint8*	data;
 			Size	size;
 
+		public:
+			static ImagePtr create( Device* owner );
+
+			Image( Device* owner );
+			virtual ~Image();
+
 			boolean init1D( int width, uint64 format, int mips, int arraySize );
 			boolean init2D( int width, int height, uint64 format, int mips, int arraySize );
 			boolean init3D( int width, int height, int depth, uint64 format, int mips );
 			boolean initCube( int width, int height, uint64 format, int mips, int numOfCubes );
 			void release();
 
-		public:
-			static ImagePtr create();
-			static ImagePtr create1D( int width, uint64 format, int mips, int arraySize );
-			static ImagePtr create2D( int width, int height, uint64 format, int mips, int arraySize );
-			static ImagePtr create3D( int width, int height, int depth, uint64 format, int mips );
-			static ImagePtr createCube( int width, int height, uint64 format, int mips, int numOfCubes );
-
-			Image( Device* owner );
-			virtual ~Image();
-
 			inline bool null() const { return data != 0; }
-			inline int getType() const { return type; }
+			inline int getImageType() const { return imageType; }
 			inline int getWidth() const { return width; }
 			inline int getHeight() const { return height; }
 			inline int getDepth() const { return depth; }

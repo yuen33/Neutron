@@ -3,7 +3,7 @@
 #include "NeutronSystemCommon.h"
 #include "NeutronFoundation/String.h"
 
-using Neutron::Engine::Resource;
+using Neutron::Engine::ResourcePtr;
 using Neutron::Container::String;
 
 namespace Neutron

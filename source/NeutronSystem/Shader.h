@@ -6,11 +6,14 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		class Shader : public Resource
+		namespace Render
 		{
-		public:
-			Shader( Device* owner );
-			virtual ~Shader();
-		};
+			class NEUTRON_CORE Shader : public Resource
+			{
+			public:
+				Shader( Device* owner );
+				virtual ~Shader();
+			};
+		}
 	}
 }

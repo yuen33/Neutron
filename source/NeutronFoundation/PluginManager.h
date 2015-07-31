@@ -23,6 +23,7 @@ namespace Neutron
 
 		class NEUTRON_FOUNDATION_CORE PluginManager
 		{
+		protected:
 			struct PluginInfo
 			{
 				String					path;

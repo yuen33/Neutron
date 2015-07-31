@@ -4,14 +4,18 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		Buffer::Buffer( Device* owner )
-			: Resource( owner )
+		namespace Render
 		{
-			resourceType = RT_Buffer;
-		}
+			Buffer::Buffer( Device* owner )
+				: Resource( owner )
+				, bufferType( BT_Unknown )
+			{
+				resourceType = RT_Buffer;
+			}
 
-		Buffer::~Buffer()
-		{
+			Buffer::~Buffer()
+			{
+			}
 		}
 	}
 }

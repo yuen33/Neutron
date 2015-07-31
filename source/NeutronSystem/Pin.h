@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
+#include "DataStream.h"
 
 namespace Neutron
 {

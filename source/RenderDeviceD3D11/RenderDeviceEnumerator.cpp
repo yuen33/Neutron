@@ -40,7 +40,7 @@ namespace Neutron
 			}
 		}
 
-		void RenderDeviceEnumerator::getDesktopAdapterIndex()
+		void RenderDeviceEnumerator::findDesktopAdapterIndex()
 		{
 			for( int i = 0; i < adapters.getCount(); ++i )
 			{
@@ -114,7 +114,7 @@ namespace Neutron
 
 			factory->Release();
 
-			getDesktopAdapterIndex();
+			findDesktopAdapterIndex();
 
 			return true;
 		}

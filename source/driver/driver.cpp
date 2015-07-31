@@ -5,17 +5,23 @@
 #include <cstdio>
 
 #include "NeutronSystem/NeutronSystem.h"
-#include "NeutronSystem/RenderDevice.h"
+#include "NeutronSystem/NeutronEngine.h"
+
+#include "NeutronFoundation/Timer.h"
 
 using namespace Neutron::System;
+using namespace Neutron::Engine;
+using Neutron::Utility::Timer;
 
 int main(int argc, char** argv)
 {
-	Neutron::System::getSystem().init();
+	getSystem().init();
 	{
-		RenderDevicePtr rd = staticCast<RenderDevice>( Neutron::System::getSystem().getDeviceManager().createDevice( "RenderDevice.D3D11" ) );
+		Timer timer;
+
+		printf( "%u ms elapsed\n", timer.elapsedMS() );
 	}
-	Neutron::System::getSystem().release();
+	getSystem().release();
 
 	system( "pause" );
 }

@@ -41,7 +41,7 @@ namespace Neutron
 
 			virtual inline int getTypeID() const { return Type::getTypeID<T>(); }
 			virtual inline Size getSize() const { return sizeof( T ); }
-			inline T& data() const { return data; }
+			inline T& getData() const { return data; }
 		};
 
 		typedef DataFrameConcrete<boolean>				DataFrameBoolen;

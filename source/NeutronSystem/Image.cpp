@@ -20,7 +20,7 @@ namespace Neutron
 		boolean Image::init1D( int width, uint64 format, int mips, int arraySize )
 		{
 			// regularization parameters
-			if( width <= 0 || format == Render::PF_UNKNOWN )
+			if( width <= 0 || format == Render::PF_Unknown )
 			{
 				return false;
 			}
@@ -42,7 +42,7 @@ namespace Neutron
 				assert( data );
 				if( data )
 				{
-					this->type = Image_1D;
+					this->imageType = IT_1D;
 					this->width = width;
 					this->format = format;
 					this->mips = mips;
@@ -57,7 +57,7 @@ namespace Neutron
 		boolean Image::init2D( int width, int height, uint64 format, int mips, int arraySize )
 		{
 			// regularization parameters
-			if( width <= 0 || height <= 0 || format == Render::PF_UNKNOWN )
+			if( width <= 0 || height <= 0 || format == Render::PF_Unknown )
 			{
 				return false;
 			}
@@ -79,7 +79,7 @@ namespace Neutron
 				assert( data );
 				if( data )
 				{
-					this->type = Image_2D;
+					this->imageType = IT_2D;
 					this->width = width;
 					this->height = height;
 					this->format = format;
@@ -95,7 +95,7 @@ namespace Neutron
 		boolean Image::init3D( int width, int height, int depth, uint64 format, int mips )
 		{
 			// regularization parameters
-			if( width <= 0 || height <= 0 || depth <= 0 || format == Render::PF_UNKNOWN )
+			if( width <= 0 || height <= 0 || depth <= 0 || format == Render::PF_Unknown )
 			{
 				return false;
 			}
@@ -112,7 +112,7 @@ namespace Neutron
 				assert( data );
 				if( data )
 				{
-					this->type = Image_3D;
+					this->imageType = IT_3D;
 					this->width = width;
 					this->height = height;
 					this->depth = depth;
@@ -128,7 +128,7 @@ namespace Neutron
 		boolean Image::initCube( int width, int height, uint64 format, int mips, int numOfCubes )
 		{
 			// regularization parameters
-			if( width <= 0 || height <= 0 || numOfCubes <= 0 || format == Render::PF_UNKNOWN )
+			if( width <= 0 || height <= 0 || numOfCubes <= 0 || format == Render::PF_Unknown )
 			{
 				return false;
 			}
@@ -145,7 +145,7 @@ namespace Neutron
 				assert( data );
 				if( data )
 				{
-					this->type = Image_3D;
+					this->imageType = IT_3D;
 					this->width = width;
 					this->height = height;
 					this->format = format;
@@ -160,11 +160,11 @@ namespace Neutron
 
 		void Image::release()
 		{
-			type = Image_Unknown;
+			imageType = IT_Unknown;
 			width = 0;
 			height = 0;
 			depth = 0;
-			format = Render::PF_UNKNOWN;
+			format = Render::PF_Unknown;
 			arraySize = 1;
 			mips = 1;
 			if( data )
@@ -175,53 +175,9 @@ namespace Neutron
 			size = 0;
 		}
 
-		ImagePtr Image::create()
+		ImagePtr Image::create( Device* owner )
 		{
-			return ImagePtr( new Image( 0 ) );
-		}
-
-		ImagePtr Image::create1D( int width, uint64 format, int mips, int arraySize )
-		{
-			ImagePtr image = create();
-			if( !image.isNull() && image->init1D( width, format, mips, arraySize ) )
-			{
-				return image;
-			}
-
-			return ImagePtr::null;
-		}
-
-		ImagePtr Image::create2D( int width, int height, uint64 format, int mips, int arraySize )
-		{
-			ImagePtr image = create();
-			if( !image.isNull() && image->init2D( width, height, format, mips, arraySize ) )
-			{
-				return image;
-			}
-
-			return ImagePtr::null;
-		}
-
-		ImagePtr Image::create3D( int width, int height, int depth, uint64 format, int mips )
-		{
-			ImagePtr image = create();
-			if( !image.isNull() && image->init3D( width, height, depth, format, mips ) )
-			{
-				return image;
-			}
-
-			return ImagePtr::null;
-		}
-
-		ImagePtr Image::createCube( int width, int height, uint64 format, int mips, int numOfCubes )
-		{
-			ImagePtr image = create();
-			if( !image.isNull() && image->initCube( width, height, format, mips, numOfCubes ) )
-			{
-				return image;
-			}
-
-			return ImagePtr::null;
+			return ImagePtr( new Image( owner ) );
 		}
 	}
 }

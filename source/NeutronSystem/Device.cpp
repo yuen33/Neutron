@@ -1,5 +1,6 @@
 #include "Device.h"
 #include "NeutronPlugin.h"
+#include "NeutronFoundation/Hash.h"
 
 namespace Neutron
 {
@@ -17,7 +18,7 @@ namespace Neutron
 
 		void Device::deleteMethod( RCObject* object )
 		{
-			assert( owner );
+			//assert( owner );
 			if( owner )
 			{
 				owner->destroyDevice( this );

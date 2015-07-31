@@ -7,6 +7,12 @@
 #include "NeutronFoundation/Vector3.h"
 #include "NeutronFoundation/Vector4.h"
 #include "NeutronFoundation/Matrix44.h"
+#include "Image.h"
+#include "InputStream.h"
+#include "Buffer.h"
+#include "Texture.h"
+#include "Sampler.h"
+#include "Shader.h"
 
 using Neutron::Container::String;
 using Neutron::Math::float2;
@@ -14,11 +20,18 @@ using Neutron::Math::float3;
 using Neutron::Math::float4;
 using Neutron::Math::float4x4;
 
+using Neutron::Engine::ImagePtr;
+using Neutron::Engine::Render::InputStreamPtr;
+using Neutron::Engine::Render::BufferPtr;
+using Neutron::Engine::Render::TexturePtr;
+using Neutron::Engine::Render::SamplerPtr;
+using Neutron::Engine::Render::ShaderPtr;
+
 namespace Neutron
 {
 	namespace Engine
 	{
-		class NEUTRON_CORE Variable : RCObject
+		class NEUTRON_CORE Variable : public RCObject
 		{
 		public:
 			Variable() {};
@@ -85,5 +98,11 @@ namespace Neutron
 		typedef VariableConcrete<float3>				VarFloat3;
 		typedef VariableConcrete<float4>				VarFloat4;
 		typedef VariableConcrete<float4x4>				VarFloat4x4;
+		typedef VariableConcrete<ImagePtr>				VarImage;
+		typedef VariableConcrete<InputStreamPtr>		VarInputStream;
+		typedef VariableConcrete<BufferPtr>				VarBuffer;
+		typedef VariableConcrete<TexturePtr>			VarTexture;
+		typedef VariableConcrete<SamplerPtr>			VarSampler;
+		typedef VariableConcrete<ShaderPtr>				VarShader;
 	}
 }

@@ -4,14 +4,17 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		Shader::Shader( Device* owner )
-			: Resource( owner )
+		namespace Render
 		{
-			resourceType = RT_Shader;
-		}
+			Shader::Shader( Device* owner )
+				: Resource( owner )
+			{
+				resourceType = RT_Shader;
+			}
 
-		Shader::~Shader()
-		{
+			Shader::~Shader()
+			{
+			}
 		}
 	}
 }

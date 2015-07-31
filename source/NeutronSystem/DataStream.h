@@ -4,6 +4,8 @@
 #include "NeutronFoundation/HashMap.h"
 #include "NeutronFoundation/String.h"
 #include "NeutronFoundation/AsyncQueue.h"
+#include "Variable.h"
+#include "DataFrame.h"
 
 using Neutron::Container::HashMap;
 using Neutron::Container::String;
