@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
+#include "Renderable.h"
 
 using Neutron::Engine::Render::RenderablePtr;
 

@@ -38,7 +38,7 @@ namespace Neutron
 				const int size_t_bits = sizeof( uint32 ) * 8;
 				const int length = ( sizeof( T ) * 8 - 1 ) / size_t_bits;
 
-				Neutron::Size seed = 0;
+				uint32 seed = 0;
 
 				for( unsigned int i = length * size_t_bits; i > 0; i -= size_t_bits )
 				{
@@ -52,7 +52,7 @@ namespace Neutron
 			template<typename T>
 			static inline void combine( uint32& seed, const T& v )
 			{
-				seed ^= hash_value( v ) + 0x9e3779b9 + ( seed << 6 ) + ( seed >> 2 );
+				seed ^= hash( v ) + 0x9e3779b9 + ( seed << 6 ) + ( seed >> 2 );
 			}
 
 			template <class It>
@@ -62,7 +62,7 @@ namespace Neutron
 
 				for( ; first != last; ++first )
 				{
-					hash_combine( seed, *first );
+					combine( seed, *first );
 				}
 
 				return seed;
@@ -73,7 +73,7 @@ namespace Neutron
 			{
 				for( ; first != last; ++first )
 				{
-					hash_combine( seed, *first );
+					combine( seed, *first );
 				}
 			}
 		};

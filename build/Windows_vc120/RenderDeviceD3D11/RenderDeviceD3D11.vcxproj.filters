@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\BufferD3D11.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Device">

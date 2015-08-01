@@ -24,6 +24,8 @@ namespace Neutron
 				{
 
 				}
+
+				return RenderablePtr::null;
 			}
 
 			void FileRenderGraph::save( const char* path, RenderablePtr renderable )

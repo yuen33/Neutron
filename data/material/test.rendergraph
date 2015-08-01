@@ -1,0 +1,48 @@
+{
+	parameter: { name: "targetWidth", semantic: "target.width", variableType: "int" },
+	parameter: { name: "targetHeight", semantic: "target.height", variableType: "int" },
+
+	inputStream: { name: "quad" },
+	
+	cbuffer: { name: "view", accessHint: "AH_GPU_Read | AH_CPU_Write",
+		parameter: { name: "viewProjMatrix", semantic: "view.viewProjMatrix", variableType: "float4x4" },
+		parameter: { name: "eyePosition",	semantic: "view.eyePosition", variableType: "float" }
+	},
+	
+	cbuffer: { name: "material", accessHint: "AH_GPU_Read | AH_CPU_Write",
+		parameter: { name: "diffuse", semantic: "diffuse", variableType: "float4" },
+		parameter: { name: "specular", semantic: "specular", variableType: "float4" },
+		parameter: { name: "shiness", semantic: "shiness", variableType: "float" }
+	},
+		
+	cbuffer: { name: "transform", accessHint: "AH_GPU_Read | AH_CPU_Write",
+		parameter: { name: "worldViewPorjectionMatrix", semantic: "transform.worldViewPorjectionMatrix", variableType: "float4x4" },
+		parameter: { name: "worldMatrix", semantic: "transform.worldMatrix", variableType: "float4x4" },
+		parameter: { name: "worldMatrixInversed", semantic: "transform.worldMatrixInversed", variableType: "float4x4" }
+	},
+	
+	cbuffer: { name: "directionalLight", accessHint: "AH_GPU_Read | AH_CPU_Write",
+		parameter: { name: "position", semantic: "ligth.directional.position", variableType: "float4" },
+		parameter: { name: "direction", semantic: "light.directional.direction", variableType: "float4x4" },
+		parameter: { name: "color", semantic: "light.directional.color", variable: "float4x4" }
+	},
+	
+	texture2D: { name: "gbuffer0", width: "targetWidth", height: "targetHeight", format: "PF_RGBA32F", accessHint: "AH_GPU_Read | AH_GPU_Write" },
+	texture2D: { name: "gbuffer1", width: "targetWidth", height: "targetHeight", format: "PF_RGBA32F", accessHint: "AH_GPU_Read | AH_GPU_Write" },
+	texture2D: { name: "gbuffer2", width: "targetWidth", height: "targetHeight", format: "PF_RGBA32F", accessHint: "AH_GPU_Read | AH_GPU_Write" },
+	texture2D: { name: "depthStencil", semantic: "depthStencil", width: "targetWidth", height: "targetHeight", format: "PF_D24S8", accessHint: "AH_GPU_Read | AH_GPU_Write" },
+	texture2D: { name: "albedo", semantic: "albedo" },
+	
+	sampler: { name: "diffuseSampler", filterType: "FT_LLL" },
+	sampler: { name: "pointSampler", filterType: "FT_PPP" },
+	
+	draw: {	name: "fillPass",
+		shaderVS: { name: "deferredFillVS", semantic: "draw.shader.VS", path: "shader/deferredFill.shader", entry: "vsMain" },
+		shaderPS: { name: "deferredFillPS", semantic: "draw.shader.PS", path: "shader/deferredFill.shader", entry: "psMain" }
+	},
+	
+	draw: { name: "lightPass",
+		shaderVS: { name: "deferredLightVS", semantic: "draw.shader.VS", path: "shader/deferredLight.shader", entry: "vsMain" },
+		shaderPS: { name: "deferredLightPS", semantic: "draw.shader.PS", path: "shader/deferredLight.shader", entry: "psMain" }
+	}
+}
