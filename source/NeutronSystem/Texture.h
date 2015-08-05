@@ -31,8 +31,6 @@ namespace Neutron
 				int textureType;
 
 			public:
-				static TexturePtr createTexture( Device* owner );
-
 				Texture( Device* owner );
 				virtual ~Texture();
 

@@ -88,7 +88,7 @@ namespace Neutron
 
 			void FileJPEG::save( ImagePtr image, const char* path, float quality )
 			{
-				if( image->getResourceType() != Image::IT_2D )
+				if( image.isNull() || image->getImageType() != Image::IT_2D )
 				{
 					return;
 				}

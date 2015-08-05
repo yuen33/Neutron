@@ -14,5 +14,19 @@ namespace Neutron
 		Resource::~Resource()
 		{
 		}
+
+		void Resource::deleteMethod( RCObject* object )
+		{
+			//assert( owner );
+			if( owner )
+			{
+				release();
+				delete static_cast<Resource*>( object );
+			}
+			else
+			{
+				RCObject::deleteMethod( object );
+			}
+		}
 	}
 }

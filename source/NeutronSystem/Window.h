@@ -2,6 +2,11 @@
 
 #include "ProcessingUnit.h"
 #include "NeutronFoundation/String.h"
+#include "Pin.h"
+
+#if defined NEUTRON_WINDOWS_DESKTOP
+#include <dxgi.h>
+#endif
 
 using Neutron::Container::String;
 
@@ -22,6 +27,7 @@ namespace Neutron
 			int						height;
 			String					title;
 			boolean					fullscreen;
+			IDXGISwapChain*			swapchain;
 
 			// control flag
 			boolean					active;
@@ -48,7 +54,9 @@ namespace Neutron
 			virtual void onClose();
 			virtual void onDestroy();
 
+			virtual boolean updateUnit();
 			virtual void update();
+			virtual void swap();
 			void run();
 			inline void stop() { done = true; }
 
@@ -57,7 +65,8 @@ namespace Neutron
 			inline int getHeight() const { return height; }
 			inline const char* getTitle() const { return title.getCStr(); }
 			inline boolean isFullscreen() const { return fullscreen; }
-			inline const void* handle() const { return hWnd; }
+			inline const void* getHandle() const { return hWnd; }
+			inline void setSwapChain( IDXGISwapChain* sc ) { swapchain = sc; }
 		};
 #endif
 	}

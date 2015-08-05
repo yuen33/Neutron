@@ -6,11 +6,6 @@ namespace Neutron
 	{
 		namespace Render
 		{
-			ShaderPtr Shader::createShader( Device* owner )
-			{
-				return ShaderPtr( new Shader( owner ) );
-			}
-
 			Shader::Shader( Device* owner )
 				: Resource( owner )
 				, shaderType( ST_Unknown ) 

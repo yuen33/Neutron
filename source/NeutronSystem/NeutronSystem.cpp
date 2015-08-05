@@ -1,5 +1,6 @@
 #include "NeutronSystem.h"
 #include "NeutronFoundation/Memory.h"
+#include "NeutronEngine.h"
 
 namespace Neutron
 {
@@ -21,11 +22,15 @@ namespace Neutron
 			ret = ret && taskManager.init( 8, 1024 );
 			ret = ret && pluginManager.init( "plugins/" );
 			ret = ret && deviceManager.init();
+
+			ret = ret && Engine::getEngine().init();
 			return true;
 		}
 
 		void NeutronSystem::release()
 		{
+			Engine::getEngine().release();
+
 			deviceManager.release();
 			pluginManager.release();
 			taskManager.release();
@@ -34,10 +39,6 @@ namespace Neutron
 
 		void NeutronSystem::update()
 		{
-			if( taskManager.isIdle() )
-			{
-				shutdown();
-			}
 		}
 
 		void NeutronSystem::run()

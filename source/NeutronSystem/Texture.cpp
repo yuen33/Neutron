@@ -16,11 +16,6 @@ namespace Neutron
 			Texture::~Texture()
 			{
 			}
-
-			TexturePtr Texture::createTexture( Device* owner )
-			{
-				return TexturePtr( new Texture( owner ) );
-			}
 		}
 	}
 }

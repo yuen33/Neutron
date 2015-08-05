@@ -39,9 +39,6 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\Window.h">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h">
-      <Filter>Engine\ProcessingUnit</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingUnit.h">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClInclude>
@@ -92,6 +89,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\FileRenderGraph.h">
       <Filter>System\File</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Parameter.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h">
+      <Filter>Engine\ProcessingUnit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +163,6 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\Window.cpp">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp">
-      <Filter>Engine\ProcessingUnit</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingUnit.cpp">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClCompile>
@@ -207,6 +207,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\FileRenderGraph.cpp">
       <Filter>System\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Parameter.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Pin.cpp">
+      <Filter>Engine\ProcessingUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp">
+      <Filter>Engine\ProcessingUnit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

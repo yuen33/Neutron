@@ -194,11 +194,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystemCommon.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronSystem.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\NeutronDefine.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\Parameter.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Pin.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h" />
-    <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingUnit.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingUnitManager.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderable.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderer.h" />
@@ -226,9 +227,11 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPlugin.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronPluginManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\NeutronSystem.cpp" />
-    <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Parameter.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\Pin.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingUnit.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingUnitManager.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Renderable.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\RenderDevice.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Renderer.cpp" />

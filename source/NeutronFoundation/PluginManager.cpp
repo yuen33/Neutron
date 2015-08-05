@@ -3,6 +3,7 @@
 #include "PluginManager.h"
 #include "Array.h"
 #include "Hash.h"
+#include "FilePath.h"
 
 using Neutron::Container::Array;
 
@@ -28,14 +29,15 @@ namespace Neutron
 		{
 		}
 
+#pragma optimize( "", off )
 		boolean PluginManager::init( const char* pluginFolder )
 		{
 			Array<String> pluginPaths;
 			String folderPath = pluginFolder;
 			
-#if defined NEUTRON_WINDOWS_DESKTOP
 			WIN32_FIND_DATAA context;
 			memset( &context, 0, sizeof( context ) );
+
 			HANDLE fileHandle = FindFirstFileA( ( folderPath + "*.dll" ).getCStr(), &context );
 
 			if( fileHandle != INVALID_HANDLE_VALUE )
@@ -49,15 +51,26 @@ namespace Neutron
 			}
 
 			FindClose( fileHandle );
-#endif
 
 			for( int i = 0; i < pluginPaths.getCount(); ++i )
 			{
+#if defined NEUTRON_DEBUG
+				if( FilePath::getName( pluginPaths[i].getCStr() ).rfind( "_d.dll" ) < 0 )
+				{
+					continue;
+				}
+#else
+				if( FilePath::getName( pluginPaths[i].getCStr() ).rfind( "_d.dll" ) >= 0 )
+				{
+					continue;
+				}
+#endif
 				loadPlugin( pluginPaths[i].getCStr() );
 			}
 
 			return true;
 		}
+#pragma optimize( "", on )
 
 		void PluginManager::release()
 		{

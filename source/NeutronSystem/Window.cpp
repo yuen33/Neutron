@@ -90,10 +90,15 @@ namespace Neutron
 				case WM_CLOSE:
 				{
 					onClose();
-					return 0;
 				}
 				break;
 				
+				case WM_DESTROY:
+				{
+					onDestroy();
+				}
+				break;
+
 				default:
 				{
 				}
@@ -108,6 +113,7 @@ namespace Neutron
 
 		void Window::onPaint()
 		{
+			swap();
 		}
 
 		void Window::onEnterSizeMove()
@@ -130,7 +136,7 @@ namespace Neutron
 		{
 			if( code == VK_ESCAPE )
 			{
-				release();
+				DestroyWindow( hWnd );
 			}
 		}
 
@@ -140,11 +146,11 @@ namespace Neutron
 
 		void Window::onClose()
 		{
-			release();
 		}
 
 		void Window::onDestroy()
 		{
+			stop();
 		}
 
 		WindowPtr Window::create( Device* owner )
@@ -156,12 +162,13 @@ namespace Neutron
 			: ProcessingUnit( owner )
 			, hInstance( 0 )
 			, hWnd( 0 )
+			, swapchain( 0 )
 			, width( 0 )
 			, height( 0 )
 			, fullscreen( false )
 			, active( false )
 			, updateFlag( false )
-			, done ( true )
+			, done( true )
 		{
 			processingUnitType = PUT_Window;
 		}
@@ -235,6 +242,7 @@ namespace Neutron
 				UnregisterClassA( title.getCStr(), hInstance );
 			}
 
+			swapchain = 0;
 			width = 0;
 			height = 0;
 			title.clear();
@@ -244,6 +252,12 @@ namespace Neutron
 			done = true;
 		}
 
+		boolean Window::updateUnit()
+		{
+			update();
+			return !done;
+		}
+
 		void Window::update()
 		{
 			MSG msg;
@@ -251,6 +265,14 @@ namespace Neutron
 			{
 				TranslateMessage( &msg );
 				DispatchMessage( &msg );
+			}
+		}
+
+		void Window::swap()
+		{
+			if( swapchain != 0 )
+			{
+				swapchain->Present( 0, 0 );
 			}
 		}
 

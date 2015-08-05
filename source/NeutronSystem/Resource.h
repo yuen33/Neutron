@@ -27,9 +27,13 @@ namespace Neutron
 			int resourceType;
 			Device* owner;
 
+			virtual void deleteMethod( RCObject* object );
+
 		public:
 			Resource( Device* device );
 			virtual ~Resource();
+
+			virtual void release() = 0;
 
 			inline int getResourceType() const { return resourceType; }
 		};

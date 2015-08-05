@@ -31,7 +31,7 @@ namespace Neutron
 			Size	size;
 
 		public:
-			static ImagePtr create( Device* owner );
+			static ImagePtr createImage( Device* owner );
 
 			Image( Device* owner );
 			virtual ~Image();

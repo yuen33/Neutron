@@ -35,7 +35,7 @@ namespace Neutron
 
 		private:
 			HashMap<uint32, DeviceInfo>			deviceInfo;
-			HashMap<int, Array<Device*> >		devices;
+			HashMap<int, Array<DevicePtr> >		devices;
 			DevicePtr							systemDevice;
 
 		public:

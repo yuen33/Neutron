@@ -21,6 +21,7 @@ namespace Neutron
 			//assert( owner );
 			if( owner )
 			{
+				release();
 				owner->destroyDevice( this );
 			}
 			else
@@ -32,10 +33,6 @@ namespace Neutron
 		boolean Device::init()
 		{
 			return false;
-		}
-
-		void Device::release()
-		{
 		}
 
 		void Device::onPluginRelease()

@@ -22,7 +22,8 @@ namespace Neutron
 				HashMap<uint32, ID3D11UnorderedAccessView*> uavCache;
 
 			public:
-				BufferD3D11( Engine::Device* owner );
+				static BufferPtr createBuffer( Device* owner );
+				BufferD3D11( Device* owner );
 				virtual ~BufferD3D11();
 
 				boolean init( int bufferType, int accessHint, Size stride, Size size );

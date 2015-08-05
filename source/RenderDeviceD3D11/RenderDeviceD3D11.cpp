@@ -10,6 +10,8 @@
 #include "SamplerD3D11.h"
 #include "ShaderD3D11.h"
 
+#include "RendererD3D11.h"
+
 #include <d3d11.h>
 
 using namespace Neutron::Engine;
@@ -20,9 +22,11 @@ namespace Neutron
 	{
 		RenderDeviceD3D11::RenderDeviceD3D11( NeutronPlugin* owner )
 			: RenderDevice( owner )
+			, dxgiFactory( 0 )
+			, dxgiAdapter( 0 )
+			, d3dDevice( 0 )
+			, d3dContext( 0 )
 		{
-			enumerator.enumerate();
-			enumerator.printDeviceInfo();
 		}
 
 		RenderDeviceD3D11::~RenderDeviceD3D11()
@@ -33,10 +37,12 @@ namespace Neutron
 		{
 			NeutronEngine& engine = Neutron::Engine::getEngine();
 			engine.getResourceManager().registerResource( "InputStream.D3D11", Engine::RT_InputStream, this );
-			engine.getResourceManager().registerResource( "Buffer.D3D11", Engine::RT_InputStream, this );
-			engine.getResourceManager().registerResource( "Texture.D3D11", Engine::RT_InputStream, this );
+			engine.getResourceManager().registerResource( "Buffer.D3D11", Engine::RT_Buffer, this );
+			engine.getResourceManager().registerResource( "Texture.D3D11", Engine::RT_Texture, this );
 			engine.getResourceManager().registerResource( "Sampler.D3D11", Engine::RT_Sampler, this );
-			engine.getResourceManager().registerResource( "Shader.D3D11", Engine::RT_Sampler, this );
+			engine.getResourceManager().registerResource( "Shader.D3D11", Engine::RT_Shader, this );
+
+			engine.getProcessingUnitManager().registerProcessingUnit( "Renderer.D3D11", Engine::PUT_Renderer, this );
 		}
 
 		void RenderDeviceD3D11::unregisterProducts()
@@ -47,10 +53,15 @@ namespace Neutron
 			engine.getResourceManager().unregisterResource( "Texture.D3D11" );
 			engine.getResourceManager().unregisterResource( "Sampler.D3D11" );
 			engine.getResourceManager().unregisterResource( "Shader.D3D11" );
+
+			engine.getProcessingUnitManager().unregisterProcessingUnit( "Renderer.D3D11" );
 		}
 
 		boolean RenderDeviceD3D11::init()
 		{
+			enumerator.enumerate();
+			enumerator.printDeviceInfo();
+
 			int desktopAdapterIndex = enumerator.getDesktopAdapterIndex();
 			if( desktopAdapterIndex < 0 )
 			{
@@ -80,7 +91,9 @@ namespace Neutron
 			if( FAILED( hr ) )
 			{
 				adapter->Release();
+				adapter = 0;
 				factory->Release();
+				factory = 0;
 			}
 
 			this->dxgiFactory = factory;
@@ -88,29 +101,37 @@ namespace Neutron
 			this->d3dDevice = d3d;
 			this->d3dContext = d3dDC;
 
+			registerProducts();
+
 			return true;
 		}
 
 		void RenderDeviceD3D11::release()
 		{
+			unregisterProducts();
+
 			if( d3dContext )
 			{
 				d3dContext->Release();
+				d3dContext = 0;
 			}
 
 			if( d3dDevice )
 			{
 				d3dDevice->Release();
+				d3dDevice = 0;
 			}
 
 			if( dxgiAdapter )
 			{
 				dxgiAdapter->Release();
+				dxgiAdapter = 0;
 			}
 
 			if( dxgiFactory )
 			{
 				dxgiFactory->Release();
+				dxgiFactory = 0;
 			}
 		}
 
@@ -204,9 +225,109 @@ namespace Neutron
 			return SamplerPtr::null;
 		}
 
-		ShaderPtr RenderDeviceD3D11::createShader()
+		ShaderPtr RenderDeviceD3D11::createVertexShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
 		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initVertexShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
 			return ShaderPtr::null;
+		}
+
+		ShaderPtr RenderDeviceD3D11::createHullShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initHullShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		ShaderPtr RenderDeviceD3D11::createDomainShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initDomainShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		ShaderPtr RenderDeviceD3D11::createGeometryShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initGeometryShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		ShaderPtr RenderDeviceD3D11::createPixelShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initPixelShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		ShaderPtr RenderDeviceD3D11::createComputeShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ShaderPtr shader = ShaderD3D11::createShader( this );
+			if( !shader.isNull() )
+			{
+				ShaderD3D11* shaderD3D11 = static_cast<ShaderD3D11*>( shader.get() );
+				if( shaderD3D11->initComputeShader( charCode, size, entry, include, includePath ) )
+				{
+					return shader;
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		RendererPtr RenderDeviceD3D11::createRenderer()
+		{
+			RendererPtr renderer = RendererD3D11::createRenderer( this );
+			if( !renderer.isNull() )
+			{
+				Renderer* rendererD3D11 = static_cast<Renderer*>( renderer.get() );
+				if( rendererD3D11->init() )
+				{
+					return renderer;
+				}
+			}
+
+			return RendererPtr::null;
 		}
 	}
 }

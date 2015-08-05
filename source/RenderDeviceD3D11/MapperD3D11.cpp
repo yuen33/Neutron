@@ -123,7 +123,7 @@ namespace Neutron
 					}
 				};
 
-				assert( 0 );
+				//assert( 0 );
 				return DXGI_FORMAT_UNKNOWN;
 			}
 
@@ -203,7 +203,7 @@ namespace Neutron
 					}
 				};
 
-				assert( 0 );
+				//assert( 0 );
 				return PF_Unknown;
 			}
 

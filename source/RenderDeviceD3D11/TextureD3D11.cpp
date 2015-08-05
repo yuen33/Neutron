@@ -13,6 +13,11 @@ namespace Neutron
 	{
 		namespace Render
 		{
+			TexturePtr TextureD3D11::createTexture( Device* owner )
+			{
+				return TexturePtr( new TextureD3D11( owner ) );
+			}
+
 			TextureD3D11::TextureD3D11( Engine::Device* owner )
 				: Texture( owner )
 				, accessHint( RenderDeviceD3D11::AH_Unknown )

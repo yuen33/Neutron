@@ -27,6 +27,9 @@
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\MapperD3D11.h">
       <Filter>Device</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RendererD3D11.h">
+      <Filter>ProcessingUnit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
@@ -48,6 +51,12 @@
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\SamplerD3D11.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RendererD3D11.cpp">
+      <Filter>ProcessingUnit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Device">
@@ -55,6 +64,9 @@
     </Filter>
     <Filter Include="Resource">
       <UniqueIdentifier>{538f7982-57a7-45ba-a09b-17d6f3f7ce35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProcessingUnit">
+      <UniqueIdentifier>{edf7c95b-34e6-4e52-b405-9e257ef090f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

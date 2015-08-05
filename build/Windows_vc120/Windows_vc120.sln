@@ -60,7 +60,8 @@ Global
 		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Debug|x64.Build.0 = Debug|x64
 		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Release|Win32.ActiveCfg = Release|Win32
 		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Release|Win32.Build.0 = Release|Win32
-		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Release|x64.ActiveCfg = Release|Win32
+		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Release|x64.ActiveCfg = Release|x64
+		{C275931E-7074-4023-BE8D-630EEAFBF4AD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

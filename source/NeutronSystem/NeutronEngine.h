@@ -3,6 +3,7 @@
 #include "NeutronSystemCommon.h"
 #include "ResourceManager.h"
 #include "ProcessingUnitManager.h"
+#include "ProcessingUnit.h"
 
 namespace Neutron
 {
@@ -19,6 +20,8 @@ namespace Neutron
 
 			boolean init();
 			void release();
+
+			void runModule( ProcessingModulePtr module );
 
 			inline ResourceManager& getResourceManager() { return resourceManager; }
 			inline ProcessingUnitManager& getProcessingUnitManager() { return processingUnitManager; }

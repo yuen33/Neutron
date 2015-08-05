@@ -11,7 +11,12 @@ namespace Neutron
 	{
 		namespace Render
 		{
-			ShaderD3D11::ShaderD3D11( Engine::Device* owner )
+			ShaderPtr ShaderD3D11::createShader( Device* owner )
+			{
+				return ShaderPtr( new ShaderD3D11( owner ) );
+			}
+
+			ShaderD3D11::ShaderD3D11( Device* owner )
 				: Shader( owner )
 			{
 			}

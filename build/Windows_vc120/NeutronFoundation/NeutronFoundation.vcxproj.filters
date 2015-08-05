@@ -157,6 +157,12 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\CompileHash.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\FilePath.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronFoundation\TreeNode.h">
+      <Filter>Container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\NeutronFoundation\BestFitAllocator.cpp">
@@ -218,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronFoundation\TCPClient.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronFoundation\FilePath.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

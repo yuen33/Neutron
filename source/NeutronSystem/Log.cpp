@@ -59,7 +59,7 @@ namespace Neutron
 				setStdConsoleColor( DefaultColor );
 			}
 #else
-			void debug()
+			void debug( const char* fmt, ... )
 			{
 			}
 #endif

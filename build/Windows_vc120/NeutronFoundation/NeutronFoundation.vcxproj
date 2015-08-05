@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Connection.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\FileJson.h" />
+    <ClInclude Include="..\..\..\source\NeutronFoundation\FilePath.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\HandleManager.h" />
     <ClInclude Include="..\..\..\source\NeutronFoundation\Hash.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="..\..\..\source\NeutronFoundation\ChunkedAllocator.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\Connection.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\FileJson.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronFoundation\FilePath.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\FirstFitAllocator.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\HandleManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronFoundation\HeapAllocator.cpp" />

@@ -185,6 +185,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64/plugins"</Co
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Common.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.h" />
+    <ClInclude Include="..\..\..\source\RenderDeviceD3D11\RendererD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\SamplerD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.h" />
     <ClInclude Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.h" />
@@ -195,6 +196,8 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64/plugins"</Co
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceD3D11Plugin.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RenderDeviceEnumerator.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\RendererD3D11.cpp" />
+    <ClCompile Include="..\..\..\source\RenderDeviceD3D11\SamplerD3D11.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\ShaderD3D11.cpp" />
     <ClCompile Include="..\..\..\source\RenderDeviceD3D11\TextureD3D11.cpp" />
   </ItemGroup>

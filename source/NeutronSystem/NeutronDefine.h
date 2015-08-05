@@ -22,9 +22,9 @@ namespace Neutron
 		class SystemDevice;
 		class RenderDevice;
 
-		typedef RCPtr<Device>			DevicePtr;
-		typedef RCPtr<SystemDevice>		SystemDevicePtr;
-		typedef RCPtr<RenderDevice>		RenderDevicePtr;
+		typedef RCPtr<Device>				DevicePtr;
+		typedef RCPtr<SystemDevice>			SystemDevicePtr;
+		typedef RCPtr<RenderDevice>			RenderDevicePtr;
 	}
 
 	namespace Engine
@@ -32,47 +32,50 @@ namespace Neutron
 		// common
 		class Variable;
 		class Parameter;
-		typedef RCPtr<Variable>			VariablePtr;
+		typedef RCPtr<Variable>				VariablePtr;
+		typedef RCPtr<Parameter>			ParameterPtr;
 
 		// pipeline
 		class Pin;
-		class Variable;
 		class ProcessingUnit;
 		class ProcessingModule;
 		class DataFrame;
 		class DataStream;
-		typedef RCPtr<Pin>				PinPtr;
-		typedef RCPtr<Variable>			VariablePtr;
-		typedef RCPtr<ProcessingUnit>	ProcessingUnitPtr;
-		typedef RCPtr<ProcessingModule>	ProcessingModulePtr;
-		typedef RCPtr<DataFrame>		DataFramePtr;
-		typedef RCPtr<DataStream>		DataStreamPtr;
+		typedef RCPtr<Pin>					PinPtr;
+		typedef RCPtr<ProcessingUnit>		ProcessingUnitPtr;
+		typedef RCPtr<ProcessingModule>		ProcessingModulePtr;
+		typedef RCPtr<DataFrame>			DataFramePtr;
+		typedef RCPtr<DataStream>			DataStreamPtr;
 
 		// resources
 		class Resource;
 		class Image;
 		class Viewport;
 		class Window;
-		typedef RCPtr<Resource>			ResourcePtr;
-		typedef RCPtr<Image>			ImagePtr;
-		typedef RCPtr<Viewport>			ViewportPtr;
-		typedef RCPtr<Window>			WindowPtr;
+		typedef RCPtr<Resource>				ResourcePtr;
+		typedef RCPtr<Image>				ImagePtr;
+		typedef RCPtr<Viewport>				ViewportPtr;
+		typedef RCPtr<Window>				WindowPtr;
 
 		namespace Render
 		{
+			// resource
 			class InputStream;
 			class Buffer;
 			class Texture;
 			class Sampler;
 			class Shader;
 			class Renderable;
-
 			typedef RCPtr<InputStream>		InputStreamPtr;
 			typedef RCPtr<Buffer>			BufferPtr;
 			typedef RCPtr<Texture>			TexturePtr;
 			typedef RCPtr<Sampler>			SamplerPtr;
 			typedef RCPtr<Shader>			ShaderPtr;
 			typedef RCPtr<Renderable>		RenderablePtr;
+
+			// module
+			class Renderer;
+			typedef RCPtr<Renderer>			RendererPtr;
 		}
 	}
 

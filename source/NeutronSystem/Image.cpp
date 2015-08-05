@@ -1,10 +1,16 @@
 #include "Image.h"
 #include "PixelFormat.h"
+#include "FileJPEG.h"
 
 namespace Neutron
 {
 	namespace Engine
 	{
+		ImagePtr Image::createImage( Device* owner )
+		{
+			return ImagePtr( new Image( owner ) );
+		}
+
 		Image::Image( Device* owner )
 			: Resource( owner )
 		{
@@ -173,11 +179,6 @@ namespace Neutron
 				data = 0;
 			}
 			size = 0;
-		}
-
-		ImagePtr Image::create( Device* owner )
-		{
-			return ImagePtr( new Image( owner ) );
 		}
 	}
 }

@@ -1,8 +1,10 @@
 #include "ProcessingUnitManager.h"
 #include "NeutronFoundation/Hash.h"
 #include "SystemDevice.h"
+#include "RenderDevice.h"
+#include "Renderer.h"
+#include "ProcessingModule.h"
 #include "Window.h"
-
 
 namespace Neutron
 {
@@ -16,6 +18,7 @@ namespace Neutron
 		{
 		}
 
+#pragma optimize ( "", off )
 		void ProcessingUnitManager::registerProcessingUnit( const char* name, int processingUnitType, Device* device )
 		{
 			ProcessingUnitInfo* newInfo = new ProcessingUnitInfo( processingUnitType, name, device );
@@ -32,6 +35,7 @@ namespace Neutron
 				typeIndex.add( processingUnitType, newInfoArray );
 			}
 		}
+#pragma optimize ( "", on )
 
 		void ProcessingUnitManager::unregisterProcessingUnit( const char* name )
 		{
@@ -69,6 +73,7 @@ namespace Neutron
 			}
 		}
 
+#pragma optimize ( "", off )
 		ProcessingUnitManager::ProcessingUnitInfo* ProcessingUnitManager::findInfoByProcessingUnitType( int processingUnitType )
 		{
 			HashMap<int, Array<ProcessingUnitInfo*> >::Iterator itTypeIndex = typeIndex.find( processingUnitType );
@@ -78,6 +83,36 @@ namespace Neutron
 			}
 
 			return 0;
+		}
+#pragma optimize ( "", on )
+		ProcessingModulePtr ProcessingUnitManager::createProcessingModule()
+		{
+			ProcessingUnitInfo* info = findInfoByProcessingUnitType( PUT_Module );
+			if( info )
+			{
+				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
+				if( device )
+				{
+					return device->createProcessingModule();
+				}
+			}
+
+			return ProcessingModulePtr::null;
+		}
+
+		Render::RendererPtr ProcessingUnitManager::createRenderer()
+		{
+			ProcessingUnitInfo* info = findInfoByProcessingUnitType( PUT_Renderer );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createRenderer();
+				}
+			}
+
+			return Render::RendererPtr::null;
 		}
 
 		WindowPtr ProcessingUnitManager::createWindow( int width, int height, const char* title, boolean fullscreen )

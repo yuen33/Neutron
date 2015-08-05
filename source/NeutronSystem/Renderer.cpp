@@ -14,6 +14,11 @@ namespace Neutron
 			Renderer::~Renderer()
 			{
 			}
+
+			boolean Renderer::init()
+			{
+				return true;
+			}
 		}
 	}
 }

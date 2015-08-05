@@ -1,4 +1,5 @@
 #include "NeutronEngine.h"
+#include "ProcessingModule.h"
 
 namespace Neutron
 {
@@ -19,6 +20,17 @@ namespace Neutron
 
 		void NeutronEngine::release()
 		{
+		}
+
+		void NeutronEngine::runModule( ProcessingModulePtr module )
+		{
+			module->assembleUnit();
+
+			bool ret = true;
+			while( ret )
+			{
+				ret = module->updateUnit();
+			}
 		}
 
 		NeutronEngine& getEngine()

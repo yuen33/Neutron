@@ -12,7 +12,12 @@ namespace Neutron
 	{
 		namespace Render
 		{
-			BufferD3D11::BufferD3D11( Engine::Device* owner )
+			BufferPtr BufferD3D11::createBuffer( Device* owner )
+			{
+				return BufferPtr( new BufferD3D11( owner ) );
+			}
+
+			BufferD3D11::BufferD3D11( Device* owner )
 				: Buffer( owner )
 				, d3dResource( 0 )
 			{

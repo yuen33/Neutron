@@ -15,6 +15,7 @@ namespace Neutron
 
 		DeviceManager::~DeviceManager()
 		{
+			release();
 		}
 
 		boolean DeviceManager::init()
@@ -31,9 +32,27 @@ namespace Neutron
 
 		void DeviceManager::release()
 		{
+			for( HashMap<int, Array<DevicePtr> >::Iterator it = devices.begin(); it != devices.end(); ++it )
+			{
+				Array<DevicePtr>& deviceArray = it.value();
+				for( int i = 0; i < deviceArray.getCount(); ++i )
+				{
+					if( !deviceArray[i].isNull() )
+					{
+						//deviceArray[i]->release();
+						deviceArray[i] = 0;
+					}
+				}
+				deviceArray.clear();
+			}
+			devices.clear();
+
 			// release system device
-			systemDevice->release();
-			systemDevice = 0;
+			if( !systemDevice.isNull() )
+			{
+				systemDevice->release();
+				systemDevice = 0;
+			}
 		}
 
 		void DeviceManager::registerDevice( const char* name, int deviceType, NeutronPlugin* plugin )
@@ -42,6 +61,7 @@ namespace Neutron
 			{
 				Log::message( "DeviceManager", String::format( "Register device %s type = %d\n", name, deviceType ).getCStr() );
 				deviceInfo.add( Math::Hash::DJB32( name ), DeviceInfo( deviceType, name, plugin ) );
+				createDevice( name );
 			}
 		}
 
@@ -65,16 +85,24 @@ namespace Neutron
 				assert( device );
 				if( device )
 				{
-					HashMap<int, Array<Device*> >::Iterator itDevice = devices.find( itDeviceInfo.value().deviceType );
-					if( itDevice != devices.end() )
+					if( device->init() )
 					{
-						itDevice.value().add( device );
+						HashMap<int, Array<DevicePtr> >::Iterator itDevice = devices.find( itDeviceInfo.value().deviceType );
+						if( itDevice != devices.end() )
+						{
+							itDevice.value().add( device );
+						}
+						else
+						{
+							Array<DevicePtr> newDeviceArray;
+							newDeviceArray.add( DevicePtr( device ) );
+							devices.add( itDeviceInfo.value().deviceType, newDeviceArray );
+						}
 					}
 					else
 					{
-						Array<Device*> newDeviceArray;
-						newDeviceArray.add( device );
-						devices.add( itDeviceInfo.value().deviceType, newDeviceArray );
+						itDeviceInfo.value().plugin->destroyDevice( device );
+						device = 0;
 					}
 				}
 

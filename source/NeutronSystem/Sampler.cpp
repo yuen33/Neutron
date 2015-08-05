@@ -7,7 +7,7 @@ namespace Neutron
 		namespace Render
 		{
 			Sampler::Sampler( Device* owner )
-			: Resource( owner )
+				: Resource( owner )
 			{
 				resourceType = RT_Sampler;
 			}

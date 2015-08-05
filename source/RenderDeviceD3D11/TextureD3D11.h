@@ -31,7 +31,8 @@ namespace Neutron
 				boolean fillDepthStencilViewDesc( D3D11_DEPTH_STENCIL_VIEW_DESC& desc, int arrayIndex, int numOfItems, int mipIndex );
 
 			public:
-				TextureD3D11( Engine::Device* owner );
+				static TexturePtr createTexture( Device* owner );
+				TextureD3D11( Device* owner );
 				virtual ~TextureD3D11();
 
 				boolean init1D( int width, uint64 format, int mips, int arraySize, int accessHint, Texture::InitData const* initData );

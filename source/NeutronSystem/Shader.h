@@ -84,8 +84,6 @@ namespace Neutron
 				int shaderType;
 
 			public:
-				static ShaderPtr createShader( Device* owner );
-
 				Shader( Device* owner );
 				virtual ~Shader();
 

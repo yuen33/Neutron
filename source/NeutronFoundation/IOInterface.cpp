@@ -1,4 +1,5 @@
 #include "IOInterface.h"
+#include <errno.h>
 
 namespace Neutron
 {
@@ -12,6 +13,10 @@ namespace Neutron
 			if( !err && file )
 			{
 				path = filepath;
+			}
+			else
+			{
+				printf( "%s\n", strerror( err ) );
 			}
 		}
 

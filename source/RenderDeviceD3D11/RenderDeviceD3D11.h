@@ -12,24 +12,6 @@ namespace Neutron
 		class RenderDeviceD3D11 : public RenderDevice
 		{
 		public:
-
-			// access hint
-			enum : int
-			{
-				AH_Unknown = 0,
-				AH_CPU_Read = 1 << 0,
-				AH_CPU_Write = 1 << 1,
-				AH_GPU_Read = 1 << 2,
-				AH_GPU_Write = 1 << 3,
-				AH_GPU_Unordered = 1 << 4,
-				AH_GenerateMips = 1 << 5,
-				AH_Immutable = 1 << 6,
-				AH_Raw = 1 << 7,
-				AH_Append = 1 << 8,
-				AH_Counter = 1 << 9,
-				AH_DrawInDirectArgs = 1 << 10
-			};
-
 			RenderDeviceEnumerator		enumerator;
 			IDXGIFactory*				dxgiFactory;
 			IDXGIAdapter*				dxgiAdapter;
@@ -56,7 +38,15 @@ namespace Neutron
 			virtual TexturePtr createTextureFromImage( ImagePtr image, uint32 sampleCount, uint32 sampleQuality, uint32 accessHint );
 
 			virtual SamplerPtr createSampler();
-			virtual ShaderPtr createShader();
+
+			virtual ShaderPtr createVertexShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+			virtual ShaderPtr createHullShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+			virtual ShaderPtr createDomainShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+			virtual ShaderPtr createGeometryShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+			virtual ShaderPtr createPixelShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+			virtual ShaderPtr createComputeShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
+
+			virtual RendererPtr createRenderer();
 
 			inline IDXGIFactory* getDXGIFactory() { return dxgiFactory; }
 			inline IDXGIAdapter* getDXGIAdapter() { return dxgiAdapter; }

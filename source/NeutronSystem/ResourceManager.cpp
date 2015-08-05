@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 #include "NeutronFoundation/Hash.h"
 #include "SystemDevice.h"
+#include "RenderDevice.h"
 #include "Image.h"
 #include "InputStream.h"
 #include "Buffer.h"
@@ -92,7 +93,7 @@ namespace Neutron
 				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
 				if( device )
 				{
-					return device->create1D( width, format, mips, arraySize );
+					return device->createImage1D( width, format, mips, arraySize );
 				}
 			}
 
@@ -107,7 +108,7 @@ namespace Neutron
 				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
 				if( device )
 				{
-					return device->create2D( width, height, format, mips, arraySize );
+					return device->createImage2D( width, height, format, mips, arraySize );
 				}
 			}
 
@@ -122,7 +123,7 @@ namespace Neutron
 				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
 				if( device )
 				{
-					return device->create3D( width, height, depth, format, mips );
+					return device->createImage3D( width, height, depth, format, mips );
 				}
 			}
 
@@ -137,7 +138,22 @@ namespace Neutron
 				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
 				if( device )
 				{
-					return device->createCube( width, height, format, mips, numOfCubes );
+					return device->createImageCube( width, height, format, mips, numOfCubes );
+				}
+			}
+
+			return ImagePtr::null;
+		}
+
+		ImagePtr ResourceManager::createImageFromFile( const char* path )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Image );
+			if( info )
+			{
+				System::SystemDevice* device = static_cast<System::SystemDevice*>( info->device );
+				if( device )
+				{
+					return device->createImageFromFile( path );
 				}
 			}
 
@@ -154,9 +170,79 @@ namespace Neutron
 			return Render::BufferPtr::null;
 		}
 
-		Render::TexturePtr ResourceManager::createTexture()
+		Render::TexturePtr ResourceManager::createTexture1D( int width, uint64 format, int mips, int arraySize, int accessHint, Render::Texture::InitData const* initData )
 		{
-			return Render::TexturePtr::null;
+			ResourceInfo* info = findInfoByResourceType( RT_Texture );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createTexture1D( width, format, mips, arraySize, accessHint, initData );
+				}
+			}
+
+			return TexturePtr::null;
+		}
+
+		Render::TexturePtr ResourceManager::createTexture2D( int width, int height, uint64 format, int mips, int arraySize, int sampleCount, int sampleQuality, int accessHint, Render::Texture::InitData const* initData )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Texture );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createTexture2D( width, height, format, mips, arraySize, sampleCount, sampleQuality, accessHint, initData );
+				}
+			}
+
+			return TexturePtr::null;
+		}
+
+		Render::TexturePtr ResourceManager::createTexture3D( int width, int height, int depth, uint64 format, int mips, int accessHint, Render::Texture::InitData const* initData )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Texture );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createTexture1D( width, format, depth, mips, accessHint, initData );
+				}
+			}
+
+			return TexturePtr::null;
+		}
+
+		Render::TexturePtr ResourceManager::createTextureCube( int width, int height, uint64 format, int mips, int numCubes, int sampleCount, int sampleQuality, int accessHint, Render::Texture::InitData const* initData )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Texture );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createTextureCube( width, height, format, mips, numCubes, sampleCount, sampleQuality, accessHint, initData );
+				}
+			}
+
+			return TexturePtr::null;
+		}
+
+		Render::TexturePtr ResourceManager::createTextureFromImage( ImagePtr image, uint32 sampleCount, uint32 sampleQuality, uint32 accessHint )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Texture );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createTextureFromImage( image, sampleCount, sampleQuality, accessHint );
+				}
+			}
+
+			return TexturePtr::null;
 		}
 
 		Render::SamplerPtr ResourceManager::createSampler()
@@ -164,9 +250,94 @@ namespace Neutron
 			return Render::SamplerPtr::null;
 		}
 
-		Render::ShaderPtr ResourceManager::createShader()
+		Render::ShaderPtr ResourceManager::createVertexShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
 		{
-			return Render::ShaderPtr::null;
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createVertexShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		Render::ShaderPtr ResourceManager::createHullShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createHullShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		Render::ShaderPtr ResourceManager::createDomainShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createDomainShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		Render::ShaderPtr ResourceManager::createGeometryShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createGeometryShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		Render::ShaderPtr ResourceManager::createPixelShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createPixelShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
+		}
+
+		Render::ShaderPtr ResourceManager::createComputeShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
+		{
+			ResourceInfo* info = findInfoByResourceType( RT_Shader );
+			if( info )
+			{
+				System::RenderDevice* device = static_cast<System::RenderDevice*>( info->device );
+				if( device )
+				{
+					return device->createComputeShader( charCode, size, entry, include, includePath );
+				}
+			}
+
+			return ShaderPtr::null;
 		}
 	}
 }

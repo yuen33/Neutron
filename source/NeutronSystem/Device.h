@@ -32,7 +32,7 @@ namespace Neutron
 			virtual ~Device();
 
 			virtual boolean init();
-			virtual void release();
+			virtual void release() = 0;
 
 			void onPluginRelease();
 

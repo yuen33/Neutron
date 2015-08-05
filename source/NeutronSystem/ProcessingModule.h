@@ -1,31 +1,31 @@
 #pragma once
 
 #include "NeutronSystemCommon.h"
-#include "NeutronFoundation/HashMap.h"
-#include "Device.h"
-#include "Variable.h"
-#include "Pin.h"
 #include "ProcessingUnit.h"
-
-using Neutron::Container::HashMap;
-using Neutron::System::Device;
 
 namespace Neutron
 {
 	namespace Engine
 	{
-		class NEUTRON_CORE ProcessingModule
+		class NEUTRON_CORE ProcessingModule : public ProcessingUnit
 		{
-			HashMap<uint32, VariablePtr>						variables;
-			HashMap<uint32, PinPtr>								pins;
-			HashMap<uint32, Array<ProcessingUnitPtr> >			processingUnits;
+			Array<ProcessingUnitPtr>						childs;
 
-			// control
-			boolean												enabled;
+			void abstractChilds();
 
 		public:
-			ProcessingModule();
+			static ProcessingModulePtr createProcessingUnitModule( Device* owner );
+			ProcessingModule( Device* owner );
 			virtual ~ProcessingModule();
+
+			virtual void release();
+
+			virtual boolean assembleUnit();
+			virtual boolean updateUnit();
+
+			inline void addChild( ProcessingUnitPtr childUnit ) { childs.add( childUnit ); }
+			inline int getChildCount() { return childs.getCount(); }
+			inline ProcessingUnitPtr getChild( int index ) { return index < childs.getCount() ? childs[index] : ProcessingUnitPtr::null; }
 		};
 	}
 }

@@ -27,7 +27,8 @@ namespace Neutron
 				void printShaderInfo();
 
 			public:
-				ShaderD3D11( Engine::Device* owner );
+				static ShaderPtr createShader( Device* owner );
+				ShaderD3D11( Device* owner );
 				virtual ~ShaderD3D11();
 
 				inline boolean initVertexShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath )
@@ -56,6 +57,7 @@ namespace Neutron
 				}
 				void release();
 
+				inline const ShaderInfo& getShaderInfo() const { return shaderInfo; }
 				inline ID3D11VertexShader* getD3DVertexShader() { return shaderType == ST_VertexShader ? static_cast<ID3D11VertexShader*>( d3dShader ) : 0; }
 				inline ID3D11HullShader* getD3DHullShader() { return shaderType == ST_HullShader ? static_cast<ID3D11HullShader*>( d3dShader ) : 0; }
 				inline ID3D11DomainShader* getD3DDomainShader() { return shaderType == ST_DomainShader ? static_cast<ID3D11DomainShader*>( d3dShader ) : 0; }

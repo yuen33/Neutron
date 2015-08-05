@@ -67,13 +67,57 @@ namespace Neutron
 				}
 			}
 
+			static int compare( const String_T& lhs, const CharType* rhs )
+			{
+				CountType rhsLen = String::getCStrCount( rhs );
+				for( CountType i = 0; i < lhs.count && i < rhsLen; ++i )
+				{
+					int ret = lhs[i] - rhs[i];
+					if( ret != 0 )
+					{
+						return ret < 0 ? -1 : 1;
+					}
+				}
+
+				if( lhs.count == rhsLen )
+				{
+					return 0;
+				}
+				else
+				{
+					return lhs.count < rhsLen ? -1 : 1;
+				}
+			}
+
+			static int compare( const CharType* lhs, const String_T& rhs )
+			{
+				CountType lhsLen = String::getCStrCount( rhs );
+				for( CountType i = 0; i < lhsLen && i < rhs.count; ++i )
+				{
+					int ret = lhs[i] - rhs[i];
+					if( ret != 0 )
+					{
+						return ret < 0 ? -1 : 1;
+					}
+				}
+
+				if( lhsLen == rhs.count )
+				{
+					return 0;
+				}
+				else
+				{
+					return lhsLen < rhs.count ? -1 : 1;
+				}
+			}
+
 			String_T& insert( CountType pos, CharType c )
 			{
 				assert( pos >= 0 && pos <= count && c != 0 );
 				if( pos >= 0 && pos <= count )
 				{
 					// prepare buffer
-					if( count + 2 > capacity )
+					if( pos + 2 > capacity )
 					{
 						grow( count + 2 );
 					}
@@ -108,9 +152,9 @@ namespace Neutron
 					if( srcCount > 0 )
 					{
 						// prepare buffer
-						if( count + srcCount + 1 > capacity )
+						if( pos + srcCount + 1 > capacity )
 						{
-							grow( count + srcCount + 1 );
+							grow( pos + srcCount + 1 );
 						}
 
 						// move sub string
@@ -123,7 +167,7 @@ namespace Neutron
 						memcpy( data + pos, src + srcPos, srcCount );
 
 						// update count
-						count += srcCount;
+						count = pos + srcCount;
 
 						// ensure end character
 						data[count] = 0;
@@ -149,9 +193,9 @@ namespace Neutron
 						if( srcCount > 0 )
 						{
 							// prepare buffer
-							if( count + srcCount + 1 > capacity )
+							if( pos + srcCount + 1 > capacity )
 							{
-								grow( count + srcCount + 1 );
+								grow( pos + srcCount + 1 );
 							}
 
 							// move sub string
@@ -163,7 +207,7 @@ namespace Neutron
 							// insert
 							memcpy( data + pos, src.data + srcPos, srcCount );
 							// update count
-							count += srcCount;
+							count = pos + srcCount;
 							// ensure end character
 							data[count] = 0;
 						}
@@ -314,12 +358,13 @@ namespace Neutron
 				if( count > 0 && Type::sameType<CharType, char>() )
 				{
 					char* s = data;
+					int offset = 'A' - 'a';
 					while( *s )
 					{
 						char c = *s;
-						if( c >= 'a' && c <= 'z' )
+						if( c >= 'A' && c <= 'Z' )
 						{
-							*s += ( 'a' - 'A' );
+							*s -= offset;
 						}
 						++s;
 					}
@@ -333,12 +378,13 @@ namespace Neutron
 				if( count > 0 && Type::sameType<CharType, char>() )
 				{
 					char* s = data;
+					int offset = 'A' - 'a';
 					while( *s )
 					{
 						char c = *s;
 						if( c >= 'a' && c <= 'z' )
 						{
-							*s -= ( 'a' - 'A' );
+							*s += offset;
 						}
 						++s;
 					}
@@ -430,9 +476,10 @@ namespace Neutron
 				return ret;
 			}
 
-			String_T& subString( Size pos, Size subStringCount ) const
+			String_T subString( CountType pos, CountType subStringCount ) const
 			{
-				assert( pos + subStringCount <= count );
+				assert( pos >= 0 && subStringCount > 0 );
+				assert( pos + subStringCount - 1 <= count );
 				String_T dest;
 				dest.insert( 0, *this, pos, subStringCount );
 				return dest;
@@ -509,9 +556,33 @@ namespace Neutron
 		}
 
 		template<typename CharType = char, typename CountType = int>
+		static bool operator==( const String_T<CharType, CountType>& lhs, const CharType* rhs )
+		{
+			return lhs.getCount() == String_T<CharType, CountType>::getCStrCount( rhs ) && String_T<CharType, CountType>::compare( lhs, rhs ) == 0;
+		}
+
+		template<typename CharType = char, typename CountType = int>
+		static bool operator==( const CharType* lhs, const String_T<CharType, CountType>& rhs )
+		{
+			return lhs.getCount() == String_T<CharType, CountType>::getCStrCount( rhs ) && String_T<CharType, CountType>::compare( lhs, rhs ) == 0;
+		}
+
+		template<typename CharType = char, typename CountType = int>
 		static bool operator!=( const String_T<CharType, CountType>& lhs, const String_T<CharType, CountType>& rhs )
 		{
-			return lhs.getCount() != rhs.getCount() && String_T<CharType, CountType>::compare( lhs, rhs ) != 0;
+			return lhs.getCount() != rhs.getCount() || String_T<CharType, CountType>::compare( lhs, rhs ) != 0;
+		}
+
+		template<typename CharType = char, typename CountType = int>
+		static bool operator!=( const String_T<CharType, CountType>& lhs, const CharType* rhs )
+		{
+			return lhs.getCount() != String_T<CharType, CountType>::getCStrCount( rhs ) || String_T<CharType, CountType>::compare( lhs, rhs ) != 0;
+		}
+
+		template<typename CharType = char, typename CountType = int>
+		static bool operator!=( const CharType* lhs, const String_T<CharType, CountType>& rhs )
+		{
+			return lhs.getCount() != String_T<CharType, CountType>::getCStrCount( rhs ) || String_T<CharType, CountType>::compare( lhs, rhs ) != 0;
 		}
 
 		typedef String_T<char, int> String;
