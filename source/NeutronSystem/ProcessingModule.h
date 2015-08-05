@@ -14,7 +14,7 @@ namespace Neutron
 			void abstractChilds();
 
 		public:
-			static ProcessingModulePtr createProcessingUnitModule( Device* owner );
+			static ProcessingUnitPtr createProcessingUnitModule( Device* owner );
 			ProcessingModule( Device* owner );
 			virtual ~ProcessingModule();
 

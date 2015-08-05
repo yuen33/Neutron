@@ -1,5 +1,9 @@
 #include "ProcessingUnit.h"
 #include "NeutronFoundation/Hash.h"
+#include "NeutronFoundation/String.h"
+#include "Log.h"
+
+using Neutron::Container::String;
 
 namespace Neutron
 {
@@ -55,7 +59,7 @@ namespace Neutron
 			getIdlePins( idlePins );
 			for( int i = 0; i < idlePins.getCount(); ++i )
 			{
-				printf( "idle pin: %s\n", idlePins[i]->getName() );
+				System::Log::warning( "ProcessingUnit", String::format( "pin %s not attached\n", idlePins[i]->getName() ).getCStr() );
 			}
 		}
 

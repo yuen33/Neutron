@@ -13,9 +13,9 @@ namespace Neutron
 	{
 		namespace Render
 		{
-			RendererPtr RendererD3D11::createRenderer( Device* owner )
+			ProcessingUnitPtr RendererD3D11::createRenderer( Device* owner )
 			{
-				return RendererPtr( new RendererD3D11( owner ) );
+				return ProcessingUnitPtr( new RendererD3D11( owner ) );
 			}
 
 			RendererD3D11::RendererD3D11( Device* owner )

@@ -15,7 +15,7 @@ namespace Neutron
 				Array<IDXGISwapChain*>	swapchains;
 
 			public:
-				static RendererPtr createRenderer( Device* owner );
+				static ProcessingUnitPtr createRenderer( Device* owner );
 				RendererD3D11( Device* owner );
 				virtual ~RendererD3D11();
 

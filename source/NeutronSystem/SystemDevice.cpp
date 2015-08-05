@@ -4,6 +4,7 @@
 #include "Image.h"
 #include "FileJPEG.h"
 #include "Renderable.h"
+#include "ProcessingUnit.h"
 #include "ProcessingModule.h"
 #include "Window.h"
 
@@ -14,6 +15,7 @@ using Neutron::System::File::FileJPEG;
 using Neutron::Engine::Render::Renderable;
 
 // modules
+using Neutron::Engine::ProcessingUnitPtr;
 using Neutron::Engine::ProcessingModule;
 using Neutron::Engine::Window;
 
@@ -112,21 +114,21 @@ namespace Neutron
 			return renderable;
 		}
 
-		ProcessingModulePtr SystemDevice::createProcessingModule()
+		ProcessingUnitPtr SystemDevice::createProcessingModule()
 		{
-			ProcessingModulePtr module = ProcessingModule::createProcessingUnitModule( this );
+			ProcessingUnitPtr module = ProcessingModule::createProcessingUnitModule( this );
 			return module;
 		}
 
-		WindowPtr SystemDevice::createWindow( int width, int height, const char* title, boolean fullscreen )
+		ProcessingUnitPtr SystemDevice::createWindow( int width, int height, const char* title, boolean fullscreen )
 		{
-			WindowPtr window = Window::create( this );
-			if( !window.isNull() && window->init( width, height, title, fullscreen ) )
+			ProcessingUnitPtr window = Window::create( this );
+			if( !window.isNull() && staticCast<Window>( window )->init( width, height, title, fullscreen ) )
 			{
 				return window;
 			}
 
-			return WindowPtr::null;
+			return ProcessingUnitPtr::null;
 		}
 	}
 }

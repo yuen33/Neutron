@@ -7,8 +7,7 @@ using Neutron::Engine::ImagePtr;
 using Neutron::Engine::Render::RenderablePtr;
 
 // modules
-using Neutron::Engine::ProcessingModulePtr;
-using Neutron::Engine::WindowPtr;
+using Neutron::Engine::ProcessingUnitPtr;
 
 
 namespace Neutron
@@ -33,8 +32,8 @@ namespace Neutron
 			inline RenderablePtr createRenderable();
 
 			// modules
-			inline ProcessingModulePtr createProcessingModule();
-			inline WindowPtr createWindow( int width, int height, const char* title, boolean fullscreen );
+			inline ProcessingUnitPtr createProcessingModule();
+			inline ProcessingUnitPtr createWindow( int width, int height, const char* title, boolean fullscreen );
 		};
 	}
 }

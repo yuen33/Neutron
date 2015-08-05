@@ -6,6 +6,7 @@
 
 using namespace Neutron::Engine::Render;
 
+using Neutron::Engine::ProcessingUnitPtr;
 using Neutron::Engine::ImagePtr;
 using Neutron::Engine::Render::TexturePtr;
 
@@ -55,7 +56,7 @@ namespace Neutron
 			virtual ShaderPtr createPixelShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath ) = 0;
 			virtual ShaderPtr createComputeShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath ) = 0;
 
-			virtual RendererPtr createRenderer() = 0;
+			virtual ProcessingUnitPtr createRenderer() = 0;
 
 			virtual const wchar* getDesktopName() const = 0;
 			virtual int getDesktopWidth() const = 0;

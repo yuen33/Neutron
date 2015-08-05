@@ -315,9 +315,9 @@ namespace Neutron
 			return ShaderPtr::null;
 		}
 
-		RendererPtr RenderDeviceD3D11::createRenderer()
+		ProcessingUnitPtr RenderDeviceD3D11::createRenderer()
 		{
-			RendererPtr renderer = RendererD3D11::createRenderer( this );
+			ProcessingUnitPtr renderer = RendererD3D11::createRenderer( this );
 			if( !renderer.isNull() )
 			{
 				Renderer* rendererD3D11 = static_cast<Renderer*>( renderer.get() );
@@ -327,7 +327,7 @@ namespace Neutron
 				}
 			}
 
-			return RendererPtr::null;
+			return ProcessingUnitPtr::null;
 		}
 	}
 }

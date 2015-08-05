@@ -43,9 +43,9 @@ namespace Neutron
 			void registerProcessingUnit( const char* name, int processingUnitType, Device* device );
 			void unregisterProcessingUnit( const char* name );
 
-			inline ProcessingModulePtr createProcessingModule();
-			inline Render::RendererPtr createRenderer();
-			inline WindowPtr createWindow( int width, int height, const char* title, boolean fullscreen );
+			inline ProcessingUnitPtr createProcessingModule();
+			inline ProcessingUnitPtr createRenderer();
+			inline ProcessingUnitPtr createWindow( int width, int height, const char* title, boolean fullscreen );
 		};
 	}
 }

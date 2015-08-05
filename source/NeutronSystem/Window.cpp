@@ -153,9 +153,9 @@ namespace Neutron
 			stop();
 		}
 
-		WindowPtr Window::create( Device* owner )
+		ProcessingUnitPtr Window::create( Device* owner )
 		{
-			return WindowPtr( new Window( owner ) );
+			return ProcessingUnitPtr( new Window( owner ) );
 		}
 
 		Window::Window( Device* owner )

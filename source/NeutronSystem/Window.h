@@ -35,7 +35,7 @@ namespace Neutron
 			boolean					done;
 
 		public:
-			static WindowPtr create( Device* owner );
+			static ProcessingUnitPtr create( Device* owner );
 
 			Window( Device* owner );
 			virtual ~Window();

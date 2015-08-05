@@ -23,19 +23,19 @@ int main(int argc, char** argv)
 	{
 		Timer timer;
 
-		WindowPtr window = getEngine().getProcessingUnitManager().createWindow( 1024, 768, "test window", false );
-		RendererPtr renderer = getEngine().getProcessingUnitManager().createRenderer();
+		ProcessingUnitPtr window = getEngine().getProcessingUnitManager().createWindow( 1024, 768, "test window", false );
+		ProcessingUnitPtr renderer = getEngine().getProcessingUnitManager().createRenderer();
 		if( !window.isNull() && !renderer.isNull() )
 		{
 			PinPtr pinWindow = renderer->getPin( "window" );
 			if( !pinWindow.isNull() )
 			{
-				pinWindow->attach( staticCast<ProcessingUnit>( window ) );
+				pinWindow->attach( window );
 			}
 
-			ProcessingModulePtr module = getEngine().getProcessingUnitManager().createProcessingModule();
-			module->addChild( staticCast<ProcessingUnit>( renderer ) );
-			module->addChild( staticCast<ProcessingUnit>( window ) );
+			ProcessingModulePtr module = staticCast<ProcessingModule>( getEngine().getProcessingUnitManager().createProcessingModule() );
+			module->addChild( renderer );
+			module->addChild( window );
 		
 			getEngine().runModule( module );
 		}

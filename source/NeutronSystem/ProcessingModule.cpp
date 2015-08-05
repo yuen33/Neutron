@@ -4,9 +4,9 @@ namespace Neutron
 {
 	namespace Engine
 	{
-		ProcessingModulePtr ProcessingModule::createProcessingUnitModule( Device* owner )
+		ProcessingUnitPtr ProcessingModule::createProcessingUnitModule( Device* owner )
 		{
-			return ProcessingModulePtr( new ProcessingModule( owner ) );
+			return ProcessingUnitPtr( new ProcessingModule( owner ) );
 		}
 
 		ProcessingModule::ProcessingModule( Device* owner )
@@ -29,6 +29,9 @@ namespace Neutron
 
 		boolean ProcessingModule::assembleUnit()
 		{
+			abstractChilds();
+			printIdlePins();
+
 			for( int i = 0; i < childs.getCount(); ++i )
 			{
 				if( !childs[i]->assembleUnit() )

@@ -46,7 +46,7 @@ namespace Neutron
 			virtual ShaderPtr createPixelShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
 			virtual ShaderPtr createComputeShader( const char* charCode, Size size, const char* entry, const char* include, const char* includePath );
 
-			virtual RendererPtr createRenderer();
+			virtual ProcessingUnitPtr createRenderer();
 
 			inline IDXGIFactory* getDXGIFactory() { return dxgiFactory; }
 			inline IDXGIAdapter* getDXGIAdapter() { return dxgiAdapter; }

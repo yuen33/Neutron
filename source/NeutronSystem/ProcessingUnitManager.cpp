@@ -18,7 +18,6 @@ namespace Neutron
 		{
 		}
 
-#pragma optimize ( "", off )
 		void ProcessingUnitManager::registerProcessingUnit( const char* name, int processingUnitType, Device* device )
 		{
 			ProcessingUnitInfo* newInfo = new ProcessingUnitInfo( processingUnitType, name, device );
@@ -35,7 +34,6 @@ namespace Neutron
 				typeIndex.add( processingUnitType, newInfoArray );
 			}
 		}
-#pragma optimize ( "", on )
 
 		void ProcessingUnitManager::unregisterProcessingUnit( const char* name )
 		{
@@ -73,7 +71,6 @@ namespace Neutron
 			}
 		}
 
-#pragma optimize ( "", off )
 		ProcessingUnitManager::ProcessingUnitInfo* ProcessingUnitManager::findInfoByProcessingUnitType( int processingUnitType )
 		{
 			HashMap<int, Array<ProcessingUnitInfo*> >::Iterator itTypeIndex = typeIndex.find( processingUnitType );
@@ -84,8 +81,8 @@ namespace Neutron
 
 			return 0;
 		}
-#pragma optimize ( "", on )
-		ProcessingModulePtr ProcessingUnitManager::createProcessingModule()
+
+		ProcessingUnitPtr ProcessingUnitManager::createProcessingModule()
 		{
 			ProcessingUnitInfo* info = findInfoByProcessingUnitType( PUT_Module );
 			if( info )
@@ -97,10 +94,10 @@ namespace Neutron
 				}
 			}
 
-			return ProcessingModulePtr::null;
+			return ProcessingUnitPtr::null;
 		}
 
-		Render::RendererPtr ProcessingUnitManager::createRenderer()
+		ProcessingUnitPtr ProcessingUnitManager::createRenderer()
 		{
 			ProcessingUnitInfo* info = findInfoByProcessingUnitType( PUT_Renderer );
 			if( info )
@@ -112,10 +109,10 @@ namespace Neutron
 				}
 			}
 
-			return Render::RendererPtr::null;
+			return ProcessingUnitPtr::null;
 		}
 
-		WindowPtr ProcessingUnitManager::createWindow( int width, int height, const char* title, boolean fullscreen )
+		ProcessingUnitPtr ProcessingUnitManager::createWindow( int width, int height, const char* title, boolean fullscreen )
 		{
 			ProcessingUnitInfo* info = findInfoByProcessingUnitType( PUT_Window );
 			if( info )
@@ -127,7 +124,7 @@ namespace Neutron
 				}
 			}
 
-			return WindowPtr::null;
+			return ProcessingUnitPtr::null;
 		}
 	}
 }

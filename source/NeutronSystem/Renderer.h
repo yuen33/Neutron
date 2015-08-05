@@ -17,7 +17,7 @@ namespace Neutron
 				Renderer( Device* owner );
 				virtual ~Renderer();
 
-				virtual boolean init();
+				boolean init();
 			};
 		}
 	}

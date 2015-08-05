@@ -29,7 +29,6 @@ namespace Neutron
 		{
 		}
 
-#pragma optimize( "", off )
 		boolean PluginManager::init( const char* pluginFolder )
 		{
 			Array<String> pluginPaths;
@@ -70,7 +69,6 @@ namespace Neutron
 
 			return true;
 		}
-#pragma optimize( "", on )
 
 		void PluginManager::release()
 		{
