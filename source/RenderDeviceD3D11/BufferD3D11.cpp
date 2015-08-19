@@ -3,6 +3,7 @@
 #include "MapperD3D11.h"
 #include "NeutronSystem/PixelFormat.h"
 #include "NeutronFoundation/Hash.h"
+#include "NeutronSystem/RenderDefine.h"
 
 using Neutron::System::RenderDeviceD3D11;
 
@@ -30,7 +31,7 @@ namespace Neutron
 
 			boolean BufferD3D11::init( int bufferType, int accessHint, Size stride, Size size )
 			{
-				if( owner != 0 || bufferType == BT_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown || size == 0 )
+				if( owner != 0 || bufferType == BT_Unknown || accessHint == AH_Unknown || size == 0 )
 				{
 					return false;
 				}
@@ -71,7 +72,7 @@ namespace Neutron
 
 			boolean BufferD3D11::init( int bufferType, int accessHint, Size stride, InitData* initData )
 			{
-				if( owner == 0 || bufferType == BT_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown || initData == 0 )
+				if( owner == 0 || bufferType == BT_Unknown || accessHint == AH_Unknown || initData == 0 )
 				{
 					return false;
 				}
@@ -137,15 +138,15 @@ namespace Neutron
 			void* BufferD3D11::map( int mapType )
 			{
 				D3D11_MAP d3dMapType;
-				if( mapType == MT_ReadOnly && ( accessHint & RenderDeviceD3D11::AH_CPU_Read ) )
+				if( mapType == MT_ReadOnly && ( accessHint & AH_CPU_Read ) )
 				{
 					d3dMapType = D3D11_MAP_READ;
 				}
-				else if( mapType == MT_WriteOnly && ( accessHint & RenderDeviceD3D11::AH_CPU_Write ) )
+				else if( mapType == MT_WriteOnly && ( accessHint & AH_CPU_Write ) )
 				{
 					d3dMapType = D3D11_MAP_WRITE_DISCARD;
 				}
-				else if( mapType == MT_ReadWrite && ( accessHint & RenderDeviceD3D11::AH_CPU_Read ) && ( accessHint & RenderDeviceD3D11::AH_CPU_Write ) )
+				else if( mapType == MT_ReadWrite && ( accessHint & AH_CPU_Read ) && ( accessHint & AH_CPU_Write ) )
 				{
 					d3dMapType = D3D11_MAP_READ_WRITE;
 				}
@@ -215,7 +216,7 @@ namespace Neutron
 				D3D11_UNORDERED_ACCESS_VIEW_DESC desc;
 				memset( &desc, 0, sizeof( desc ) );
 				desc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
-				if( accessHint & RenderDeviceD3D11::AH_Raw )
+				if( accessHint & AH_Raw )
 				{
 					desc.Format = DXGI_FORMAT_R32_TYPELESS;
 					desc.Buffer.NumElements = (UINT)( size / 4U );
@@ -233,15 +234,15 @@ namespace Neutron
 
 				desc.Buffer.FirstElement = 0;
 				desc.Buffer.Flags = 0;
-				if( accessHint & RenderDeviceD3D11::AH_Raw )
+				if( accessHint & AH_Raw )
 				{
 					desc.Buffer.Flags |= D3D11_BUFFER_UAV_FLAG_RAW;
 				}
-				if( accessHint & RenderDeviceD3D11::AH_Append )
+				if( accessHint & AH_Append )
 				{
 					desc.Buffer.Flags |= D3D11_BUFFER_UAV_FLAG_APPEND;
 				}
-				if( accessHint & RenderDeviceD3D11::AH_Counter )
+				if( accessHint & AH_Counter )
 				{
 					desc.Buffer.Flags |= D3D11_BUFFER_UAV_FLAG_COUNTER;
 				}

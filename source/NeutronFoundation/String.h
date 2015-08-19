@@ -547,7 +547,12 @@ namespace Neutron
 				}
 				return 0;
 			}
+
+			static String_T null;
 		};
+
+		template<typename CharType, typename CountType>
+		String_T<CharType, CountType> String_T<CharType, CountType>::null = String_T<CharType, CountType>();
 
 		template<typename CharType = char, typename CountType = int>
 		static bool operator==( const String_T<CharType, CountType>& lhs, const String_T<CharType, CountType>& rhs )

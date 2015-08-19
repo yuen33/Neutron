@@ -18,6 +18,11 @@ namespace Neutron
 		ParameterPtr Parameter::createParameter( const FileJson::Value& jvalue )
 		{
 			VariablePtr variable = VariablePtr::null;
+			if( !FileJson::existStringMember( jvalue, "variableType" ) )
+			{
+				return ParameterPtr::null;
+			}
+
 			String variableTypeName = jvalue["variableType"].GetString();
 			if( variableTypeName == "boolean" )
 			{

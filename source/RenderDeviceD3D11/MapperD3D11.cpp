@@ -1,6 +1,7 @@
 #include "MapperD3D11.h"
 #include "NeutronSystem/PixelFormat.h"
 #include "RenderDeviceD3D11/RenderDeviceD3D11.h"
+#include "NeutronSystem/RenderDefine.h"
 
 using Neutron::System::RenderDeviceD3D11;
 
@@ -209,17 +210,17 @@ namespace Neutron
 
 			boolean MapperD3D11::getD3DBufferFlags( int bufferType, int accessHint, Size stride, D3D11_USAGE& usage, UINT& cpuAccessFlag, UINT& bindFlag, UINT& miscFlag )
 			{
-				if( accessHint & RenderDeviceD3D11::AH_Immutable )
+				if( accessHint & AH_Immutable )
 				{
 					usage = D3D11_USAGE_IMMUTABLE;
 				}
 				else
 				{
-					if( accessHint & RenderDeviceD3D11::AH_CPU_Write )
+					if( accessHint & AH_CPU_Write )
 					{
 						usage = D3D11_USAGE_DYNAMIC;
 					}
-					else if( accessHint & RenderDeviceD3D11::AH_CPU_Read )
+					else if( accessHint & AH_CPU_Read )
 					{
 						usage = D3D11_USAGE_STAGING;
 					}
@@ -230,11 +231,11 @@ namespace Neutron
 				}
 
 				cpuAccessFlag = 0;
-				if( accessHint & RenderDeviceD3D11::AH_CPU_Read )
+				if( accessHint & AH_CPU_Read )
 				{
 					cpuAccessFlag |= D3D11_CPU_ACCESS_READ;
 				}
-				else if( accessHint & RenderDeviceD3D11::AH_CPU_Write )
+				else if( accessHint & AH_CPU_Write )
 				{
 					cpuAccessFlag |= D3D11_CPU_ACCESS_WRITE;
 				}
@@ -260,7 +261,7 @@ namespace Neutron
 						bindFlag |= D3D11_BIND_SHADER_RESOURCE;
 					}
 
-					if( accessHint & RenderDeviceD3D11::AH_GPU_Unordered )
+					if( accessHint & AH_GPU_Unordered )
 					{
 						bindFlag |= D3D11_BIND_UNORDERED_ACCESS;
 					}
@@ -272,12 +273,12 @@ namespace Neutron
 					miscFlag |= D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 				}
 
-				if( accessHint & RenderDeviceD3D11::AH_Raw )
+				if( accessHint & AH_Raw )
 				{
 					miscFlag |= D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;
 				}
 
-				if( accessHint & RenderDeviceD3D11::AH_DrawInDirectArgs )
+				if( accessHint & AH_DrawInDirectArgs )
 				{
 					miscFlag |= D3D11_RESOURCE_MISC_DRAWINDIRECT_ARGS;
 				}
@@ -288,17 +289,17 @@ namespace Neutron
 			boolean MapperD3D11::getD3DTextureFlags( int textureType, int accessHint, uint64 format, int mips, D3D11_USAGE& d3dUsage, UINT& bindFlag, UINT& cpuAccessFlag, UINT& miscFlag )
 			{
 				// usage
-				if( accessHint & RenderDeviceD3D11::AH_Immutable )
+				if( accessHint & AH_Immutable )
 				{
 					d3dUsage = D3D11_USAGE_IMMUTABLE;
 				}
 				else
 				{
-					if( accessHint & RenderDeviceD3D11::AH_CPU_Read )
+					if( accessHint & AH_CPU_Read )
 					{
 						d3dUsage = D3D11_USAGE_STAGING;
 					}
-					else if( accessHint & RenderDeviceD3D11::AH_CPU_Write )
+					else if( accessHint & AH_CPU_Write )
 					{
 						d3dUsage = D3D11_USAGE_DYNAMIC;
 					}
@@ -310,12 +311,12 @@ namespace Neutron
 
 				// bind flag
 				bindFlag = 0;
-				if( accessHint & RenderDeviceD3D11::AH_GPU_Read || d3dUsage == D3D11_USAGE_DYNAMIC )
+				if( accessHint & AH_GPU_Read || d3dUsage == D3D11_USAGE_DYNAMIC )
 				{
 					bindFlag |= D3D11_BIND_SHADER_RESOURCE;
 				}
 
-				if( accessHint & RenderDeviceD3D11::AH_GPU_Write )
+				if( accessHint & AH_GPU_Write )
 				{
 					if( isDepthFormat( format ) && d3dUsage != D3D11_USAGE_STAGING )
 					{
@@ -331,25 +332,25 @@ namespace Neutron
 					}
 				}
 
-				if( accessHint & RenderDeviceD3D11::AH_GPU_Unordered )
+				if( accessHint & AH_GPU_Unordered )
 				{
 					bindFlag |= D3D11_BIND_UNORDERED_ACCESS;
 				}
 
 				// cpu access flag
 				cpuAccessFlag = 0;
-				if( accessHint & RenderDeviceD3D11::AH_CPU_Read )
+				if( accessHint & AH_CPU_Read )
 				{
 					cpuAccessFlag |= D3D11_CPU_ACCESS_READ;
 				}
-				if( accessHint & RenderDeviceD3D11::AH_CPU_Write )
+				if( accessHint & AH_CPU_Write )
 				{
 					cpuAccessFlag |= D3D11_CPU_ACCESS_WRITE;
 				}
 
 				// misc flag
 				miscFlag = 0;
-				if( accessHint & RenderDeviceD3D11::AH_GenerateMips )
+				if( accessHint & AH_GenerateMips )
 				{
 					miscFlag |= D3D11_RESOURCE_MISC_GENERATE_MIPS;
 				}

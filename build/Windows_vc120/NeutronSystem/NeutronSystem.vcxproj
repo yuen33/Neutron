@@ -204,10 +204,12 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderer.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderGraph.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderSymbol.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\ResourceManager.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderDefine.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\SystemDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h" />

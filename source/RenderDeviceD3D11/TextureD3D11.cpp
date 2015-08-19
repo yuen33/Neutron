@@ -4,6 +4,7 @@
 #include "MapperD3D11.h"
 #include "NeutronFoundation/Hash.h"
 #include "NeutronSystem/Image.h"
+#include "NeutronSystem/RenderDefine.h"
 
 using Neutron::System::RenderDeviceD3D11;
 
@@ -20,7 +21,7 @@ namespace Neutron
 
 			TextureD3D11::TextureD3D11( Engine::Device* owner )
 				: Texture( owner )
-				, accessHint( RenderDeviceD3D11::AH_Unknown )
+				, accessHint( AH_Unknown )
 				, arraySize( 0 )
 				, d3dFormat( DXGI_FORMAT_UNKNOWN )
 				, d3dResource( 0 )
@@ -35,7 +36,7 @@ namespace Neutron
 			boolean TextureD3D11::init1D( int width, uint64 format, int mips, int arraySize, int accessHint, Texture::InitData const* initData )
 			{
 				// prepare parameters
-				if( owner == 0 || width <= 0 || format == PF_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown )
+				if( owner == 0 || width <= 0 || format == PF_Unknown || accessHint == AH_Unknown )
 				{
 					return false;
 				}
@@ -104,7 +105,7 @@ namespace Neutron
 					this->arraySize = arraySize;
 					this->sampleCount = 0;
 					
-					if( accessHint & RenderDeviceD3D11::AH_GenerateMips && mips > 1 )
+					if( accessHint & AH_GenerateMips && mips > 1 )
 					{
 						getD3DSRV( 0, arraySize, 0, mips );
 					}
@@ -118,7 +119,7 @@ namespace Neutron
 			boolean TextureD3D11::init2D( int width, int height, uint64 format, int mips, int arraySize, int sampleCount, int sampleQuality, int accessHint, Texture::InitData const* initData )
 			{
 				// prepare parameters
-				if( owner == 0 || width <= 0 || height <= 0 || format == PF_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown )
+				if( owner == 0 || width <= 0 || height <= 0 || format == PF_Unknown || accessHint == AH_Unknown )
 				{
 					return false;
 				}
@@ -195,7 +196,7 @@ namespace Neutron
 					this->arraySize = arraySize;
 					this->sampleCount = sampleCount;
 
-					if( accessHint & RenderDeviceD3D11::AH_GenerateMips && mips > 1 )
+					if( accessHint & AH_GenerateMips && mips > 1 )
 					{
 						getD3DSRV( 0, arraySize, 0, mips );
 					}
@@ -209,7 +210,7 @@ namespace Neutron
 			boolean TextureD3D11::init3D( int width, int height, int depth, uint64 format, int mips, int accessHint, Texture::InitData const* initData )
 			{
 				// prepare parameters
-				if( owner == 0 || width <= 0 || height <= 0 || depth <= 0 || format == PF_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown )
+				if( owner == 0 || width <= 0 || height <= 0 || depth <= 0 || format == PF_Unknown || accessHint == AH_Unknown )
 				{
 					return false;
 				}
@@ -270,7 +271,7 @@ namespace Neutron
 					this->arraySize = arraySize;
 					this->sampleCount = 0;
 
-					if( mips > 1 && ( accessHint & RenderDeviceD3D11::AH_GenerateMips ) != 0 )
+					if( mips > 1 && ( accessHint & AH_GenerateMips ) != 0 )
 					{
 						getD3DSRV( 0, 0, 0, mips );
 					}
@@ -284,7 +285,7 @@ namespace Neutron
 			boolean TextureD3D11::initCube( int width, int height, uint64 format, int mips, int numOfCubes, int sampleCount, int sampleQuality, int accessHint, Texture::InitData const* initData )
 			{
 				// prepare parameters
-				if( owner == 0 || width <= 0 || numOfCubes <= 0 || format == PF_Unknown || accessHint == RenderDeviceD3D11::AH_Unknown )
+				if( owner == 0 || width <= 0 || numOfCubes <= 0 || format == PF_Unknown || accessHint == AH_Unknown )
 				{
 					return false;
 				}
@@ -353,7 +354,7 @@ namespace Neutron
 					this->arraySize = arraySize;
 					this->sampleCount = sampleCount;
 
-					if( accessHint & RenderDeviceD3D11::AH_GenerateMips && mips > 1 )
+					if( accessHint & AH_GenerateMips && mips > 1 )
 					{
 						getD3DSRV( 0, arraySize, 0, mips );
 					}
@@ -366,7 +367,7 @@ namespace Neutron
 
 			boolean TextureD3D11::initFromImage( ImagePtr image, uint32 sampleCount, uint32 sampleQuality, uint32 accessHint )
 			{
-				if( owner == 0 || image.isNull() || accessHint == RenderDeviceD3D11::AH_Unknown )
+				if( owner == 0 || image.isNull() || accessHint == AH_Unknown )
 				{
 					return false;
 				}
@@ -455,7 +456,7 @@ namespace Neutron
 					d3dResource = 0;
 				}
 
-				accessHint = RenderDeviceD3D11::AH_Unknown;
+				accessHint = AH_Unknown;
 				arraySize = 0;
 				d3dFormat = DXGI_FORMAT_UNKNOWN;
 			}
@@ -746,7 +747,7 @@ namespace Neutron
 
 			ID3D11ShaderResourceView* TextureD3D11::getD3DSRV( int arrayIndex, int numOfItems, int mipIndex, int mips )
 			{
-				if( !owner || d3dResource == 0 || ( accessHint & RenderDeviceD3D11::AH_GPU_Read ) == 0 || arrayIndex + numOfItems >= arraySize )
+				if( !owner || d3dResource == 0 || ( accessHint & AH_GPU_Read ) == 0 || arrayIndex + numOfItems >= arraySize )
 				{
 					return 0;
 				}
@@ -781,7 +782,7 @@ namespace Neutron
 
 			ID3D11UnorderedAccessView* TextureD3D11::getD3DUAV( int arrayIndex, int numOfItems, int mipIndex, int wsliceIndex, int wslices )
 			{
-				if( !owner || d3dResource == 0 || ( accessHint & RenderDeviceD3D11::AH_GPU_Unordered ) == 0 || arrayIndex + numOfItems >= arraySize )
+				if( !owner || d3dResource == 0 || ( accessHint & AH_GPU_Unordered ) == 0 || arrayIndex + numOfItems >= arraySize )
 				{
 					return 0;
 				}
@@ -816,7 +817,7 @@ namespace Neutron
 
 			ID3D11RenderTargetView* TextureD3D11::getD3DRTV( int arrayIndex, int numOfItems, int mipIndex, int wsliceIndex, int wslices )
 			{
-				if( !owner || d3dResource == 0 || ( accessHint & RenderDeviceD3D11::AH_GPU_Write ) == 0 || arrayIndex + numOfItems >= arraySize )
+				if( !owner || d3dResource == 0 || ( accessHint & AH_GPU_Write ) == 0 || arrayIndex + numOfItems >= arraySize )
 				{
 					return 0;
 				}
@@ -851,7 +852,7 @@ namespace Neutron
 
 			ID3D11DepthStencilView* TextureD3D11::getD3DDSV( int arrayIndex, int numOfItems, int mipIndex )
 			{
-				if( !owner || d3dResource == 0 || ( accessHint & RenderDeviceD3D11::AH_GPU_Write ) == 0 || arrayIndex + numOfItems >= arraySize )
+				if( !owner || d3dResource == 0 || ( accessHint & AH_GPU_Write ) == 0 || arrayIndex + numOfItems >= arraySize )
 				{
 					return 0;
 				}

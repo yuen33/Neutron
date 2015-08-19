@@ -23,7 +23,7 @@
 		},
 		
 		"cbuffer": {"name": "directionalLight", "accessHint": "AH_GPU_Read | AH_CPU_Write",
-			"parameter": { "name": "position", "semantic": "ligth.directional.position", "variableType": "float4" },
+			"parameter": { "name": "position", "semantic": "light.directional.position", "variableType": "float4" },
 			"parameter": { "name": "direction", "semantic": "light.directional.direction", "variableType": "float4x4" },
 			"parameter": { "name": "color", "semantic": "light.directional.color", "variable": "float4x4" }
 		},

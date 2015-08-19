@@ -17,24 +17,6 @@ namespace Neutron
 		class NEUTRON_CORE RenderDevice : public Device
 		{
 		public:
-			// access hint
-			enum : int
-			{
-				AH_Unknown = 0,
-				AH_CPU_Read = 1 << 0,
-				AH_CPU_Write = 1 << 1,
-				AH_GPU_Read = 1 << 2,
-				AH_GPU_Write = 1 << 3,
-				AH_GPU_Unordered = 1 << 4,
-				AH_GenerateMips = 1 << 5,
-				AH_Immutable = 1 << 6,
-				AH_Raw = 1 << 7,
-				AH_Append = 1 << 8,
-				AH_Counter = 1 << 9,
-				AH_DrawInDirectArgs = 1 << 10
-			};
-
-		public:
 			RenderDevice( NeutronPlugin* owner );
 			virtual ~RenderDevice();
 

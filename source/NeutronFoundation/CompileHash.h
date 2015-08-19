@@ -70,8 +70,8 @@ namespace Neutron
 
 #define STRING( s ) #s
 #define STRINGFY( s ) STRING( s )
-#define STRING_STUB( s ) _STRING_STUB_##s
-#define CREATE_STRING_STUB( s ) static const uint32 STRING_STUB( s ) = Neutron::Utility::CompileHashDJB( STRINGFY( s ) )
+#define STRING_STUB( prefix, s ) _STRING_STUB_##prefix_##s
+#define CREATE_STRING_STUB( prefix, s ) static const uint32 STRING_STUB( prefix, s ) = Neutron::Utility::CompileHashDJB( STRINGFY( s ) )
 #define COMPARE_STRING_STUB( v, s ) ( ( v ) == STRING_STUB( s ) )
 	}
 }

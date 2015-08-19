@@ -13,22 +13,6 @@ namespace Neutron
 	{
 		namespace Render
 		{
-			CREATE_STRING_STUB( parameter );
-			CREATE_STRING_STUB( inputStream );
-			CREATE_STRING_STUB( cbuffer );
-			CREATE_STRING_STUB( texture1D );
-			CREATE_STRING_STUB( texture2D );
-			CREATE_STRING_STUB( texture3D );
-			CREATE_STRING_STUB( textureCube );
-			CREATE_STRING_STUB( sampler );
-			CREATE_STRING_STUB( shaderVS );
-			CREATE_STRING_STUB( shaderHS );
-			CREATE_STRING_STUB( shaderDS );
-			CREATE_STRING_STUB( shaderGS );
-			CREATE_STRING_STUB( shaderPS );
-			CREATE_STRING_STUB( shaderCS );
-			CREATE_STRING_STUB( pipeline );
-
 			class NEUTRON_CORE RenderNode : public RCObject
 			{
 			public:
@@ -93,6 +77,7 @@ namespace Neutron
 				int height;
 				int depth;
 				int64 format;
+				int mips;
 				int arraySize;
 				int sampleCount;
 				int sampleQuality;
@@ -103,6 +88,8 @@ namespace Neutron
 				static RenderNodePtr createRenderTextureNode( const FileJson::Value& jvalue, int textureType );
 				RenderTextureNode();
 				virtual ~RenderTextureNode();
+
+				inline void setTextureType( int type ) { textureType = type; }
 			};
 
 			class NEUTRON_CORE RenderSamplerNode : public RenderNode

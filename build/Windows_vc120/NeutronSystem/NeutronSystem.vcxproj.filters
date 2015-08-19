@@ -48,19 +48,10 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\Image.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Buffer.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\DataFrame.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\DataStream.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\InputStream.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Renderable.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h">
@@ -69,20 +60,8 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\ResourceManager.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h">
-      <Filter>Engine\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderer.h">
       <Filter>Engine\ProcessingUnit\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\Variable.h">
       <Filter>Engine\Resource</Filter>
@@ -96,8 +75,35 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Buffer.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\InputStream.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Renderable.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderGraph.h">
-      <Filter>Engine\Resource</Filter>
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Shader.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\Texture.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderDefine.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\PixelFormat.h">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderSymbol.h">
+      <Filter>Engine\Resource\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +136,9 @@
     </Filter>
     <Filter Include="Engine\ProcessingUnit\Render">
       <UniqueIdentifier>{a26f3554-056a-4928-944c-37afae8a7583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Render">
+      <UniqueIdentifier>{a450ac3e-7c00-4170-b85e-b4ac97a4d8b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,16 +184,10 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\Image.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Buffer.cpp">
-      <Filter>Engine\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\DataFrame.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\DataStream.cpp">
-      <Filter>Engine\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\InputStream.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\Resource.cpp">
@@ -193,20 +196,8 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\ResourceManager.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp">
-      <Filter>Engine\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Shader.cpp">
-      <Filter>Engine\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Texture.cpp">
-      <Filter>Engine\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\Renderer.cpp">
       <Filter>Engine\ProcessingUnit\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\source\NeutronSystem\Renderable.cpp">
-      <Filter>Engine\Resource</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\FileRenderGraph.cpp">
       <Filter>System\File</Filter>
@@ -220,8 +211,26 @@
     <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Buffer.cpp">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\InputStream.cpp">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Renderable.cpp">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\RenderGraph.cpp">
-      <Filter>Engine\Resource</Filter>
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Shader.cpp">
+      <Filter>Engine\Resource\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\Texture.cpp">
+      <Filter>Engine\Resource\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
