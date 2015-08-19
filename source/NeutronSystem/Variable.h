@@ -68,36 +68,36 @@ namespace Neutron
 		};
 
 		template<typename T>
-		class VariableConcrete
+		class VariableConcrete : public Variable
 		{
 			T						data;
 		public:
 			VariableConcrete();
 			VariableConcrete( const VariableConcrete& other ) : data( other.data ) {}
 			VariableConcrete( const T& value ) : data( value ) {}
-			virtual ~VariableConcrete();
+			virtual ~VariableConcrete() {};
 
 			VariableConcrete& operator=( const VariableConcrete& rhs ) { data = rhs.data; return *this; }
 			VariableConcrete& operator=( const T& value ) { data = value; return *this; }
 			T& operator()() { return data; }
 
 			virtual inline int getTypeID() const { return Type::getTypeID<T>(); }
-			virtual inline int getSize() const { return sizeof( T ); }
+			virtual inline Size getSize() const { return sizeof( T ); }
 			inline T& getData() { return data; }
 		};
 
-		typedef VariableConcrete<boolean>				VarBoolen;
+		typedef VariableConcrete<boolean>				VarBoolean;
 		typedef VariableConcrete<int32>					VarInt;
 		typedef VariableConcrete<int64>					VarInt64;
 		typedef VariableConcrete<uint32>				VarUInt32;
 		typedef VariableConcrete<uint64>				VarUInt64;
 		typedef VariableConcrete<float>					VarFloat;
-		typedef VariableConcrete<double>				VarDouble;
-		typedef VariableConcrete<String>				VarString;
 		typedef VariableConcrete<float2>				VarFloat2;
 		typedef VariableConcrete<float3>				VarFloat3;
 		typedef VariableConcrete<float4>				VarFloat4;
 		typedef VariableConcrete<float4x4>				VarFloat4x4;
+		typedef VariableConcrete<double>				VarDouble;
+		typedef VariableConcrete<String>				VarString;
 		typedef VariableConcrete<ImagePtr>				VarImage;
 		typedef VariableConcrete<InputStreamPtr>		VarInputStream;
 		typedef VariableConcrete<BufferPtr>				VarBuffer;

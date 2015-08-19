@@ -9,6 +9,7 @@ namespace Neutron
 		template<typename T>
 		class Matrix44
 		{
+		public:
 			T m00, m01, m02, m03;
 			T m10, m11, m12, m13;
 			T m20, m21, m22, m23;
@@ -177,7 +178,11 @@ namespace Neutron
 			}
 
 			inline Matrix44 getInverted() const { return Matrix44 t = *this; return t.invert(); }
+			static Matrix44 null;
 		};
+
+		template<typename T>
+		Matrix44<T> Matrix44<T>::null = Matrix44<T>();
 
 		typedef Matrix44<int> int4x4;
 		typedef Matrix44<float> float4x4;

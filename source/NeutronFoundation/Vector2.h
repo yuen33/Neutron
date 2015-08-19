@@ -39,7 +39,11 @@ namespace Neutron
 			inline T area() const { return x * y; }
 
 			inline boolean isZero( const T e ) const { return abs( x ) < e && abs( y ) < e; }
+			static Vector2 null;
 		};
+
+		template<typename T>
+		Vector2<T> Vector2<T>::null = Vector2<T>();
 
 		typedef Vector2<int> int2;
 		typedef Vector2<float> float2;

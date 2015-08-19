@@ -3,8 +3,10 @@
 #include "NeutronSystemCommon.h"
 #include "NeutronFoundation/String.h"
 #include "Variable.h"
+#include "NeutronFoundation/FileJson.h"
 
 using Neutron::Container::String;
+using Neutron::Utility::FileJson;
 
 namespace Neutron
 {
@@ -19,6 +21,7 @@ namespace Neutron
 		public:
 			static ParameterPtr createParameter();
 			static ParameterPtr createParameter( const char* name, const char* semantic, VariablePtr value );
+			static ParameterPtr createParameter( const FileJson::Value& jvalue );
 
 			Parameter();
 			Parameter( const char* name, const char* semantic, VariablePtr value );

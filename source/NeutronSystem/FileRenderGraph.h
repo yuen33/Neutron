@@ -3,7 +3,8 @@
 #include "NeutronSystemCommon.h"
 #include "Renderable.h"
 
-using Neutron::Engine::Render::RenderablePtr;
+using Neutron::Engine::Render::RenderNodePtr;
+using Neutron::Engine::ParameterPtr;
 
 namespace Neutron
 {
@@ -17,8 +18,8 @@ namespace Neutron
 				FileRenderGraph();
 				virtual ~FileRenderGraph();
 
-				static RenderablePtr load( const char* path );
-				static void save( const char* path, RenderablePtr renderable );
+				static RenderNodePtr load( const char* path );
+				static void save( const char* path, RenderNodePtr renderNode );
 			};
 		}
 	}

@@ -65,12 +65,15 @@ namespace Neutron
 			class Texture;
 			class Sampler;
 			class Shader;
+			class RenderNode;
 			class Renderable;
+
 			typedef RCPtr<InputStream>		InputStreamPtr;
 			typedef RCPtr<Buffer>			BufferPtr;
 			typedef RCPtr<Texture>			TexturePtr;
 			typedef RCPtr<Sampler>			SamplerPtr;
 			typedef RCPtr<Shader>			ShaderPtr;
+			typedef RCPtr<RenderNode>		RenderNodePtr;
 			typedef RCPtr<Renderable>		RenderablePtr;
 
 			// module

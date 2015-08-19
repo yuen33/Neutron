@@ -8,5 +8,6 @@
     <ClInclude Include="..\..\..\source\driver\TestTCPServer.h" />
     <ClInclude Include="..\..\..\source\driver\TestTCPClient.h" />
     <ClInclude Include="..\..\..\source\driver\TestFileJPG.h" />
+    <ClInclude Include="..\..\..\source\driver\TestProcessingUnit.h" />
   </ItemGroup>
 </Project>

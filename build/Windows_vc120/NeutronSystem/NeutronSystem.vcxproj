@@ -203,6 +203,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderable.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\RenderDevice.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Renderer.h" />
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderGraph.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Resource.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\ResourceManager.h" />
     <ClInclude Include="..\..\..\source\NeutronSystem\Sampler.h" />
@@ -235,6 +236,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
     <ClCompile Include="..\..\..\source\NeutronSystem\Renderable.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\RenderDevice.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Renderer.cpp" />
+    <ClCompile Include="..\..\..\source\NeutronSystem\RenderGraph.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Resource.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\ResourceManager.cpp" />
     <ClCompile Include="..\..\..\source\NeutronSystem\Sampler.cpp" />

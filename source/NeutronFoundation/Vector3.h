@@ -9,6 +9,7 @@ namespace Neutron
 		template<typename T>
 		class Vector3
 		{
+		public:
 			T x;
 			T y;
 			T z;
@@ -36,7 +37,11 @@ namespace Neutron
 			inline T volumn() const { return x * y * z; }
 
 			inline boolean isZero( const T e ) const { return abs( x ) < e && abs( y ) < e && abs( z ) < e; }
+			static Vector3 null;
 		};
+
+		template<typename T>
+		Vector3<T> Vector3<T>::null = Vector3<T>();
 
 		typedef Vector3<int> int3;
 		typedef Vector3<float> float3;

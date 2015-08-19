@@ -96,6 +96,9 @@
     <ClInclude Include="..\..\..\source\NeutronSystem\ProcessingModule.h">
       <Filter>Engine\ProcessingUnit</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\source\NeutronSystem\RenderGraph.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -216,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\NeutronSystem\ProcessingModule.cpp">
       <Filter>Engine\ProcessingUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\NeutronSystem\RenderGraph.cpp">
+      <Filter>Engine\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

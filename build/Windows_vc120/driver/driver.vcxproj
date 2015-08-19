@@ -180,6 +180,7 @@ xcopy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)../../bin64"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\source\driver\TestFileJPG.h" />
+    <ClInclude Include="..\..\..\source\driver\TestProcessingUnit.h" />
     <ClInclude Include="..\..\..\source\driver\TestTaskManager.h" />
     <ClInclude Include="..\..\..\source\driver\TestTCPClient.h" />
     <ClInclude Include="..\..\..\source\driver\TestTCPServer.h" />

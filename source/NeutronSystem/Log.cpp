@@ -21,6 +21,7 @@ namespace Neutron
 				printf( "[%s] ", sender );
 				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
+				va_start( arg_list, fmt );
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
 			}
@@ -32,6 +33,7 @@ namespace Neutron
 				printf( "[%s] ", sender );
 				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
+				va_start( arg_list, fmt );
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
 			}
@@ -43,6 +45,7 @@ namespace Neutron
 				printf( "[%s] ", sender );
 				setStdConsoleColor( DefaultColor );
 				va_list arg_list = 0;
+				va_start( arg_list, fmt );
 				vprintf( fmt, arg_list );
 				va_end( arg_list );
 			}
