@@ -2,6 +2,7 @@
 #include "NeutronSystem/PixelFormat.h"
 #include "RenderDeviceD3D11/RenderDeviceD3D11.h"
 #include "NeutronSystem/RenderDefine.h"
+#include "NeutronSystem/Sampler.h"
 
 using Neutron::System::RenderDeviceD3D11;
 
@@ -128,9 +129,9 @@ namespace Neutron
 				return DXGI_FORMAT_UNKNOWN;
 			}
 
-			uint64 MapperD3D11::mapPixelFormat( DXGI_FORMAT format )
+			uint64 MapperD3D11::mapPixelFormat( DXGI_FORMAT dxgiFormat )
 			{
-				switch( format )
+				switch( dxgiFormat )
 				{
 					case DXGI_FORMAT_R8_UNORM:				return PF_R8UN;
 					case DXGI_FORMAT_R8_SNORM:				return PF_R8UN;
@@ -206,6 +207,140 @@ namespace Neutron
 
 				//assert( 0 );
 				return PF_Unknown;
+			}
+
+			D3D11_FILTER MapperD3D11::mapFilterType( int filterType )
+			{
+				switch( filterType )
+				{
+					case Sampler::FT_PPP:						return D3D11_FILTER_MIN_MAG_MIP_POINT;
+					case Sampler::FT_PLP:						return D3D11_FILTER_MIN_POINT_MAG_LINEAR_MIP_POINT;
+					case Sampler::FT_PLL:						return D3D11_FILTER_MIN_POINT_MAG_MIP_LINEAR;
+					case Sampler::FT_LPL:						return D3D11_FILTER_MIN_LINEAR_MAG_POINT_MIP_LINEAR;
+					case Sampler::FT_LLP:						return D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+					case Sampler::FT_LLL:						return D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+					case Sampler::FT_Anisotropic:				return D3D11_FILTER_ANISOTROPIC;
+					case Sampler::FT_Comparison_PPP:			return D3D11_FILTER_COMPARISON_MIN_MAG_MIP_POINT;
+					case Sampler::FT_Comparison_PPL:			return D3D11_FILTER_COMPARISON_MIN_MAG_POINT_MIP_LINEAR;
+					case Sampler::FT_Comparison_PLP:			return D3D11_FILTER_COMPARISON_MIN_POINT_MAG_LINEAR_MIP_POINT;
+					case Sampler::FT_Comparison_PLL:			return D3D11_FILTER_COMPARISON_MIN_POINT_MAG_MIP_LINEAR;
+					case Sampler::FT_Comparison_LPL:			return D3D11_FILTER_COMPARISON_MIN_LINEAR_MAG_POINT_MIP_LINEAR;
+					case Sampler::FT_Comparison_LLP:			return D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT;
+					case Sampler::FT_Comparison_LLL:			return D3D11_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR;
+					case Sampler::FT_Comparison_Anisotropic:	return D3D11_FILTER_COMPARISON_ANISOTROPIC;
+					default:
+					{
+					}
+				}
+
+				// invalid filter type
+				assert( 0 );
+				return D3D11_FILTER_MIN_MAG_MIP_POINT;
+			}
+
+			int MapperD3D11::mapFilterType( D3D11_FILTER d3dFilterType )
+			{
+				switch( d3dFilterType )
+				{
+					case D3D11_FILTER_MIN_MAG_MIP_POINT:							return  Sampler::FT_PPP;
+					case D3D11_FILTER_MIN_POINT_MAG_LINEAR_MIP_POINT:				return  Sampler::FT_PLP;
+					case D3D11_FILTER_MIN_POINT_MAG_MIP_LINEAR:						return  Sampler::FT_PLL;
+					case D3D11_FILTER_MIN_LINEAR_MAG_POINT_MIP_LINEAR:				return  Sampler::FT_LPL;
+					case D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT:						return  Sampler::FT_LLP;
+					case D3D11_FILTER_MIN_MAG_MIP_LINEAR:							return  Sampler::FT_LLL;
+					case D3D11_FILTER_ANISOTROPIC:									return  Sampler::FT_Anisotropic;
+					case D3D11_FILTER_COMPARISON_MIN_MAG_MIP_POINT:					return  Sampler::FT_Comparison_PPP;
+					case D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT:			return  Sampler::FT_Comparison_PPL;
+					case D3D11_FILTER_COMPARISON_MIN_POINT_MAG_LINEAR_MIP_POINT:	return  Sampler::FT_Comparison_PLP;
+					case D3D11_FILTER_COMPARISON_MIN_POINT_MAG_MIP_LINEAR:			return  Sampler::FT_Comparison_PLL;
+					case D3D11_FILTER_COMPARISON_MIN_LINEAR_MAG_POINT_MIP_LINEAR:	return  Sampler::FT_Comparison_LPL;
+					case D3D11_FILTER_COMPARISON_MIN_MAG_POINT_MIP_LINEAR:			return  Sampler::FT_Comparison_LLP;
+					case D3D11_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR:				return  Sampler::FT_Comparison_LLL;
+					case D3D11_FILTER_COMPARISON_ANISOTROPIC:						return  Sampler::FT_Comparison_Anisotropic;
+					default:
+					{
+					}
+				}
+
+				return Sampler::FT_Unknown;
+			}
+
+			D3D11_TEXTURE_ADDRESS_MODE MapperD3D11::mapAddressMode( int addressMode )
+			{
+				switch( addressMode )
+				{
+					case Sampler::AM_Wrap:			return D3D11_TEXTURE_ADDRESS_WRAP;
+					case Sampler::AM_Mirror:		return D3D11_TEXTURE_ADDRESS_MIRROR;
+					case Sampler::AM_Clamp:			return D3D11_TEXTURE_ADDRESS_CLAMP;
+					case Sampler::AM_Border:		return D3D11_TEXTURE_ADDRESS_BORDER;
+					case Sampler::AM_MirrorOnce:	return D3D11_TEXTURE_ADDRESS_MIRROR_ONCE;
+					default:
+					{
+					}	
+				}
+
+				// invalid address mode
+				assert( 0 );
+				return D3D11_TEXTURE_ADDRESS_WRAP;
+			}
+
+			int MapperD3D11::mapAddressMode( D3D11_TEXTURE_ADDRESS_MODE d3dAddressMode )
+			{
+				switch( d3dAddressMode )
+				{
+					case D3D11_TEXTURE_ADDRESS_WRAP:			return Sampler::AM_Wrap;
+					case D3D11_TEXTURE_ADDRESS_MIRROR:			return Sampler::AM_Mirror;
+					case D3D11_TEXTURE_ADDRESS_CLAMP:			return Sampler::AM_Clamp;
+					case D3D11_TEXTURE_ADDRESS_BORDER:			return Sampler::AM_Border;
+					case D3D11_TEXTURE_ADDRESS_MIRROR_ONCE:		return Sampler::AM_MirrorOnce;
+					default:
+					{
+					}
+				};
+
+				return Sampler::AM_Unknown;
+			}
+
+			D3D11_COMPARISON_FUNC MapperD3D11::mapComparisonFunction( int comparisonFunction )
+			{
+				switch( comparisonFunction )
+				{
+					case Sampler::CF_Never:			return D3D11_COMPARISON_NEVER;
+					case Sampler::CF_Less:			return D3D11_COMPARISON_LESS;
+					case Sampler::CF_Equal:			return D3D11_COMPARISON_EQUAL;
+					case Sampler::CF_LessEqual:		return D3D11_COMPARISON_LESS_EQUAL;
+					case Sampler::CF_Greater:		return D3D11_COMPARISON_GREATER;
+					case Sampler::CF_NotEqual:		return D3D11_COMPARISON_NOT_EQUAL;
+					case Sampler::CF_GreaterEqual:	return D3D11_COMPARISON_GREATER_EQUAL;
+					case Sampler::CF_Always:		return D3D11_COMPARISON_ALWAYS;
+					default:
+					{
+					}
+				}
+				
+				// invalid comparison function
+				assert( 0 );
+				return D3D11_COMPARISON_NEVER;
+			}
+			
+			int MapperD3D11::mapComparisonFunction( D3D11_COMPARISON_FUNC d3dComparisonFunction )
+			{
+				switch( d3dComparisonFunction )
+				{
+					case D3D11_COMPARISON_NEVER:			return Sampler::CF_Never;
+					case D3D11_COMPARISON_LESS:				return Sampler::CF_Less;
+					case D3D11_COMPARISON_EQUAL:			return Sampler::CF_Equal;
+					case D3D11_COMPARISON_LESS_EQUAL:		return Sampler::CF_LessEqual;
+					case D3D11_COMPARISON_GREATER:			return Sampler::CF_Greater;
+					case D3D11_COMPARISON_NOT_EQUAL:		return Sampler::CF_NotEqual;
+					case D3D11_COMPARISON_GREATER_EQUAL:	return Sampler::CF_GreaterEqual;
+					case D3D11_COMPARISON_ALWAYS:			return Sampler::CF_Always;
+					default:
+					{
+					}
+				}
+
+				return Sampler::CF_Unknown;
 			}
 
 			boolean MapperD3D11::getD3DBufferFlags( int bufferType, int accessHint, Size stride, D3D11_USAGE& usage, UINT& cpuAccessFlag, UINT& bindFlag, UINT& miscFlag )
